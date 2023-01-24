@@ -1,0 +1,38 @@
+.principal-container-products{
+    width: auto;
+     height: 100px;
+     margin: 10px 10px 30px;
+     display:flex;
+     align-items: center;
+     justify-content: space-between;
+     border-radius: 20px;
+     background-color: #fff;
+     box-shadow: 0 3px 13px 1px rgb(0 0 0 /9%)
+}
+.img-product{
+   height: 80px;
+   width:80px;
+   border-radius: 50%;
+   padding: 10px;
+}
+
+.product{
+ font-size: 1.3rem;
+padding: 15px;
+padding-bottom: 30px;
+}
+.cost{
+    font-size: 1.3rem;
+    padding: 15px;
+    padding-bottom: 30px;
+}
+
+.add-products {
+    background-color: #FFD66C;  
+    border-radius: 20px;
+    height: 30px;
+    width: 80px;  
+    text-align: center;
+   border-style: none;
+   margin-right: 10px;
+   }
