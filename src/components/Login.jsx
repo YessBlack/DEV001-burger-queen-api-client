@@ -1,6 +1,4 @@
-import { Button } from "./Button"
-import { Header } from "./Header"
-
+import { Link } from "react-router-dom"
 export function Login({ img }) {
   return(
       <section className="principal-login-container">
@@ -10,7 +8,7 @@ export function Login({ img }) {
           <form className="form-login">
             <input type="text" placeholder="Usuario" className="form-longin-input"/>
             <input type="password" placeholder="Contraseña" className="form-longin-input" />
-            <button className="btn-login">Ingresar</button>
+            <Link to='/menu'><button className="btn-login">Ingresar</button></Link>
           </form>
         </div>
       </section>
