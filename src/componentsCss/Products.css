@@ -1,13 +1,18 @@
+.principal-container {
+    padding: .3rem;
+}
 .principal-container-products{
-    width: auto;
+    max-width: 500px;
+    width: 100%;
     height: 100px;
-    margin: 10px ;
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-content: center;
+    place-items: center;
     border-radius: 20px;
     background-color: #fff;
-    box-shadow: 0 3px 13px 1px rgb(0 0 0 /9%)
+    box-shadow: 0 3px 13px 1px rgb(0 0 0 /9%);
+    margin-top: .5rem;
 }
 .img-product{
    height: 80px;
