@@ -1,41 +1,24 @@
 import { useState } from 'react'
 import './App.css';
-import Products from './components/Products'
+import Menu from './Menu'
+import './componentsCss/Login.css';
 import './componentsCss/Products.css';
+import {Login} from './components/Login'
+import {Header} from './components/Header'
+import { Routes, Route } from 'react-router-dom';
 
 
 function App() {
   return (
-    <div className="App">
-      <div className='header-container'>
-      <img className='img-logo' src = '../public/images/logoBQ.png'/>
-       <h1>BURGER QUEEN</h1> 
-       </div>
-      <div className = 'principal-container'>
-      <Products
-       img = 'cofee'
-       productName ='Café americano'
-       cost = '-$5.00'
-      />
-       <Products
-       img = 'cofeeMilk'
-       productName ='Café con leche'
-       cost = '-$7.00'
-      />
-       <Products
-       img = 'sandwich'
-       productName ='Sandiwich jamón y queso'
-       cost = '-$10.00'
-      />
-       <Products
-       img = 'juice'
-       productName ='Jugo natural'
-       cost = '-$7.00'
-      />
-      </div>
-  
-
-    </div>
+    <section className='App'>
+      <Header />
+      <Routes>
+    <Route path ='/' element={(<Login
+    img='burger-login'
+    />)}/>
+    <Route path ='/menu' element={(<Menu/>)}/>
+    </Routes>
+    </section>
   )
 }
 
