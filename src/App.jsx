@@ -5,25 +5,7 @@ import { Header } from './components/Header'
 import { Login } from './components/Login'
 import './componentsCss/Login.css'
 import { Route, Routes } from 'react-router-dom'
-
-const Menu = () => {
-  return (
-    <>
-      <Products
-        img='cofee'
-        productName='Café americano'
-        cost='5.00'
-        add='Agregar'
-      />
-      <Products
-        img='cofeeMilk'
-        productName='Café con leche'
-        cost='7.00'
-        add='Agregar'
-      />
-    </>
-  )
-}
+import { ListProduct } from './components/ListProduct'
 
 function App () {
   return (
@@ -36,7 +18,7 @@ function App () {
         />
         <Route
           path='/menu'
-          element={<Menu />}
+          element={<ListProduct />}
         />
       </Routes>
     </section>
