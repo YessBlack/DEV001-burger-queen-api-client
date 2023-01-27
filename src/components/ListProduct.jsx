@@ -22,6 +22,8 @@ export function ListProduct () {
 
   return (
     <>
+      <button>Desayuno</button>
+      <button>Almuerzo / Cena</button>
       <section className='container-products'>
         {
           db.map(el => {

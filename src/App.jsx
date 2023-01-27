@@ -17,8 +17,16 @@ function App () {
           element={<Login img='burger-login' />}
         />
         <Route
-          path='/menu'
+          path='/mesero'
           element={<ListProduct />}
+        />
+        <Route
+          path='/cocina'
+          element={<Header />}
+        />
+        <Route
+          path='/admin'
+          element={<Header />}
         />
       </Routes>
     </section>
