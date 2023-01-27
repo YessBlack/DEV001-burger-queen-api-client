@@ -40,9 +40,9 @@ export function Login ({ img }) {
           const roles = res.user.roles
           if (roles.admin) {
             navigate('/admin')
-          } else if (roles.mesero) {
+          } else if (roles.waiter) {
             navigate('/mesero')
-          } else if (roles.cocina) {
+          } else if (roles.chef) {
             navigate('/cocina')
           }
         }
