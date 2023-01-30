@@ -5,7 +5,7 @@ function Products({ img, productName, cost}) {
   return (
     <div className= 'principal-container-products'>
       <img className='img-product' 
-      src={`/images/${img}.jfif`}/>
+      src={img}/>
       <p className = 'product'>{productName}</p>
       <p className = 'cost'>{cost}</p>
       <Button

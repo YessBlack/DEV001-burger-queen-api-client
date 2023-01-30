@@ -15,6 +15,7 @@ let buttonClassName = isAdd
     return (
         <button className ={buttonClassName} onClick={click}>{text}
         </button>
+       
     )
 }
  export default Button;

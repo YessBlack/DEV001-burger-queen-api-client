@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css';
-import Menu from './Menu'
+import Menu from './components/Menu'
+import './componentsCss/Menu.css';
 import './componentsCss/Login.css';
 import './componentsCss/Products.css';
 import {Login} from './components/Login'
