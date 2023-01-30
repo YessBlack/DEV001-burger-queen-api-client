@@ -15,7 +15,6 @@ export function Login({ img}) {
 const {register, handleSubmit, formState:{errors}} = useForm();
 const navigate = useNavigate();
 
-
  const onSubmit = (data ,e) => {
 
   e.target.reset()
@@ -28,13 +27,20 @@ const navigate = useNavigate();
        fetch('http://localhost:3004/login', options)
       .then(res => res.ok ? res.json() : Promise.reject({err:true}))
       .then((res) =>{
-       if(!res.err && res.user.roles.mesero){
-         navigate('/menu')}
-         else{
-          alert('no eres mesero')
-         }
-        })
-      }
+        if(!res.err) {
+          const roles = res.user.roles
+          if (roles.admin) {
+            navigate('/admin')
+          } else if (roles.mesero) {
+            navigate('/menu')
+          } else if (roles.chef) {
+            navigate('/cocina')
+          }
+        } else {
+          alert('Error')
+        }
+      })
+    }
 
     return(
         <section className="principal-login-container">
@@ -48,7 +54,7 @@ const navigate = useNavigate();
                 required:{value:true, message:"Este campo es obligatorio"}
               })}
              />
-               <span className="text-danger text-small d-block mb-2">{errors?.email?.message}</span>
+               <span className="text-danger">{errors?.email?.message}</span>
               <input type="password" placeholder="Contraseña" className="form-longin-input"
                name = 'password'
                {...register('password',{
@@ -56,7 +62,7 @@ const navigate = useNavigate();
                 minLength:{value:6, message:'La contraseña debe tener minimo 6 caracteres'}
                })}
                />
-               <span className="text-danger text-small d-block mb-2">{errors.password?.message}</span>
+               <span className="text-danger">{errors.password?.message}</span>
              <button className="btn-login" >Ingresar</button>
             </form>
           </div>
