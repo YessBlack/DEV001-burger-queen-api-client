@@ -1,19 +1,19 @@
-import { useState } from 'react'
-function Button ({ initialState, value,product}){
-    const [isAdd, setText] = useState(initialState)
-    let text = isAdd ? 'Añadir' : 'Elimar';
-  const click = () => {
-    setText(!isAdd)
-    if (isAdd){
-      let items =[value, product]
-      console.log(items)
-    }
-  }
+import { useContext} from 'react';
+import ProductContext from './DataContext';
+
+function Button ({ cost, productName}){
+  
+  const {isAdd} = useContext(ProductContext);  
+  const {click} = useContext(ProductContext);
+
+ 
+  let text = isAdd ? 'Añadir' : 'Elimar';
+
 let buttonClassName = isAdd
-  ? 'add-products'
-  :  'add-products delete'
+? 'add-products'
+:  'add-products delete'
     return (
-        <button className ={buttonClassName} onClick={click}>{text}
+        <button className ={buttonClassName} onClick={() =>click (cost, productName)}>{text}
         </button>
        
     )

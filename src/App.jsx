@@ -9,14 +9,17 @@ import {Header} from './components/Header'
 import { Routes, Route } from 'react-router-dom';
 
 
+
 function App() {
   return (
     <section className='App'>
       <Header />
+      
       <Routes>
     <Route path ='/' element={(<Login
     img='burger-login'
     />)}/>
+    
     <Route path ='/menu' element={(<Menu/>)}/>
     </Routes>
     </section>

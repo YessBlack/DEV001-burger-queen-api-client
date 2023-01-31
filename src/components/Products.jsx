@@ -1,26 +1,29 @@
-import { useState } from 'react';
+import { useContext} from 'react';
+import ProductContext from './DataContext';
+
 
 function Products({ img, productName, cost}) {
-  const [isAdd, setText] = useState(true)
+
+  const {isAdd} = useContext(ProductContext);  
+  const {click} = useContext(ProductContext);
+
   let text = isAdd ? 'Añadir' : 'Elimar';
-const click = () => {
-  setText(!isAdd)
-  if (isAdd){
-    let items =[cost, productName]
-    console.log(items)
-  }
-}
-let buttonClassName = isAdd
+  let buttonClassName = isAdd
 ? 'add-products'
 :  'add-products delete'
+
   return (
-    <div className= 'principal-container-products'>
+    
+        <div  className= 'principal-container-products'>
       <img className='img-product' 
       src={img}/>
       <p className = 'product'>{productName}</p>
-      <p className = 'cost'>{cost}</p>
-      <button className ={buttonClassName} onClick={click}>{text}</button>
+      <p className = 'cost'>${cost}.00</p>
+      
+      <button className ={buttonClassName} onClick={()=>click(cost, productName)}>{text}</button>
       </div>
+
+      
   );
 }
 

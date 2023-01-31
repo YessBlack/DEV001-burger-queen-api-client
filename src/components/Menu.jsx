@@ -1,8 +1,11 @@
 import Products from './Products'
-import {useState, useEffect} from 'react'; 
+import {useState, useEffect, useContext} from 'react'; 
+import ProductContext from './DataContext';
 
 function Menu () {
-  const [db, setDb] = useState([]);
+  const {items} = useContext(ProductContext)
+  console.log(items)
+   const [db, setDb] = useState([]);
 
   useEffect(() => {
     const products = async() => {
@@ -24,8 +27,10 @@ const handleClickBreakFast = () =>{
 const handleClickLunchDinner = () =>{
   setIsBreackFast(false)
 }
+
 return (
   <>
+
   <button className= 'btn-click' onClick={handleClickBreakFast}> Desayuno</button>
   <button className='btn-click-user' onClick={handleClickLunchDinner}> Almuerzo/Cena</button>
   { isBreackFast ? breakFast.map(e =>{return( 
@@ -33,15 +38,19 @@ return (
     key ={e.id}
     img={e.img}
     productName={e.name}
-    cost={e.price} />
+    cost={e.price}
+   />
   )})
+          
    : lunch.map(e =>{return( 
     <Products
     key ={e.id}
     img={e.img}
     productName={e.name}
-    cost={e.price} />
+    cost={e.price} 
+     />
   )})}
+ <span>{items}</span>
   </>
 )
 }
