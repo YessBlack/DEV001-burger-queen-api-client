@@ -1,36 +1,20 @@
-import React, { useState } from 'react'
 import { helpHttp } from '../helpers/helpHttp'
 import { useNavigate } from 'react-router-dom'
-
-const initailForm = {
-  email: '',
-  password: ''
-}
+import { useForm } from 'react-hook-form'
 
 export function Login ({ img }) {
-  const [form, setForm] = useState(initailForm)
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
   const navigate = useNavigate()
 
   const api = helpHttp()
   const endPoint = 'http://localhost:3004/login'
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const handleSubmit = (e) => {
+  const onSubmit = (data, e) => {
     e.preventDefault()
-    if (!form.email || !form.password) {
-      alert('Datos incompletos')
-      return
-    }
 
     const options = {
-      body: form,
+      body: data,
       headers: { 'content-type': 'application/json' }
     }
 
@@ -45,6 +29,8 @@ export function Login ({ img }) {
           } else if (roles.chef) {
             navigate('/cocina')
           }
+        } else {
+          alert('Error')
         }
       })
   }
@@ -54,23 +40,28 @@ export function Login ({ img }) {
       <div className='login-container-form'>
         <h1 className='title-login'>INICIAR SESION</h1>
         <img src={`../public/images/${img}.jfif`} alt='' className='img-login' />
-        <form className='form-login' onSubmit={handleSubmit}>
+        <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
           <input
             type='text'
             placeholder='Usuario'
             className='form-longin-input'
-            onChange={handleChange}
             name='email'
-            value={form.email}
+            {...register('email', {
+              required: { value: true, message: 'Este campo es requerido' }
+            })}
           />
+          <span className='text-danger'>{errors?.email?.message}</span>
           <input
             type='password'
             placeholder='Contraseña'
             className='form-longin-input'
-            onChange={handleChange}
             name='password'
-            value={form.password}
+            {...register('password', {
+              required: { value: true, message: 'Este campo es requerido' },
+              minLength: { value: 6, message: 'La constraseña debe tener minimo 6 caracteres' }
+            })}
           />
+          <span className='text-danger'>{errors?.password?.message}</span>
           <button
             className='btn-login'
           >Ingresar

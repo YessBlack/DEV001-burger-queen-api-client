@@ -1,0 +1,32 @@
+.btn-click{
+  width:50%;
+  background-color: #73C089;
+  padding:20px;
+  font-size: x-large;
+  font-weight: bold;
+  cursor: pointer;
+  border:none; 
+
+}
+.btn-click:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+}
+.btn-click-user{
+  width:50%;
+  background-color: #FF8540;
+  padding:20px;
+  font-size: x-large;
+  font-weight: bold;
+  cursor: pointer;
+  border:none; 
+}
+.btn-click-user:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+}
+.container-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}

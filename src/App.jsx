@@ -1,10 +1,11 @@
 import './App.css'
 import './componentsCss/Products.css'
+import './componentsCss/ListProduct.css'
 import { Header } from './components/Header'
 import { Login } from './components/Login'
 import './componentsCss/Login.css'
 import { Route, Routes } from 'react-router-dom'
-import { ListProduct } from './components/ListProduct'
+import { Menu } from './components/Menu'
 import { Chef } from './components/Chef'
 import { Admin } from './components/Admin'
 
@@ -19,7 +20,7 @@ function App () {
         />
         <Route
           path='/mesero'
-          element={<ListProduct />}
+          element={<Menu />}
         />
         <Route
           path='/cocina'

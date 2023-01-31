@@ -1,14 +1,17 @@
 import { useState } from 'react'
 
-export const Button = ({ isAddInitial }) => {
+export const Button = ({ isAddInitial, price, name, setItems }) => {
   const [isAdd, setText] = useState(isAddInitial)
-  const [products, setProducts] = useState([])
 
   const text = isAdd ? 'Añadir' : 'Eliminar'
 
-  const hizoClick = (e) => {
+  const click = () => {
+    if (isAdd) {
+      setItems([price, name])
+    } else {
+      setItems([])
+    }
     setText(!isAdd)
-    console.log('Hizo click', e)
   }
 
   const buttonClassName = isAdd
@@ -16,6 +19,6 @@ export const Button = ({ isAddInitial }) => {
     : 'add-products delete'
 
   return (
-    <button className={buttonClassName} onClick={hizoClick}>{text}</button>
+    <button className={buttonClassName} onClick={click}>{text}</button>
   )
 }

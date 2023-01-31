@@ -55,3 +55,6 @@
   border-radius: 10px;
   margin: 10px;
 }
+.text-danger {
+  color: red;
+}
