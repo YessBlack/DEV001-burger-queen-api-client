@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { helpHttp } from '../helpers/helpHttp'
 import Products from './Products'
+import { ProductContext } from './Context'
 
 export function Menu () {
   const [db, setDb] = useState([])
+  const { items } = useContext(ProductContext)
 
-  const [items, setItems] = useState([])
-
+  console.log(items)
   const api = helpHttp()
   const url = ' http://localhost:3000/products'
 
@@ -32,8 +33,26 @@ export function Menu () {
     setIsBreakfast(false)
   }
 
+  const price = items.map(e => e.price)
+  const total = price.reduce((acc, ant) => acc + ant, 0)
+
   const breakFast = db.filter(el => el.type === 'breakFast')
   const lunch = db.filter(el => el.type === 'lunch')
+
+  const handleSendItems = () => {
+    const endPointOrders = 'http://localhost:3001/orders'
+    const name = 'Nati Otero'
+    const data = {
+      pedido: items,
+      userName: name
+    }
+    const options = {
+      body: data,
+      headers: { 'content-type': 'application/json' }
+    }
+
+    api.post(endPointOrders, options)
+  }
 
   return (
     <>
@@ -51,8 +70,6 @@ export function Menu () {
                   img={el.img}
                   name={el.name}
                   price={el.price}
-                  setItems={setItems}
-                  items={items}
                 />
               )
             })
@@ -63,24 +80,20 @@ export function Menu () {
                   img={el.img}
                   name={el.name}
                   price={el.price}
-                  isAddInitial
-                  setItems={setItems}
-                  items={items}
                 />
               )
             })
         }
         </section>
-        <section>
-          <h1>Cuenta</h1>
+        <section className='check-container'>
+          <h1 className='title'>Cuenta</h1>
           <ul>
             {
-              items.map((el, i) => (
-                <li key={i}>{el}</li>
-              )
-              )
+              items.map(item => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}> ${item.price}  - {item.name} </li>)
             }
           </ul>
+          <h2 className='total'>Total: $ {total}.00</h2>
+          <button className='send-products' onClick={handleSendItems}>Enviar pedido</button>
         </section>
       </section>
     </>

@@ -1,21 +1,27 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { ProductContext } from './Context'
 
-function Products ({ img, name, price, setItems, items }) {
-  const [isAdd, setText] = useState(true)
+function Products ({ img, name, price }) {
+  const [isAdded, setIsAdded] = useState(false)
 
-  const text = isAdd ? 'Añadir' : 'Eliminar'
+  const { items } = useContext(ProductContext)
+  const { setItems } = useContext(ProductContext)
 
-  const buttonClassName = isAdd
-    ? 'add-products'
-    : 'add-products delete'
+  const text = isAdded ? 'Eliminar' : 'Añadir'
 
-  const handleAddProduct = () => {
-    if (isAdd) {
-      setItems([...items, price, name])
+  const buttonClassName = isAdded
+    ? 'add-products delete'
+    : 'add-products'
+
+  const handleAddProduct = (product) => {
+    const productAdded = items.find(productAdded => productAdded.name === product.name)
+    if (!productAdded) {
+      setItems(items => [...items, product])
+      setIsAdded(true)
     } else {
-      setItems(items.filter(e => e !== name && e !== price))
+      setItems(products => products.filter(product => product.name !== productAdded.name))
+      setIsAdded(false)
     }
-    setText(!isAdd)
   }
 
   return (
@@ -26,8 +32,7 @@ function Products ({ img, name, price, setItems, items }) {
       />
       <p className='product'>{name}</p>
       <p className='cost'>$ {price}</p>
-
-      <button className={buttonClassName} onClick={handleAddProduct}>{text}</button>
+      <button className={buttonClassName} onClick={() => handleAddProduct({ name, price })}>{text}</button>
     </article>
   )
 }
