@@ -4,7 +4,7 @@ import { useState,createContext} from 'react';
 
 export function ProductContextProvider({children}) {
 
-   const [items, setItems] =useState([])
+  const [items, setItems] =useState([])
 
     return(
         <ProductContext.Provider value ={{items, setItems}}>

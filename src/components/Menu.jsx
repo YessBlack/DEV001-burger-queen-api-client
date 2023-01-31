@@ -4,7 +4,6 @@ import ProductContext from './DataContext';
 
 function Menu () {
   const {items} = useContext(ProductContext)
-  console.log(items)
    const [db, setDb] = useState([]);
 
   useEffect(() => {
@@ -50,7 +49,7 @@ return (
     cost={e.price} 
      />
   )})}
- <span>{items}</span>
+  {items.map(item => <span key={Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10)}>{item.productName}{item.cost}</span>)}
   </>
 )
 }
