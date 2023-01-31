@@ -4,19 +4,10 @@ import { useState,createContext} from 'react';
 
 export function ProductContextProvider({children}) {
 
-  const [isAdd, setText] = useState(true)  
   const [items, setItems] =useState([])
 
-  const click = ( cost, productName) => {
-        setText(!isAdd)
-    if (isAdd){
-     setItems((items)=>[...items,cost, productName ])
-      }else{
-        setItems([])
-      }
-  }
     return(
-        <ProductContext.Provider value ={{items, click, isAdd}}>
+        <ProductContext.Provider value ={{items, setItems}}>
             {children}
         </ProductContext.Provider>
     )
