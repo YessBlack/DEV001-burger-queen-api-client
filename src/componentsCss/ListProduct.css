@@ -26,12 +26,14 @@
   transform: scale(1.1);
 }
 .container-menu {
-  display:grid;
-  grid-template-columns: 2fr 1fr;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1rem;
 }
 .check-container{
   margin-top: 10px;
   border: solid 1px black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   display: flex;
   align-items: center;
   flex-direction: column;

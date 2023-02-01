@@ -6,6 +6,9 @@ import { ProductContext } from './Context'
 export function Menu () {
   const [db, setDb] = useState([])
   const { items } = useContext(ProductContext)
+  const { setItems } = useContext(ProductContext)
+
+  const { setIsAdded } = useContext(ProductContext)
 
   console.log(items)
   const api = helpHttp()
@@ -52,6 +55,9 @@ export function Menu () {
     }
 
     api.post(endPointOrders, options)
+
+    setItems([])
+    setIsAdded(false)
   }
 
   return (
