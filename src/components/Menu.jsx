@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from 'react'
-import { helpHttp } from '../helpers/helpHttp'
 import Products from './Products'
 import { ProductContext } from './Context'
 
@@ -8,23 +7,15 @@ export function Menu () {
   const { items } = useContext(ProductContext)
   const { setItems } = useContext(ProductContext)
 
-  const { setIsAdded } = useContext(ProductContext)
-
-  console.log(items)
-  const api = helpHttp()
   const url = ' http://localhost:3000/products'
 
   useEffect(() => {
-    helpHttp()
-    api.get(url)
+    fetch(url)
+      .then(res => res.json())
       .then(res => {
-        if (!res.err) {
-          setDb(res)
-        } else {
-          setDb([])
-        }
+        setDb(res)
       })
-  }, [url])
+  }, [])
 
   const [isBreakfast, setIsBreakfast] = useState(true)
 
@@ -57,7 +48,10 @@ export function Menu () {
     api.post(endPointOrders, options)
 
     setItems([])
-    setIsAdded(false)
+  }
+
+  const handleDelete = (product) => {
+    setItems(items.filter((item, i) => items.indexOf(product) !== i))
   }
 
   return (
@@ -95,7 +89,7 @@ export function Menu () {
           <h1 className='title'>Cuenta</h1>
           <ul>
             {
-              items.map(item => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}> ${item.price}  - {item.name} </li>)
+              items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}> ${item.price}  - {item.name} <ion-icon name='trash-outline' onClick={() => handleDelete(item)} /></li>)
             }
           </ul>
           <h2 className='total'>Total: $ {total}.00</h2>

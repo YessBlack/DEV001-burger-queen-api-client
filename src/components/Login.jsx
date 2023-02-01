@@ -1,4 +1,3 @@
-import { helpHttp } from '../helpers/helpHttp'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
@@ -7,18 +6,19 @@ export function Login ({ img }) {
 
   const navigate = useNavigate()
 
-  const api = helpHttp()
-  const endPoint = 'http://localhost:3004/login'
-
   const onSubmit = (data, e) => {
     e.preventDefault()
 
+    const endPoint = 'http://localhost:3004/login'
     const options = {
-      body: data,
+      method: 'POST',
+      body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
 
-    api.post(endPoint, options)
+    fetch(endPoint, options)
+      // eslint-disable-next-line prefer-promise-reject-errors
+      .then(res => res.ok ? res.json() : Promise.reject({ err: true }))
       .then(res => {
         if (!res.err) {
           const roles = res.user.roles
