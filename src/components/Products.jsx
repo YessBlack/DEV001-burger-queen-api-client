@@ -15,7 +15,7 @@ function Products ({ img, name, price }) {
         src={img}
       />
       <p className='product'>{name}</p>
-      <p className='cost'>$ {price}</p>
+      <p className='cost'>$ {price}.00</p>
       <button className='add-products' onClick={() => handleAddProduct({ name, price })}>Añadir</button>
     </article>
   )

@@ -29,16 +29,19 @@
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 1rem;
+  max-width: 1200px;
+  margin: auto;
 }
 .check-container{
   margin-top: 10px;
-  border: solid 1px black;
+  border: solid 1px rgb(153, 149, 149);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   display: flex;
   align-items: center;
   flex-direction: column;
   border-radius:10px;
   margin-right: 3px;
+  gap: 1rem;
  }
 .check{
   margin-top:10px;

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { AlertDanger } from './AlertDanger'
 
 export function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
@@ -18,7 +19,7 @@ export function Login ({ img }) {
 
     fetch(endPoint, options)
       // eslint-disable-next-line prefer-promise-reject-errors
-      .then(res => res.ok ? res.json() : Promise.reject({ err: true }))
+      .then(res => res.json())
       .then(res => {
         if (!res.err) {
           const roles = res.user.roles
@@ -29,9 +30,9 @@ export function Login ({ img }) {
           } else if (roles.chef) {
             navigate('/cocina')
           }
-        } else {
-          alert('Error')
         }
+      }).catch(() => {
+        alert('Usuario o contraseña incorrecta')
       })
   }
 

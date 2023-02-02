@@ -4,6 +4,7 @@ import { ProductContext } from './Context'
 
 export function Menu () {
   const [db, setDb] = useState([])
+  const [inputName, setInputName] = useState('')
   const { items } = useContext(ProductContext)
   const { setItems } = useContext(ProductContext)
 
@@ -33,25 +34,35 @@ export function Menu () {
   const breakFast = db.filter(el => el.type === 'breakFast')
   const lunch = db.filter(el => el.type === 'lunch')
 
-  const handleSendItems = () => {
+  const products = items.map(item => {
+    return { ...item, cantidad: items.filter(e => e.name === item.name).length, estado: 'pendiente' }
+  })
+
+  const set = new Set(products.map(JSON.stringify))
+  const arrSinDuplicaciones = Array.from(set).map(JSON.parse)
+
+  const handleSendItems = (e) => {
     const endPointOrders = 'http://localhost:3001/orders'
-    const name = 'Nati Otero'
     const data = {
-      pedido: items,
-      userName: name
+      pedido: arrSinDuplicaciones,
+      userName: inputName
     }
     const options = {
-      body: data,
+      method: 'POST',
+      body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
 
-    api.post(endPointOrders, options)
-
+    fetch(endPointOrders, options)
     setItems([])
+    setInputName('')
   }
 
   const handleDelete = (product) => {
     setItems(items.filter((item, i) => items.indexOf(product) !== i))
+  }
+  const handleChangeName = (e) => {
+    setInputName(e.target.value)
   }
 
   return (
@@ -87,9 +98,10 @@ export function Menu () {
         </section>
         <section className='check-container'>
           <h1 className='title'>Cuenta</h1>
+          <input type='text' placeholder='Nombre' name='name' value={inputName} onChange={handleChangeName} />
           <ul>
             {
-              items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}> ${item.price}  - {item.name} <ion-icon name='trash-outline' onClick={() => handleDelete(item)} /></li>)
+              items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}> ${item.price}.00 - {item.name} <ion-icon name='trash-outline' onClick={() => handleDelete(item)} /></li>)
             }
           </ul>
           <h2 className='total'>Total: $ {total}.00</h2>
