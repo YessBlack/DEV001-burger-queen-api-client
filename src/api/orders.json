@@ -33,8 +33,38 @@
           "estado": "pendiente"
         }
       ],
-      "userName": "",
+      "userName": "Nati otero",
       "id": 1
+    },
+    {
+      "pedido": [
+        {
+          "name": "Café americano",
+          "price": 5,
+          "cantidad": 1,
+          "estado": "pendiente"
+        },
+        {
+          "name": "Café con leche ",
+          "price": 7,
+          "cantidad": 1,
+          "estado": "pendiente"
+        },
+        {
+          "name": "Sandiwich jamón y queso",
+          "price": 10,
+          "cantidad": 1,
+          "estado": "pendiente"
+        },
+        {
+          "name": "Jugo natural",
+          "price": 7,
+          "cantidad": 1,
+          "estado": "pendiente"
+        }
+      ],
+      "userName": "Nati",
+      "id": 2
     }
   ]
 }
