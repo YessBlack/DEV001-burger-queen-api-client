@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useContext } from 'react'
+import ProductContext from './DataContext'
 
 export function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
-
   const onSubmit = (data, e) => {
     e.target.reset()
 
@@ -17,11 +18,12 @@ export function Login ({ img }) {
       .then(res => res.json())
       .then((res) => {
         if (!res.err) {
+          window.sessionStorage.setItem('user', JSON.stringify(res))
           const roles = res.user.roles
           if (roles.admin) {
             navigate('/admin')
-          } else if (roles.mesero) {
-            navigate('/menu')
+          } else if (roles.waiter) {
+            navigate('/mesero')
           } else if (roles.chef) {
             navigate('/chef')
           }

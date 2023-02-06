@@ -7,6 +7,7 @@ import { Login } from './components/Login'
 import { Header } from './components/Header'
 import { Routes, Route } from 'react-router-dom'
 import { Chef } from './components/Chef'
+import { PrivateRoute } from './PrivateRoute'
 
 function App () {
   return (
@@ -19,7 +20,7 @@ function App () {
             img='burger-login'
                              />)}
         />
-        <Route path='/menu' element={<Menu />} />
+        <Route path='/mesero' element={<PrivateRoute><Menu /></PrivateRoute>} />
         <Route path='/chef' element={<Chef />} />
       </Routes>
     </section>
