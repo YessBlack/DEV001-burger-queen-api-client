@@ -1,24 +1,40 @@
-import { useContext } from 'react'
-import { ProductContext } from './Context'
+import { useContext, useState} from 'react';
+import ProductContext from './DataContext';
 
-function Products ({ img, name, price }) {
-  const { setItems } = useContext(ProductContext)
 
-  const handleAddProduct = (product) => {
-    setItems(items => [...items, product])
-  }
+function Products({ img, productName, cost, quantity,state ,userName}) {
+  
+  const {setItems} = useContext(ProductContext)
+
+  
+  const addProduct = (product ) => {
+    // const productAdded = items.find(productAdded => productAdded.productName === product.productName)
+    //    if (!productAdded) {
+      setItems(items => [...items, product])
+      }
+  
+  
+//   let text = isAdded ? 'Eliminar' : 'Añadir';
+//   let buttonClassName = isAdded
+// ? 'add-products delete'
+// :  'add-products'
 
   return (
-    <article className='principal-container-products'>
-      <img
-        className='img-product'
-        src={img}
-      />
-      <p className='product'>{name}</p>
-      <p className='cost'>$ {price}.00</p>
-      <button className='add-products' onClick={() => handleAddProduct({ name, price })}>Añadir</button>
-    </article>
-  )
+    
+        <div  className= 'principal-container-products'>
+      <img className='img-product' 
+      src={img}/>
+      <p className = 'product'>{productName}</p>
+      <p className = 'cost'>${cost}.00</p>
+      <p className = 'product'>{quantity}</p>
+      <p className = 'product'>{state}</p>
+      <p className = 'product'>{userName}</p>
+      
+      <button className ='add-products' onClick={() => addProduct({cost, productName})}>Añadir</button>
+      </div>
+
+      
+  );
 }
 
-export default Products
+export default Products;

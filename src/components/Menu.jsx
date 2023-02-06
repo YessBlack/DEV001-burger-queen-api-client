@@ -1,113 +1,103 @@
-import { useEffect, useState, useContext } from 'react'
 import Products from './Products'
-import { ProductContext } from './Context'
+import {useState, useEffect, useContext} from 'react'; 
+import ProductContext from './DataContext';
 
-export function Menu () {
-  const [db, setDb] = useState([])
+function Menu () {
+
+  const {items} = useContext(ProductContext)
+  const {setItems} = useContext(ProductContext)
+  const [db, setDb] = useState([]);
   const [inputName, setInputName] = useState('')
-  const { items } = useContext(ProductContext)
-  const { setItems } = useContext(ProductContext)
-
-  const url = ' http://localhost:3000/products'
+  const [isBreackFast , setIsBreackFast] =useState(true);
 
   useEffect(() => {
-    fetch(url)
-      .then(res => res.json())
-      .then(res => {
-        setDb(res)
-      })
-  }, [])
+   fetch('http://localhost:3000/products') // hacemos la petición get
+    .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
+    .then(res => setDb(res)); // cuando hayamos terminado (then) actualizamos el estado nombre
+}, [db]); 
 
-  const [isBreakfast, setIsBreakfast] = useState(true)
+const breakFast= db.filter(product => product.type === "breakFast");
+const lunch = db.filter( product => product.type === "lunch");
 
-  const handleClickBreakfast = () => {
-    setIsBreakfast(true)
+const handleClickBreakFast = () =>{
+  setIsBreackFast(true)
+}
+const handleClickLunchDinner = () =>{
+  setIsBreackFast(false)
+}
+
+const price = items.map(price => price.cost);
+const total = price.reduce((acc, el) => acc + el , 0);
+
+
+
+ const name = (e) =>{
+  setInputName(e.target.value)
+ 
+ }
+ 
+ const products = items.map(item => {return {...item, quantity: items.filter(e => e.productName === item.productName).length}})
+ let setProducts = new Set( products.map( JSON.stringify ) )
+ let uniqueProducts = Array.from( setProducts ).map( JSON.parse );
+ 
+
+
+const handleSendProduct = () => {
+    const data ={
+    state:'Pendiente',
+    clientName:inputName,    
+    order:uniqueProducts    
   }
-
-  const handleClickLunch = () => {
-    setIsBreakfast(false)
+   const options = {
+    method : "POST",
+    body:JSON.stringify(data),
+    headers: { 'content-type': 'application/json' }
   }
-
-  const price = items.map(e => e.price)
-  const total = price.reduce((acc, ant) => acc + ant, 0)
-
-  const breakFast = db.filter(el => el.type === 'breakFast')
-  const lunch = db.filter(el => el.type === 'lunch')
-
-  const products = items.map(item => {
-    return { ...item, cantidad: items.filter(e => e.name === item.name).length, estado: 'pendiente' }
-  })
-
-  const set = new Set(products.map(JSON.stringify))
-  const arrSinDuplicaciones = Array.from(set).map(JSON.parse)
-
-  const handleSendItems = (e) => {
-    const endPointOrders = 'http://localhost:3001/orders'
-    const data = {
-      pedido: arrSinDuplicaciones,
-      userName: inputName
-    }
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'content-type': 'application/json' }
-    }
-
-    fetch(endPointOrders, options)
+       fetch('http://localhost:3001/orders', options)
     setItems([])
     setInputName('')
-  }
-
-  const handleDelete = (product) => {
-    setItems(items.filter((item, i) => items.indexOf(product) !== i))
-  }
-  const handleChangeName = (e) => {
-    setInputName(e.target.value)
-  }
-
-  return (
-    <>
-      <button className='btn-click' onClick={handleClickBreakfast}> Desayuno</button>
-      <button className='btn-click-user' onClick={handleClickLunch}> Almuerzo/Cena</button>
-
-      <section className='container-menu'>
-        <section className='container-products'>
-          {
-          isBreakfast
-            ? breakFast.map(el => {
-              return (
-                <Products
-                  key={el.id}
-                  img={el.img}
-                  name={el.name}
-                  price={el.price}
-                />
-              )
-            })
-            : lunch.map(el => {
-              return (
-                <Products
-                  key={el.id}
-                  img={el.img}
-                  name={el.name}
-                  price={el.price}
-                />
-              )
-            })
-        }
-        </section>
-        <section className='check-container'>
-          <h1 className='title'>Cuenta</h1>
-          <input type='text' placeholder='Nombre' name='name' value={inputName} onChange={handleChangeName} />
-          <ul>
-            {
-              items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}> ${item.price}.00 - {item.name} <ion-icon name='trash-outline' onClick={() => handleDelete(item)} /></li>)
-            }
-          </ul>
-          <h2 className='total'>Total: $ {total}.00</h2>
-          <button className='send-products' onClick={handleSendItems}>Enviar pedido</button>
-        </section>
-      </section>
-    </>
-  )
+         
 }
+const handleDelete = (item) => {
+setItems(items.filter((product, i) => items.indexOf(item) !== i))
+}
+
+return (
+  <>
+  <button className= 'btn-click' onClick={handleClickBreakFast}> Desayuno</button>
+  <button className='btn-click-user' onClick={handleClickLunchDinner}> Almuerzo/Cena</button>
+  < div className='container-menu-check'>
+  <section className='container-menu'>
+  { isBreackFast ? breakFast.map(e =>{return( 
+    <Products
+    key ={e.id}
+    img={e.img}
+    productName={e.name}
+    cost={e.price}
+     />
+  )})
+          
+   : lunch.map(e =>{return( 
+    <Products
+    key ={e.id}
+    img={e.img}
+    productName={e.name}
+    cost={e.price}
+     />
+  )})}
+   </section>
+  <section className='check-container'>
+    <h1>Cuenta</h1>
+    <input className='client-name'  value={inputName} placeholder='Nombre' name ='name' onChange={name}/>
+  {items.map((item)=> <li className='check' key ={Math.random().toString(36).replace(/[^a-z]+/g, '')}>  ${item.cost}.00  - {item.productName}
+  <ion-icon name='trash-outline' onClick={() => handleDelete(item)}></ion-icon>
+  </li>)}
+  
+  <h2 className='total'> Total :$ {total}.00</h2>
+  <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>
+  </section>
+  </div>
+  </>
+)
+}
+export default Menu

@@ -1,74 +1,64 @@
-import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { AlertDanger } from './AlertDanger'
+import { redirect, useNavigate} from 'react-router-dom'
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
-export function Login ({ img }) {
-  const { register, handleSubmit, formState: { errors } } = useForm()
+export function Login({img}) {
 
-  const navigate = useNavigate()
+const {register, handleSubmit, formState:{errors}} = useForm();
+const navigate = useNavigate();
 
-  const onSubmit = (data, e) => {
-    e.preventDefault()
 
-    const endPoint = 'http://localhost:3004/login'
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'content-type': 'application/json' }
-    }
 
-    fetch(endPoint, options)
-      // eslint-disable-next-line prefer-promise-reject-errors
+ const onSubmit = (data ,e) => {
+
+  e.target.reset()
+  
+  const options = {
+    method : "POST",
+    body:JSON.stringify(data),
+    headers: { 'content-type': 'application/json' }
+  }
+       fetch('http://localhost:3004/login', options)
       .then(res => res.json())
-      .then(res => {
-        if (!res.err) {
+      .then((res) =>{
+        if(!res.err) {
           const roles = res.user.roles
           if (roles.admin) {
             navigate('/admin')
-          } else if (roles.waiter) {
-            navigate('/mesero')
+          } else if (roles.mesero) {
+            navigate('/menu')
           } else if (roles.chef) {
             navigate('/cocina')
           }
-        }
-      }).catch(() => {
-        alert('Usuario o contraseña incorrecta')
+        }       
       })
+      .catch(() => alert('Contraseña o Usuario Incorrecto'))
+    }
+   
+    return(
+        <section className="principal-login-container">
+          <div className="login-container-form">
+            <h1 className="title-login">INICIAR SESION</h1>
+            <img src={`../public/images/${img}.jfif`} alt="" className="img-login" />
+            <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
+             <input type="text" placeholder="Usuario" className="form-longin-input"
+               name = 'email'
+              {...register('email',{
+                required:{value:true, message:"Este campo es obligatorio"}
+              })}
+             />
+               <span className="text-danger">{errors?.email?.message}</span>
+              <input type="password" placeholder="Contraseña" className="form-longin-input"
+               name = 'password'
+               {...register('password',{
+                required:{value:true, message:"Este campo es obligatorio"},
+                minLength:{value:6, message:'La contraseña debe tener minimo 6 caracteres'},
+               })}
+               />
+               <span className="text-danger">{errors.password?.message}</span>
+             <button className="btn-login" >Ingresar</button>
+            </form>
+          </div>
+        </section>
+    )
   }
-
-  return (
-    <section className='principal-login-container'>
-      <div className='login-container-form'>
-        <h1 className='title-login'>INICIAR SESION</h1>
-        <img src={`../public/images/${img}.jfif`} alt='' className='img-login' />
-        <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
-          <input
-            type='text'
-            placeholder='Usuario'
-            className='form-longin-input'
-            name='email'
-            {...register('email', {
-              required: { value: true, message: 'Este campo es requerido' }
-            })}
-          />
-          <span className='text-danger'>{errors?.email?.message}</span>
-          <input
-            type='password'
-            placeholder='Contraseña'
-            className='form-longin-input'
-            name='password'
-            {...register('password', {
-              required: { value: true, message: 'Este campo es requerido' },
-              minLength: { value: 6, message: 'La constraseña debe tener minimo 6 caracteres' }
-            })}
-          />
-          <span className='text-danger'>{errors?.password?.message}</span>
-          <button
-            className='btn-login'
-          >Ingresar
-          </button>
-        </form>
-      </div>
-    </section>
-  )
-}
