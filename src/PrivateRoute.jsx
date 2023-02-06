@@ -1,8 +1,7 @@
-import { Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom'
 
-export const PrivateRoute = ({component:Component, user, ...rest}) => {
-    return(
-        
-        <Route {...rest}>{user? <Component/> : <Redirect to ='/login'/>}</Route>
-    )
+export const PrivateRoute = ({ children }) => {
+  const auth = window.sessionStorage.getItem('user')
+
+  return auth !== null ? children : <Navigate to='/' />
 }

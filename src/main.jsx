@@ -7,9 +7,9 @@ import { ProductContextProvider } from './components/DataContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <ProductContextProvider>
-    <App />
+    <ProductContextProvider>
+      <App />
     </ProductContextProvider>
-   </BrowserRouter>
+  </BrowserRouter>
 
 )
