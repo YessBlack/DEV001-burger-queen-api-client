@@ -14,10 +14,7 @@ export function Login ({ img }) {
       headers: { 'content-type': 'application/json' }
     }
     fetch('http://localhost:3004/login', options)
-      .then(res => {
-        JSON.stringify(window.sessionStorage.setItem('user'))
-        res.json()
-      })
+      .then(res => res.json())
       .then((res) => {
         if (!res.err) {
           const roles = res.user.roles
