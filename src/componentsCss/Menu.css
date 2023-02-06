@@ -26,3 +26,37 @@
     transition: 0.2s;
     transform: scale(1.1);
 }
+.container-menu-check{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+}
+.check-container{
+    margin-top: 10px;
+    border: solid 1px black;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius:10px;
+    margin-right: 10px;
+   }
+.check{
+    margin-top:10px;
+    list-style: none;
+}
+.total{
+    margin-top:20px;
+    color: #f46919;
+    font-weight: bold;
+}
+.send-products{
+    background-color: #FFD66C;  
+    border-radius: 20px;
+    width: 120px;  
+    text-align: center;
+   border-style: none;
+   margin-right: 10px;
+   padding:12px;
+   font-weight: bold;
+   margin-top: 1.8rem;
+   cursor:pointer;
+}

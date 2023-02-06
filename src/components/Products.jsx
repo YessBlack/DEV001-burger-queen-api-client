@@ -2,26 +2,22 @@ import { useContext, useState} from 'react';
 import ProductContext from './DataContext';
 
 
-function Products({ img, productName, cost}) {
-  const [isAdded, setIsAdded] = useState(false)
-  const {items} = useContext(ProductContext)
+function Products({ img, productName, cost, quantity,state ,userName}) {
+  
   const {setItems} = useContext(ProductContext)
 
-  const addProduct = (product) => {
-    const productAdded = items.find(productAdded => productAdded.productName === product.productName)
-    if (!productAdded) {
+  
+  const addProduct = (product ) => {
+    // const productAdded = items.find(productAdded => productAdded.productName === product.productName)
+    //    if (!productAdded) {
       setItems(items => [...items, product])
-      setIsAdded(true)
-    } else {
-      setItems(products => products.filter(product => product.productName !== productAdded.productName))
-      setIsAdded(false)
-    }
-  }
-
-  let text = isAdded ? 'Eliminar' : 'Añadir';
-  let buttonClassName = isAdded
-? 'add-products delete'
-:  'add-products'
+      }
+  
+  
+//   let text = isAdded ? 'Eliminar' : 'Añadir';
+//   let buttonClassName = isAdded
+// ? 'add-products delete'
+// :  'add-products'
 
   return (
     
@@ -30,8 +26,11 @@ function Products({ img, productName, cost}) {
       src={img}/>
       <p className = 'product'>{productName}</p>
       <p className = 'cost'>${cost}.00</p>
+      <p className = 'product'>{quantity}</p>
+      <p className = 'product'>{state}</p>
+      <p className = 'product'>{userName}</p>
       
-      <button className ={buttonClassName} onClick={() => addProduct({cost, productName})}>{text}</button>
+      <button className ='add-products' onClick={() => addProduct({cost, productName})}>Añadir</button>
       </div>
 
       

@@ -8,9 +8,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "fake-api": "json-server --watch src/assets/products.json",
+    "orders-api": "json-server --watch src/assets/orders.json --port 3001",
     "auth-api": "json-server-auth src/assets/auth.json --port 3004"
   },
   "dependencies": {
+    "bootstrap": "^5.3.0-alpha1",
     "eslint": "^8.32.0",
     "json-server": "^0.17.1",
     "json-server-auth": "^2.1.0",
