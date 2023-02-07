@@ -149,6 +149,49 @@
       ],
       "idWaiter": 1,
       "id": 7
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "fasdfsd",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        },
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Jugo natural",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Hamburguesa Simple",
+          "quantity": 1
+        },
+        {
+          "cost": 15,
+          "productName": "Hamburgesa Doble",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Papas Fritas",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "id": 8
     }
   ]
 }

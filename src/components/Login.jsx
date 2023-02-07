@@ -4,7 +4,9 @@ import { useAuth } from './useAuth'
 
 export function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
+  const { login } = useAuth()
   const navigate = useNavigate()
+  
   const { login } = useAuth()
 
   const onSubmit = (data, e) => {
@@ -15,6 +17,7 @@ export function Login ({ img }) {
       body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
+
     fetch('http://localhost:3004/login', options)
       .then(res => res.json())
       .then((res) => {
