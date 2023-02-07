@@ -30,6 +30,7 @@
     text-align: center;
     border-style: none;
     margin-right: 10px;
+    cursor: pointer;
    }
 .delete{
    background-color: #6751E8; 

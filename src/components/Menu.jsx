@@ -11,7 +11,6 @@ function Menu () {
 
   const user = JSON.parse(window.localStorage.getItem('user'))
 
-
   useEffect(() => {
     fetch('http://localhost:3000/products') // hacemos la petición get
       .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
@@ -92,7 +91,7 @@ function Menu () {
           <h1>Cuenta</h1>
           <input className='client-name' value={inputName} placeholder='Nombre' name='name' onChange={name} />
           {items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}>  ${item.cost}.00  - {item.productName}
-            <ion-icon name='trash-outline' onClick={() => handleDelete(item)} />
+            <span className='icon-trash-o' onClick={() => handleDelete(item)} />
           </li>)}
 
           <h2 className='total'> Total :$ {total}.00</h2>
