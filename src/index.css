@@ -8,3 +8,18 @@
     font-family: 'Maven Pro', sans-serif;
   }
   
+  p {
+    margin-bottom: 0;
+  }
+
+  h1, input{
+    text-align: center;
+    font-weight: bold;
+    font-family: League Gothic;
+    font-size: 2rem;
+    font-family: 'League Gothic', sans-serif;
+    letter-spacing: 2px;
+}
+input {
+    font-size: 1.3rem;
+}

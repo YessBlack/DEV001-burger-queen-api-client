@@ -1,11 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { useContext } from 'react'
-import ProductContext from './DataContext'
+import { useAuth } from '../useAuth'
 
 export function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
+  const { login } = useAuth()
   const navigate = useNavigate()
+
+  window.localStorage.removeItem('user')
+
   const onSubmit = (data, e) => {
     e.target.reset()
 
@@ -14,11 +17,13 @@ export function Login ({ img }) {
       body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
+
     fetch('http://localhost:3004/login', options)
       .then(res => res.json())
       .then((res) => {
         if (!res.err) {
-          window.sessionStorage.setItem('user', JSON.stringify(res))
+          login()
+          window.localStorage.setItem('user', JSON.stringify(res))
           const roles = res.user.roles
           if (roles.admin) {
             navigate('/admin')
