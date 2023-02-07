@@ -11,6 +11,7 @@ function Menu () {
 
   const user = JSON.parse(window.localStorage.getItem('user'))
 
+
   useEffect(() => {
     fetch('http://localhost:3000/products') // hacemos la petición get
       .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
@@ -50,7 +51,6 @@ function Menu () {
       body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
-
     fetch('http://localhost:3001/orders', options)
     setItems([])
     setInputName('')

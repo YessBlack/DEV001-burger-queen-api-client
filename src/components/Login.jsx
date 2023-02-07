@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { useAuth } from '../useAuth'
+import { useAuth } from './useAuth'
 
 export function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
-
-  window.localStorage.removeItem('user')
+  
+  const { login } = useAuth()
 
   const onSubmit = (data, e) => {
     e.target.reset()
@@ -34,7 +34,7 @@ export function Login ({ img }) {
           }
         }
       })
-      .catch(() => alert('Contraseña o Usuario Incorrecto'))
+      .catch(() => alert ('Contraseña o Usuario Incorrecto'))
   }
 
   return (
