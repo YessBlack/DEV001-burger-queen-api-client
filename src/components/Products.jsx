@@ -24,9 +24,6 @@ function Products ({ img, productName, cost, quantity, state, userName }) {
       />
       <p className='product'>{productName}</p>
       <p className='cost'>${cost}.00</p>
-      <p className='product'>{quantity}</p>
-      <p className='product'>{state}</p>
-      <p className='product'>{userName}</p>
 
       <button className='add-products' onClick={() => addProduct({ cost, productName })}>Añadir</button>
     </div>

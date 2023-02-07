@@ -1,8 +1,12 @@
 import { Navigate } from 'react-router-dom'
+import { useAuth } from './useAuth'
 
 export const PrivateRoute = ({ children }) => {
-  const user = window.sessionStorage.getItem('user')
-  return (
-    user ? children : <Navigate to='/' />
-  )
+  const { isAuthenticated } = useAuth()
+  console.log(isAuthenticated)
+  if (!isAuthenticated) {
+    return <Navigate to='/' />
+  }
+
+  return children
 }

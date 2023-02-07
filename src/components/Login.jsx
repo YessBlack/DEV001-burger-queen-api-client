@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useAuth } from './useAuth'
 
 export function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
+  const { login } = useAuth()
 
   const onSubmit = (data, e) => {
     e.target.reset()
@@ -17,6 +19,8 @@ export function Login ({ img }) {
       .then(res => res.json())
       .then((res) => {
         if (!res.err) {
+          login()
+          window.localStorage.setItem('user', JSON.stringify(res))
           const roles = res.user.roles
           if (roles.admin) {
             navigate('/admin')
@@ -27,7 +31,7 @@ export function Login ({ img }) {
           }
         }
       })
-      .catch(() => alert('Contraseña o Usuario Incorrecto'))
+      .catch(() => alert ('Contraseña o Usuario Incorrecto'))
   }
 
   return (

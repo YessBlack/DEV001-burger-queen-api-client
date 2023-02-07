@@ -9,7 +9,7 @@ function Menu () {
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
 
-  const user = JSON.parse(window.sessionStorage.getItem('user'))
+  const user = JSON.parse(window.localStorage.getItem('user'))
   console.log(user.user.id)
 
   useEffect(() => {
