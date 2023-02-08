@@ -18,3 +18,44 @@
 .hideIcon {
     visibility: hidden;
 }
+
+/* ----- ORDERS -------*/
+
+.card-order{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 250px;
+    width: 100%;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #dbd2d2;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.order-list {
+    list-style: none;
+    margin: 1rem;
+    line-height: 2rem;
+}
+.buttons-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.buttons-group button {
+    padding: .5rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #73c089;
+}
+.buttons-group .end {
+    background-color: #fe8440;
+}
+.card-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
