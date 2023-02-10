@@ -1,19 +1,26 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { CardOrder } from './CardOrder'
-import { useOnSnapshot } from './useOnSnapshot'
 
 export const Chef = () => {
-  const { isSnapshot } = useOnSnapshot()
   const [db, setDb] = useState([])
+  const [isSnapshot, setIsSnapshot] = useState(false)
+
   useEffect(() => {
     fetch('http://localhost:3001/orders') // hacemos la petición get
       .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
-      .then(res => setDb(res)) // cuando hayamos terminado (then) actualizamos el estado nombre
-  }, [])
+      .then(res => {
+        setDb(res)
+        setIsSnapshot(false)
+      }) // cuando hayamos terminado (then) actualizamos el estado nombre
+  }, [isSnapshot])
 
-  console.log(isSnapshot)
+  setTimeout(() => {
+    setIsSnapshot(true)
+  }, 300000)
+
   return (
     <section className='card-container'>
+
       {
         db.map(el => {
           return (
