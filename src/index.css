@@ -5,8 +5,14 @@
   }
   
   body, button {
+    background-color: #e5e7e9;
     font-family: 'Maven Pro', sans-serif;
   }
+  
+  p {
+    margin-bottom: 0;
+  }
+
   h1, input{
     text-align: center;
     font-weight: bold;
@@ -16,8 +22,5 @@
     letter-spacing: 2px;
 }
 input {
-    font-size:1.5rem;
-}
-p {
-  margin-bottom: 0;
+    font-size: 1.3rem;
 }

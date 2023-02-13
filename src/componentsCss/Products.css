@@ -12,10 +12,10 @@
     margin-top: .5rem;
 }
 .img-product{
-   height: 80px;
-   width:80px;
-   border-radius: 50%;
-   padding: 10px;
+    height: 80px;
+    width:80px;
+    border-radius: 50%;
+    padding: 10px;
 }
 
 .product, .cost{
@@ -25,15 +25,15 @@
 .add-products {
     background-color: #FFD66C;  
     border-radius: 20px;
+    width: 80px;
     padding: .7rem;
-    width: 80px;  
     text-align: center;
-   border-style: none;
-   margin-right: 10px;
-   cursor:pointer;
+    border-style: none;
+    margin-right: 10px;
+    cursor: pointer;
    }
 .delete{
    background-color: #6751E8; 
    color:white;
    cursor:pointer;
-   }
+}

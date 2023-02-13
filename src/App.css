@@ -1,8 +1,3 @@
-
-html,
-body{
-    background-color: #e5e7e9;
-}
 .header-container {
     background-color: #FFBD59;
     width: 100%;    
@@ -12,19 +7,18 @@ body{
     align-items: center;
     padding: 0 1rem;
 }
-
 .img-logo{
     width: 70px;   
     object-fit: cover;
 }
-.showIcon{
- display:block;
- font-size: 1.6rem;
-
+.showIcon {
+    display: block;
+    font-size: 1.6rem;
 }
 .hideIcon {
- visibility: hidden;
+    visibility: hidden;
 }
+
 /* ----- ORDERS -------*/
 
 .card-order{
@@ -37,10 +31,6 @@ body{
     padding: 1rem;
     border: 1px solid #dbd2d2;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-.card-order p{
-    font-weight:600;
-    letter-spacing: .5px;
 }
 .order-list {
     list-style: none;

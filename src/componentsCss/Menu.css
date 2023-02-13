@@ -1,5 +1,5 @@
 
-.btn-click, .btn-click-user{
+.btn-click{
     width:50%;
     background-color: #73C089;
     padding:20px;
@@ -21,10 +21,8 @@
     transform: scale(1.1);
 }
 .container-menu-check{
-    padding:0 1rem;
     display:grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 1rem;
+    grid-template-columns: 2fr 1fr;
 }
 .check-container{
     margin-top: 10px;
@@ -34,15 +32,11 @@
     align-items: center;
     flex-direction: column;
     border-radius:10px;
+    margin-right: 10px;
    }
 .check{
     margin-top:10px;
     list-style: none;
-    display:flex;
-    width:80%;
-    justify-content: space-between;
-    font-size: 1.1rem;
-    align-items: center;
 }
 .total{
     margin-top:20px;
@@ -50,13 +44,13 @@
     font-weight: bold;
 }
 .send-products{
-   background-color: #FFD66C;  
-   border-radius: 20px;
-   text-align: center;
+    background-color: #FFD66C;  
+    border-radius: 20px;
+    width: 120px;  
+    text-align: center;
    border-style: none;
    padding:12px;
    font-weight: bold;
    margin-top: 1.8rem;
-   margin-bottom: 1rem;
    cursor:pointer;
 }

@@ -4,9 +4,11 @@ import { useAuth } from './useAuth'
 
 export function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const navigate = useNavigate()
   const { login } = useAuth()
+  const navigate = useNavigate()
+
   window.localStorage.clear()
+
   const onSubmit = (data, e) => {
     e.target.reset()
 
@@ -15,6 +17,7 @@ export function Login ({ img }) {
       body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
+
     fetch('http://localhost:3004/login', options)
       .then(res => res.json())
       .then((res) => {
@@ -31,7 +34,7 @@ export function Login ({ img }) {
           }
         }
       })
-      .catch(() => alert ('Contraseña o Usuario Incorrecto'))
+      .catch(() => alert('Contraseña o Usuario Incorrecto'))
   }
 
   return (
