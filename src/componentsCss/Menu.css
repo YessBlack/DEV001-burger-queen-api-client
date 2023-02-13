@@ -1,5 +1,4 @@
-
-.btn-click{
+.btn-click, .btn-click-user{
     width:50%;
     background-color: #73C089;
     padding:20px;
@@ -14,18 +13,13 @@
     transform: scale(1.1);
 }
 .btn-click-user{
-    width:50%;
     background-color: #FF8540;
-    padding:20px;
-    font-size: x-large;
-    font-weight: bold;
-    cursor: pointer;
-    border:none; 
 }
 .btn-click-user:hover {
     transition: 0.2s;
     transform: scale(1.1);
 }
+
 .container-menu-check {
     padding: 0 1rem;
     display: grid;
@@ -40,11 +34,15 @@
     align-items: center;
     flex-direction: column;
     border-radius:10px;
-    margin-right: 3px;
 }
 .check{
     margin-top:10px;
     list-style: none;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    align-items: center;
 }
 .total{
     margin-top:20px;
@@ -59,4 +57,6 @@
    padding:12px;
    font-weight: bold;
    margin-top: 1.8rem;
+   cursor: pointer;
+   margin-bottom: 1rem;
 }

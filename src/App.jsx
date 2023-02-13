@@ -7,13 +7,12 @@ import { Login } from './components/Login'
 import { Header } from './components/Header'
 import { Routes, Route } from 'react-router-dom'
 import { Chef } from './components/Chef'
-import { PrivateRoute } from './PrivateRoute'
+import { PrivateRoute } from './components/PrivateRoute'
 
 function App () {
   return (
     <section className='App'>
       <Header />
-
       <Routes>
         <Route
           path='/' element={(<Login
@@ -21,7 +20,7 @@ function App () {
                              />)}
         />
         <Route path='/mesero' element={<PrivateRoute><Menu /></PrivateRoute>} />
-        <Route path='/chef' element={<Chef />} />
+        <Route path='/chef' element={<PrivateRoute><Chef /></PrivateRoute>} />
       </Routes>
     </section>
   )

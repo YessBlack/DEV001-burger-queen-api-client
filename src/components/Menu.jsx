@@ -1,6 +1,8 @@
 import Products from './Products'
 import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
+import { useOnSnapshot } from './useOnSnapshot'
+import { useAuth } from './useAuth'
 
 function Menu () {
   const { items } = useContext(ProductContext)
@@ -9,8 +11,11 @@ function Menu () {
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
 
-  const user = JSON.parse(window.localStorage.getItem('user'))
+  const { agregar } = useOnSnapshot()
+  const { isAuthenticated } = useAuth()
+  console.log(isAuthenticated)
 
+  const user = JSON.parse(window.localStorage.getItem('user'))
 
   useEffect(() => {
     fetch('http://localhost:3000/products') // hacemos la petición get
@@ -54,9 +59,10 @@ function Menu () {
     fetch('http://localhost:3001/orders', options)
     setItems([])
     setInputName('')
+    agregar()
   }
   const handleDelete = (item) => {
-    setItems(items.filter((product, i) => items.indexOf(item) !== i))
+    setItems(items.filter((_, i) => items.indexOf(item) !== i))
   }
 
   return (
@@ -92,8 +98,8 @@ function Menu () {
           <h1>Cuenta</h1>
           <input className='client-name' value={inputName} placeholder='Nombre' name='name' onChange={name} />
           {items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}>  ${item.cost}.00  - {item.productName}
-            <ion-icon name='trash-outline' onClick={() => handleDelete(item)} />
-          </li>)}
+            <span className='icon-trash-o' onClick={() => handleDelete(item)} />
+                               </li>)}
 
           <h2 className='total'> Total :$ {total}.00</h2>
           <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>
