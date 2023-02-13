@@ -33,7 +33,7 @@
   justify-content: center;
   align-items: center;
 }
-.form-longin-input {
+.form-login-input {
   margin: 10px;
   width: 90%;
   padding: .7rem;
@@ -42,11 +42,11 @@
   border: 1px solid rgb(29, 29, 29);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.form-longin-input::placeholder {
+.form-login-input::placeholder {
   text-align: center;
   color: #AAA2A2;
 }
-.form-longin-input::placeholder {
+.form-login-input::placeholder {
   text-align: center;
   color: #AAA2A2;
 }

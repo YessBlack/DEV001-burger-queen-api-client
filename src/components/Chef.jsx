@@ -1,7 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { CardOrder } from './CardOrder'
+import ProductContext from './DataContext'
 
 export const Chef = () => {
   const [db, setDb] = useState([])
+  const { dataOrders } = useContext(ProductContext)
+
   useEffect(() => {
     fetch('http://localhost:3001/orders') // hacemos la petición get
       .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
@@ -9,28 +13,14 @@ export const Chef = () => {
   }, [db])
 
   return (
-    <article>
-      <div className='card' style={{ width: '16rem', height: '18rem' }}>
-        {db.map((order) => {
+    <section className='card-container'>
+      {
+        db.map(el => {
           return (
-            <div key={order.id}>
-              <button className='btn btn-primary me-md-2'>{order.state}</button>
-              <h6>{order.clientName}</h6>
-
-              {order.order.map((product, i) => {
-                return (
-                  <div key={i}>
-                    <ul className='list-group'>
-                      <li className='list-group-item'>{product.quantity} {product.productName} </li>
-                    </ul>
-                  </div>
-                )
-              })}
-            </div>
+            <CardOrder key={el.id} id={el.id} clientName={el.clientName} list={el.order} />
           )
-        })}
-
-      </div>
-    </article>
+        })
+      }
+    </section>
   )
 }

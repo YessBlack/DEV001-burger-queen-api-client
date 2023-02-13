@@ -1,5 +1,5 @@
 
-.btn-click{
+.btn-click, .btn-click-user{
     width:50%;
     background-color: #73C089;
     padding:20px;
@@ -14,34 +14,35 @@
     transform: scale(1.1);
 }
 .btn-click-user{
-    width:50%;
     background-color: #FF8540;
-    padding:20px;
-    font-size: x-large;
-    font-weight: bold;
-    cursor: pointer;
-    border:none; 
 }
 .btn-click-user:hover {
     transition: 0.2s;
     transform: scale(1.1);
 }
 .container-menu-check{
+    padding:0 1rem;
     display:grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 1rem;
 }
 .check-container{
     margin-top: 10px;
-    border: solid 1px black;
+    border: solid 1px rgb(184, 182, 182);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     display: flex;
     align-items: center;
     flex-direction: column;
     border-radius:10px;
-    margin-right: 10px;
    }
 .check{
     margin-top:10px;
     list-style: none;
+    display:flex;
+    width:80%;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    align-items: center;
 }
 .total{
     margin-top:20px;
@@ -49,14 +50,13 @@
     font-weight: bold;
 }
 .send-products{
-    background-color: #FFD66C;  
-    border-radius: 20px;
-    width: 120px;  
-    text-align: center;
+   background-color: #FFD66C;  
+   border-radius: 20px;
+   text-align: center;
    border-style: none;
-   margin-right: 10px;
    padding:12px;
    font-weight: bold;
    margin-top: 1.8rem;
+   margin-bottom: 1rem;
    cursor:pointer;
 }

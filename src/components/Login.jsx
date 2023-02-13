@@ -6,7 +6,7 @@ export function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
   const { login } = useAuth()
-
+  window.localStorage.clear()
   const onSubmit = (data, e) => {
     e.target.reset()
 
@@ -19,8 +19,8 @@ export function Login ({ img }) {
       .then(res => res.json())
       .then((res) => {
         if (!res.err) {
-          login()
-          window.localStorage.setItem('user', JSON.stringify(res))
+          const user = window.localStorage.setItem('user', JSON.stringify(res))
+          login(user)
           const roles = res.user.roles
           if (roles.admin) {
             navigate('/admin')
@@ -41,7 +41,7 @@ export function Login ({ img }) {
         <img src={`../public/images/${img}.jfif`} alt='' className='img-login' />
         <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
           <input
-            type='text' placeholder='Usuario' className='form-longin-input'
+            type='text' placeholder='Usuario' className='form-login-input'
             name='email'
             {...register('email', {
               required: { value: true, message: 'Este campo es obligatorio' }
@@ -49,7 +49,7 @@ export function Login ({ img }) {
           />
           <span className='text-danger'>{errors?.email?.message}</span>
           <input
-            type='password' placeholder='Contraseña' className='form-longin-input'
+            type='password' placeholder='Contraseña' className='form-login-input'
             name='password'
             {...register('password', {
               required: { value: true, message: 'Este campo es obligatorio' },

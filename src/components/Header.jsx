@@ -1,9 +1,21 @@
+import { useAuth } from './useAuth'
+
 export const Header = () => {
+  const { logOut } = useAuth()
+  const { isAuthenticated } = useAuth()
+
+  const sessionOut = () => {
+   const user = window.localStorage.removeItem('user')
+   logOut(user)
+  }
+
+  const classIcon = isAuthenticated ? 'showIcon' : 'hideIcon'
+
   return (
     <header className='header-container'>
       <img className='img-logo' src='../public/images/logoBQ.png' />
       <h1>BURGER QUEEN</h1>
-      <ion-icon name='exit-outline' />
+      <span onClick={sessionOut} className={`icon-sign-out ${classIcon}`} />
     </header>
   )
 }
