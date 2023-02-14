@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import ProductContext from './DataContext'
 
 function Products ({ img, productName, cost, quantity, state, userName }) {

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useAuth } from './useAuth'
-import { useState } from 'react'
+import React,{ useState } from 'react'
 
 export default function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
