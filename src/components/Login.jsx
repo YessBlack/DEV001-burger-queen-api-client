@@ -7,6 +7,8 @@ export function Login ({ img }) {
   const { login } = useAuth()
   const navigate = useNavigate()
 
+  console.log(login)
+  
   const onSubmit = (data, e) => {
     e.target.reset()
 

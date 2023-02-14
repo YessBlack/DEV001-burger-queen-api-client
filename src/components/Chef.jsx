@@ -10,12 +10,11 @@ export const Chef = () => {
       .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
       .then(res => {
         setDb(res)
-        setIsSnapshot(false)
       }) // cuando hayamos terminado (then) actualizamos el estado nombre
   }, [isSnapshot])
 
   setTimeout(() => {
-    setIsSnapshot(true)
+    setIsSnapshot(!isSnapshot)
   }, 300000)
 
   return (
