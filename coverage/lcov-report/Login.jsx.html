@@ -23,9 +23,11 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+
                 <span class="strong">28% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>7/25</span>
+
             </div>
         
             
@@ -44,9 +46,11 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28% </span>
+
+                <span class="strong">40% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/25</span>
+                <span class='fraction'>10/25</span>
+
             </div>
         
             
@@ -140,37 +144,41 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+
+<span class="cline-any cline-no">&nbsp;</span>
+
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,9 +216,11 @@ export function Login ({ img }) {
   const { login } = useAuth()
   const navigate = useNavigate()
 &nbsp;
+
 <span class="cstat-no" title="statement not covered" >  window.localStorage.clear()</span>
 &nbsp;
   const onSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(d</span>ata, e) =&gt; {</span>
+
 <span class="cstat-no" title="statement not covered" >    e.target.reset()</span>
 &nbsp;
     const options = <span class="cstat-no" title="statement not covered" >{</span>
@@ -223,8 +233,10 @@ export function Login ({ img }) {
       .then(<span class="fstat-no" title="function not covered" >res =&gt; <span class="cstat-no" title="statement not covered" >r</span>es.json())</span>
       .then(<span class="fstat-no" title="function not covered" >(r</span>es) =&gt; {
 <span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (!res.err) {</span>
-          const user = <span class="cstat-no" title="statement not covered" >window.localStorage.setItem('user', JSON.stringify(res))</span>
-<span class="cstat-no" title="statement not covered" >          login(user)</span>
+
+<span class="cstat-no" title="statement not covered" >          login()</span>
+<span class="cstat-no" title="statement not covered" >          window.localStorage.setItem('user', JSON.stringify(res))</span>
+
           const roles = <span class="cstat-no" title="statement not covered" >res.user.roles</span>
 <span class="cstat-no" title="statement not covered" >          if (roles.admin) {</span>
 <span class="cstat-no" title="statement not covered" >            navigate('/admin')</span>
@@ -238,7 +250,9 @@ export function Login ({ img }) {
       .catch(<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >a</span>lert('Contraseña o Usuario Incorrecto'))</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+
+  return (
+
     &lt;section className='principal-login-container'&gt;
       &lt;div className='login-container-form'&gt;
         &lt;h1 className='title-login'&gt;INICIAR SESION&lt;/h1&gt;
@@ -274,7 +288,9 @@ export function Login ({ img }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-13T23:44:23.625Z
+
+                at 2023-02-13T23:40:52.632Z
+
             </div>
         <script src="prettify.js"></script>
         <script>

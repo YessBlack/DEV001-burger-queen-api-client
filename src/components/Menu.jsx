@@ -3,15 +3,17 @@ import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
 import { useAuth } from './useAuth'
 
+
 function Menu () {
-  const { items } = useContext(ProductContext)
-  const { setItems } = useContext(ProductContext)
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
 
-  const { isAuthenticated } = useAuth()
-  console.log(isAuthenticated)
+
+  const { items } = useContext(ProductContext)
+  const { setItems } = useContext(ProductContext)
+
+
 
   const user = JSON.parse(window.localStorage.getItem('user'))
 
@@ -58,6 +60,7 @@ function Menu () {
     setItems([])
     setInputName('')
   }
+
   const handleDelete = (item) => {
     setItems(items.filter((_, i) => items.indexOf(item) !== i))
   }
@@ -96,7 +99,7 @@ function Menu () {
           <input className='client-name' value={inputName} placeholder='Nombre' name='name' onChange={name} />
           {items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}>  ${item.cost}.00  - {item.productName}
             <span className='icon-trash-o' onClick={() => handleDelete(item)} />
-                               </li>)}
+          </li>)}
 
           <h2 className='total'> Total :$ {total}.00</h2>
           <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>

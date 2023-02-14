@@ -1,12 +1,9 @@
 import { useAuth } from './useAuth'
 
 export const Header = () => {
-  const { logOut } = useAuth()
-  const { isAuthenticated } = useAuth()
-
+  const { logOut, isAuthenticated } = useAuth()
   const sessionOut = () => {
     logOut()
-    window.localStorage.removeItem('user')
   }
 
   const classIcon = isAuthenticated ? 'showIcon' : 'hideIcon'

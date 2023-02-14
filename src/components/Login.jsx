@@ -3,12 +3,14 @@ import { useForm } from 'react-hook-form'
 import { useAuth } from './useAuth'
 import { useState } from 'react'
 
-export function Login ({ img }) {
+export default function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
+
   const [error, setError] = useState(false)
   window.localStorage.clear()
+
 
   const onSubmit = (data, e) => {
     e.target.reset()
