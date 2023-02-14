@@ -1,11 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useAuth } from './useAuth'
+import React,{ useState } from 'react'
 
 export default function Login ({ img, useNavigate }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
+
+
+  const [error, setError] = useState(false)
+  window.localStorage.clear()
+
 
   const onSubmit = (data, e) => {
     e.target.reset()
@@ -20,8 +26,8 @@ export default function Login ({ img, useNavigate }) {
       .then(res => res.json())
       .then((res) => {
         if (!res.err) {
-          login()
-          window.localStorage.setItem('user', JSON.stringify(res))
+          const user = window.localStorage.setItem('user', JSON.stringify(res))
+          login(user)
           const roles = res.user.roles
           if (roles.admin) {
             navigate('/admin')
@@ -32,9 +38,10 @@ export default function Login ({ img, useNavigate }) {
           }
         }
       })
-      .catch(() => alert('Contraseña o Usuario Incorrecto'))
+      .catch((res) => setError(true)
+      )
   }
-
+  const errorMessage = error ? 'Usuario o contraseña incorrecta' : ''
   return (
     <section className='principal-login-container'>
       <div className='login-container-form'>
@@ -48,7 +55,7 @@ export default function Login ({ img, useNavigate }) {
               required: { value: true, message: 'Este campo es obligatorio' }
             })}
           />
-          <span className='text-danger'>{errors?.email?.message}</span>
+          <span className='text-danger'>{errors?.email?.message} {errorMessage}</span>
           <input
             type='password' placeholder='Contraseña' className='form-login-input'
             name='password'

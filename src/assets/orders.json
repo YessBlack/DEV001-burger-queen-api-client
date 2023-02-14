@@ -2,59 +2,23 @@
   "orders": [
     {
       "state": "Pendiente",
-      "clientName": "Seba",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Hamburguesa Simple",
-          "quantity": 4
-        },
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        }
-      ],
-      "id": 1
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Natalia Otero",
-      "order": [
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 4
-        }
-      ],
-      "id": 2
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Natalia",
+      "clientName": "Sebastian",
       "order": [
         {
           "cost": 5,
           "productName": "Café americano",
-          "quantity": 2
+          "quantity": 1
         },
         {
           "cost": 7,
           "productName": "Café con leche ",
-          "quantity": 2
+          "quantity": 1
         },
         {
           "cost": 10,
           "productName": "Sandiwich jamón y queso",
           "quantity": 1
-        }
-      ],
-      "id": 3
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Angelica",
-      "order": [
+        },
         {
           "cost": 5,
           "productName": "Hamburguesa Simple",
@@ -66,14 +30,9 @@
           "quantity": 1
         },
         {
-          "cost": 5,
-          "productName": "Papas Fritas",
-          "quantity": 1
-        },
-        {
           "cost": 10,
           "productName": " Bebida 750 ml",
-          "quantity": 1
+          "quantity": 2
         }
       ],
       "id": 4

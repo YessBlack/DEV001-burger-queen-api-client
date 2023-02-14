@@ -1,14 +1,19 @@
 import Products from './Products'
 import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
+import { useAuth } from './useAuth'
+
 
 function Menu () {
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
 
+
   const { items } = useContext(ProductContext)
   const { setItems } = useContext(ProductContext)
+
+
 
   const user = JSON.parse(window.localStorage.getItem('user'))
 

@@ -8,6 +8,7 @@ export const Chef = () => {
   useEffect(() => {
     fetch('http://localhost:3001/orders') // hacemos la petición get
       .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
+
       .then(res => {
         setDb(res)
       }) // cuando hayamos terminado (then) actualizamos el estado nombre
@@ -16,6 +17,7 @@ export const Chef = () => {
   setTimeout(() => {
     setIsSnapshot(!isSnapshot)
   }, 300000)
+ 
 
   return (
     <section className='card-container'>

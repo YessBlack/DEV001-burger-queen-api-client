@@ -1,9 +1,11 @@
+
 import StopWatch from './Chronometer'
 
 export function CardOrder ({ id, list, clientName }) {
   return (
     <article className='card-order'>
       <StopWatch />
+
       <h2 className='card-order__title'>{`Pedido # ${id}`}</h2>
       <p>{clientName}</p>
       <ul className='order-list'>
@@ -15,6 +17,7 @@ export function CardOrder ({ id, list, clientName }) {
             })
         }
       </ul>
+
 
     </article>
   )

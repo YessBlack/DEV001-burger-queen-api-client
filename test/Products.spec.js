@@ -1,13 +1,15 @@
 /* eslint-disable no-undef */
 import React from 'react'
-import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
-import { ProductContextProvider } from '../src/components/DataContext'
+
 import Products from '../src/components/Products'
+import { ProductContextProvider } from '../src/components/DataContext'
+import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom'
 
 describe('Products', () => {
   it('renders content', () => {
-    render(<Products productName='Hamburguesas' />, { wrapper: ProductContextProvider })
-    expect(screen.getByText('Hamburguesas')).toBeInTheDocument()
+    render(<Products productName='Hamburgesa' />, { wrapper: ProductContextProvider })
+    expect(screen.getByText('Hamburgesa')).toBeInTheDocument()
+
   })
 })
