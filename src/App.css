@@ -37,20 +37,24 @@
     margin: 1rem;
     line-height: 2rem;
 }
-.buttons-group {
-    width: 100%;
+
+.btn-start, .btn-two {
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    background: #73C089;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-two {
+    background-color: #FFBD59;
+}
+
+.stop-watch {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-.buttons-group button {
-    padding: .5rem;
-    border: none;
-    border-radius: 10px;
-    background-color: #73c089;
-}
-.buttons-group .end {
-    background-color: #fe8440;
 }
 .card-container {
     display: flex;

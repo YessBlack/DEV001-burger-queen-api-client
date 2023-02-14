@@ -5,6 +5,7 @@ import { AuthProvider } from '../src/components/useAuth'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
+
 describe('Header', () => {
   it('renders content', () => {
     render(<Header />, { wrapper: AuthProvider })

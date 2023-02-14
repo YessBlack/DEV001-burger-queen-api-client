@@ -1,12 +1,13 @@
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useAuth } from './useAuth'
 import React,{ useState } from 'react'
 
-export default function Login ({ img }) {
+export default function Login ({ img, useNavigate }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
+
 
   const [error, setError] = useState(false)
   window.localStorage.clear()
