@@ -1,17 +1,20 @@
+/* eslint-disable no-undef */
 import React from 'react'
-import { render, screen } from '@testing-library/react'
 import Login from '../src/components/Login'
 import { AuthProvider } from '../src/components/useAuth'
-import { BrowserRouter } from 'react-router-dom'
-import App from '../src/App'
+import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom'
 
-/**
- * @jest-environment jsdom
- */
+import { useNavigate } from 'react-router-dom'
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => (jest.fn())
+}))
 
 describe('Login', () => {
   it('renders content', () => {
-    const component = render(<App/>)
-    expect(getByText('INICIAR SESION!')).toBeInTheDocument()
+    render(<Login img='burger-login' useNavigate={useNavigate} />, { wrapper: AuthProvider, useNavigate: () => ({}) })
+    expect(screen.getByText('INICIAR SESION')).toBeInTheDocument()
   })
 })

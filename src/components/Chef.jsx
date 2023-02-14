@@ -21,11 +21,17 @@ export const Chef = () => {
     <section className='card-container'>
 
       {
+        db.map(el =>
+          <section className='card-container' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}>
+            {
         db.map(el => {
           return (
-            <CardOrder key={el.id} id={el.id} list={el.order} />
+            <CardOrder key={el.id} id={el.id} clientName={el.clientName} list={el.order} />
           )
         })
+      }
+          </section>
+        )
       }
     </section>
   )
