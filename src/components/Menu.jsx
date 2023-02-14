@@ -1,18 +1,15 @@
 import Products from './Products'
 import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
-import { useOnSnapshot } from './useOnSnapshot'
 import { useAuth } from './useAuth'
 
 function Menu () {
   const { items } = useContext(ProductContext)
   const { setItems } = useContext(ProductContext)
-  const { setDataOrders } = useContext(ProductContext)
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
 
-  const { agregar } = useOnSnapshot()
   const { isAuthenticated } = useAuth()
   console.log(isAuthenticated)
 
@@ -60,7 +57,6 @@ function Menu () {
     fetch('http://localhost:3001/orders', options)
     setItems([])
     setInputName('')
-    agregar()
   }
   const handleDelete = (item) => {
     setItems(items.filter((_, i) => items.indexOf(item) !== i))
