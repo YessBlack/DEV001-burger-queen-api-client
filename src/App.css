@@ -21,7 +21,7 @@
 
 /* ----- ORDERS -------*/
 
-.card-order{
+.card-order , .card-order-finish{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -32,25 +32,32 @@
     border: 1px solid #dbd2d2;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+.card-order-finish{
+    background-color: #bfe5ca;
+}
 .order-list {
     list-style: none;
     margin: 1rem;
     line-height: 2rem;
 }
-.buttons-group {
-    width: 100%;
+
+.btn-start, .btn-two {
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    background: #73C089;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-two {
+    background-color: #FFBD59;
+}
+
+.stop-watch {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-.buttons-group button {
-    padding: .5rem;
-    border: none;
-    border-radius: 10px;
-    background-color: #73c089;
-}
-.buttons-group .end {
-    background-color: #fe8440;
 }
 .card-container {
     display: flex;
@@ -58,4 +65,12 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 1rem;
+}
+.button-card{
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    border:2px solid  #FFBD59;
+    font-weight: bold;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
