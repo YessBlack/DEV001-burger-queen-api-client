@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from './useAuth'
 
-export const Header = () => {
+export const Header = ({largo}) => {
   const { logOut, isAuthenticated } = useAuth()
   const sessionOut = () => {
     logOut()

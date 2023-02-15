@@ -16,24 +16,23 @@ export const Chef = () => {
 
   setTimeout(() => {
     setIsSnapshot(!isSnapshot)
-  }, 300000)
- 
+  }, 10000)
 
+  const dbPending = db.filter(el => el.state === 'Pendiente')
   return (
     <section className='card-container'>
 
       {
-        db.map(el =>
-          <section className='card-container' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}>
-            {
-        db.map(el => {
+
+        dbPending.map(el => {
           return (
-            <CardOrder key={el.id} id={el.id} clientName={el.clientName} list={el.order} />
+            <CardOrder
+              key={el.id} id={el.id} tiempo ={el.tiempo} clientName={el.clientName} list={el.order}
+              idWaiter={el.idWaiter} order={el.order} date={el.date}
+              text='Enviar Pedido'
+            />
           )
         })
-      }
-          </section>
-        )
       }
     </section>
   )

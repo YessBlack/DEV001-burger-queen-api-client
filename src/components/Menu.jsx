@@ -1,20 +1,15 @@
 import Products from './Products'
 import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
-import { useAuth } from './useAuth'
-
-
+import { Orders } from './Orders'
+import { useNavigate } from 'react-router'
 function Menu () {
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
-
-
   const { items } = useContext(ProductContext)
   const { setItems } = useContext(ProductContext)
-
-
-
+  const navigate = useNavigate()
   const user = JSON.parse(window.localStorage.getItem('user'))
 
   useEffect(() => {
@@ -43,13 +38,14 @@ function Menu () {
   const products = items.map(item => { return { ...item, quantity: items.filter(e => e.productName === item.productName).length } })
   const setProducts = new Set(products.map(JSON.stringify))
   const uniqueProducts = Array.from(setProducts).map(JSON.parse)
-
+  const date = new Date()
   const handleSendProduct = () => {
     const data = {
       state: 'Pendiente',
       clientName: inputName,
       order: uniqueProducts,
-      idWaiter: user.user.id
+      idWaiter: user.user.id,
+      date
     }
     const options = {
       method: 'POST',
@@ -59,14 +55,18 @@ function Menu () {
     fetch('http://localhost:3001/orders', options)
     setItems([])
     setInputName('')
+    alert('Pedido Enviado')
   }
 
   const handleDelete = (item) => {
     setItems(items.filter((_, i) => items.indexOf(item) !== i))
   }
-
+  const orders = () => {
+    navigate('/mesero/orders')
+  }
   return (
     <>
+      <span className='icon-bell' onClick={orders}> <Orders /> </span>
       <button className='btn-click' onClick={handleClickBreakFast}> Desayuno</button>
       <button className='btn-click-user' onClick={handleClickLunchDinner}> Almuerzo/Cena</button>
       <div className='container-menu-check'>
@@ -99,7 +99,7 @@ function Menu () {
           <input className='client-name' value={inputName} placeholder='Nombre' name='name' onChange={name} />
           {items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}>  ${item.cost}.00  - {item.productName}
             <span className='icon-trash-o' onClick={() => handleDelete(item)} />
-          </li>)}
+                               </li>)}
 
           <h2 className='total'> Total :$ {total}.00</h2>
           <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>

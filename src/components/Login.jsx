@@ -1,16 +1,14 @@
 import { useForm } from 'react-hook-form'
 import { useAuth } from './useAuth'
-import React,{ useState } from 'react'
+import React, { useState } from 'react'
 
 export default function Login ({ img, useNavigate }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
 
-
   const [error, setError] = useState(false)
   window.localStorage.clear()
-
 
   const onSubmit = (data, e) => {
     e.target.reset()
@@ -54,7 +52,7 @@ export default function Login ({ img, useNavigate }) {
               required: { value: true, message: 'Este campo es obligatorio' }
             })}
           />
-          <span className='text-danger'>{errors?.email?.message} {errorMessage}</span>
+          <span className='text-danger'>{errors?.email?.message} <br />{errorMessage} </span>
           <input
             type='password' placeholder='Contraseña' className='form-login-input'
             name='password'

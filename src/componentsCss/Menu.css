@@ -1,4 +1,10 @@
 
+.icon-bell{
+position:absolute;
+margin-top: -45px;
+margin-left :550px;
+font-size: larger;
+}
 .btn-click , .btn-click-user{
     width:50%;
     background-color: #73C089;

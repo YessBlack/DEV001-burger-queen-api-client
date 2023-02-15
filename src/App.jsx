@@ -8,6 +8,7 @@ import { Header } from './components/Header'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Chef } from './components/Chef'
 import { PrivateRoute } from './components/PrivateRoute'
+import { Pedidos } from './components/Pedidos'
 
 function App () {
   return (
@@ -21,6 +22,7 @@ function App () {
                              />)}
         />
         <Route path='/mesero' element={<PrivateRoute><Menu /></PrivateRoute>} />
+        <Route path='/mesero/orders' element={<PrivateRoute><Pedidos /></PrivateRoute>} />
         <Route path='/chef' element={<PrivateRoute><Chef /></PrivateRoute>} />
       </Routes>
     </section>

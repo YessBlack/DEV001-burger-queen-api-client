@@ -21,7 +21,7 @@
 
 /* ----- ORDERS -------*/
 
-.card-order{
+.card-order , .card-order-finish{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -31,6 +31,9 @@
     padding: 1rem;
     border: 1px solid #dbd2d2;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.card-order-finish{
+    background-color: #bfe5ca;
 }
 .order-list {
     list-style: none;
@@ -62,4 +65,12 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 1rem;
+}
+.button-card{
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    border:2px solid  #FFBD59;
+    font-weight: bold;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }

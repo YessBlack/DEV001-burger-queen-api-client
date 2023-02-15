@@ -1,8 +1,8 @@
 {
   "orders": [
     {
-      "state": "Pendiente",
-      "clientName": "Sebastian",
+      "state": "Terminado",
+      "clientName": "",
       "order": [
         {
           "cost": 5,
@@ -13,12 +13,56 @@
           "cost": 7,
           "productName": "Café con leche ",
           "quantity": 1
+        }
+      ],
+      "idWaiter": 2,
+      "date": "2023-02-15T21:38:15.333Z",
+      "tiempo": " 0 : 3 : 33",
+      "id": 1
+    },
+    {
+      "state": "Terminado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Hamburguesa Simple",
+          "quantity": 2
         },
         {
-          "cost": 10,
-          "productName": "Sandiwich jamón y queso",
+          "cost": 15,
+          "productName": "Hamburgesa Doble",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 2,
+      "date": "2023-02-15T21:38:19.908Z",
+      "tiempo": " 0 : 4 : 6",
+      "id": 2
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
           "quantity": 1
         },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 2,
+      "date": "2023-02-15T21:38:25.478Z",
+      "id": 3
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "",
+      "order": [
         {
           "cost": 5,
           "productName": "Hamburguesa Simple",
@@ -28,605 +72,11 @@
           "cost": 15,
           "productName": "Hamburgesa Doble",
           "quantity": 1
-        },
-        {
-          "cost": 10,
-          "productName": " Bebida 750 ml",
-          "quantity": 2
         }
       ],
+      "idWaiter": 2,
+      "date": "2023-02-15T21:38:29.072Z",
       "id": 4
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Sebastian Cisternas",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        },
-        {
-          "cost": 10,
-          "productName": "Sandiwich jamón y queso",
-          "quantity": 1
-        }
-      ],
-      "id": 5
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "nati",
-      "order": [
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Hamburguesa Simple",
-          "quantity": 1
-        },
-        {
-          "cost": 10,
-          "productName": "Sandiwich jamón y queso",
-          "quantity": 1
-        }
-      ],
-      "id": 6
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Angelica",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        },
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Papas Fritas",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 1,
-      "id": 7
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "fasdfsd",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        },
-        {
-          "cost": 10,
-          "productName": "Sandiwich jamón y queso",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Jugo natural",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Hamburguesa Simple",
-          "quantity": 1
-        },
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Papas Fritas",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 1,
-      "id": 8
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Lore",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        },
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 1,
-      "id": 9
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Adri",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 2
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 2
-        },
-        {
-          "cost": 10,
-          "productName": "Sandiwich jamón y queso",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 1,
-      "id": 10
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Angelica",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 2
-        }
-      ],
-      "idWaiter": 2,
-      "id": 11
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Angelica",
-      "order": [
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 2
-        }
-      ],
-      "idWaiter": 2,
-      "id": 12
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Faku",
-      "order": [
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 2
-        },
-        {
-          "cost": 5,
-          "productName": "Agua 750 ml",
-          "quantity": 2
-        }
-      ],
-      "idWaiter": 1,
-      "id": 13
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Erika",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Agua 750 ml",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Papas Fritas",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 14
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Chris",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        },
-        {
-          "cost": 10,
-          "productName": "Sandiwich jamón y queso",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 1,
-      "id": 15
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "NatiX2",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        },
-        {
-          "cost": 10,
-          "productName": "Sandiwich jamón y queso",
-          "quantity": 1
-        },
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 16
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "yessblack",
-      "order": [
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Agua 500 ml",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 17
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Natii",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Agua 500 ml",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 18
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "asfasd",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Hamburguesa Simple",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 19
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "asd",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Hamburguesa Simple",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 20
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "fasdfasf",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 1,
-      "id": 21
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Faku",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 22
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "asdfs",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 23
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "dsfasd",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 24
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "sdfsdfa",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 25
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Bruno",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        },
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 2
-        }
-      ],
-      "idWaiter": 1,
-      "id": 26
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "asfs",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Hamburguesa Simple",
-          "quantity": 1
-        },
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Papas Fritas",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 1,
-      "id": 27
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 4
-        }
-      ],
-      "idWaiter": 1,
-      "id": 28
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 3
-        }
-      ],
-      "idWaiter": 1,
-      "id": 29
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 2
-        }
-      ],
-      "idWaiter": 2,
-      "id": 30
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "asfds",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 4
-        }
-      ],
-      "idWaiter": 2,
-      "id": 31
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Café americano",
-          "quantity": 3
-        }
-      ],
-      "idWaiter": 2,
-      "id": 32
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "Angelica",
-      "order": [
-        {
-          "cost": 15,
-          "productName": "Hamburgesa Doble",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Bebida 500 ml",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 1,
-      "id": 33
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "sfas",
-      "order": [
-        {
-          "cost": 5,
-          "productName": "Agua 750 ml",
-          "quantity": 1
-        },
-        {
-          "cost": 5,
-          "productName": "Aros de cebolla",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 34
-    },
-    {
-      "state": "Pendiente",
-      "clientName": "nati",
-      "order": [
-        {
-          "cost": 10,
-          "productName": "Sandiwich jamón y queso",
-          "quantity": 1
-        },
-        {
-          "cost": 7,
-          "productName": "Jugo natural",
-          "quantity": 1
-        }
-      ],
-      "idWaiter": 2,
-      "id": 35
     }
   ]
 }
