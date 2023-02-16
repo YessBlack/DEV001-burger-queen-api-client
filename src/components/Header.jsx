@@ -1,13 +1,15 @@
 import React from 'react'
 import { useAuth } from './useAuth'
 
-export const Header = ({largo}) => {
-  const { logOut, isAuthenticated } = useAuth()
+export const Header = () => {
+  const { logOut } = useAuth()
+  const user = window.sessionStorage.getItem('user')
   const sessionOut = () => {
-    logOut()
+    window.sessionStorage.removeItem('user')
+    logOut(user)
   }
 
-  const classIcon = isAuthenticated ? 'showIcon' : 'hideIcon'
+  const classIcon = user ? 'showIcon' : 'hideIcon'
 
   return (
     <header className='header-container'>

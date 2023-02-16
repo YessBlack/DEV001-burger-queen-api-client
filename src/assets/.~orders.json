@@ -218,6 +218,30 @@
       "idWaiter": 1,
       "date": "2023-02-16T20:40:10.107Z",
       "id": 11
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "Seba",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        },
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-16T20:40:54.804Z",
+      "id": 12
     }
   ]
 }
