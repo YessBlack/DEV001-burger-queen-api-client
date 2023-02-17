@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from './useAuth'
+import { Button } from './Button'
+import swal from 'sweetalert'
 
 export const PrivateRoute = ({ children, isAlowed }) => {
-  console.log(isAlowed)
   const user = JSON.parse(window.sessionStorage.getItem('user'))
   const { login } = useAuth()
   useEffect(() => {
@@ -14,5 +15,5 @@ export const PrivateRoute = ({ children, isAlowed }) => {
     return <Navigate to='/' />
   }
 
-  return isAlowed ? children : 'No tiene el permiso correspondiente'
+  return isAlowed ? children : swal('Permiso denegado', '', 'error') && user.user.roles.waiter ? <Navigate to='/mesero' /> : <Navigate to='/chef' />
 }

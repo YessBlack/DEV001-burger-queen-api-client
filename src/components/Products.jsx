@@ -2,7 +2,9 @@ import React, { useContext } from 'react'
 import ProductContext from './DataContext'
 
 function Products ({ img, productName, cost, quantity, state, userName }) {
-  const { setItems } = useContext(ProductContext)
+  const { items, setItems } = useContext(ProductContext)
+
+  window.sessionStorage.setItem('items', JSON.stringify(items))
 
   const addProduct = (product) => {
     setItems(items => [...items, product])

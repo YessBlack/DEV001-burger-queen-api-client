@@ -14,6 +14,18 @@ export const Chef = () => {
       }) // cuando hayamos terminado (then) actualizamos el estado nombre
   }, [isSnapshot])
 
+  useEffect(() => {
+    window.addEventListener('beforeunload', alertUser)
+    return () => {
+      window.removeEventListener('beforeunload', alertUser)
+    }
+  }, [])
+
+  const alertUser = (e) => {
+    e.preventDefault()
+    e.returnValue = ''
+  }
+
   setTimeout(() => {
     setIsSnapshot(!isSnapshot)
   }, 10000)

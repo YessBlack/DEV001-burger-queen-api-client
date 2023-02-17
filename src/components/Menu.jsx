@@ -12,6 +12,7 @@ function Menu () {
   const { items } = useContext(ProductContext)
   const { setItems } = useContext(ProductContext)
   const navigate = useNavigate()
+
   const user = JSON.parse(window.sessionStorage.getItem('user'))
 
   useEffect(() => {
@@ -19,6 +20,18 @@ function Menu () {
       .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
       .then(res => setDb(res)) // cuando hayamos terminado (then) actualizamos el estado nombre
   }, [])
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', alertUser)
+    return () => {
+      window.removeEventListener('beforeunload', alertUser)
+    }
+  }, [])
+
+  const alertUser = (e) => {
+    e.preventDefault()
+    e.returnValue = ''
+  }
 
   const breakFast = db.filter(product => product.type === 'breakFast')
   const lunch = db.filter(product => product.type === 'lunch')

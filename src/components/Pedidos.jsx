@@ -8,6 +8,19 @@ export const Pedidos = () => {
       .then(res => res.json())
       .then(res => setOrdersDb(res))
   }, [ordersDb])
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', alertUser)
+    return () => {
+      window.removeEventListener('beforeunload', alertUser)
+    }
+  }, [])
+
+  const alertUser = (e) => {
+    e.preventDefault()
+    e.returnValue = ''
+  }
+
   const finishOrders = ordersDb.filter(el => el.state === 'Terminado')
 
   return (
