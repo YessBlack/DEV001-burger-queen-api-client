@@ -60,7 +60,7 @@
       "id": 3
     },
     {
-      "state": "Pendiente",
+      "state": "Terminado",
       "clientName": "",
       "order": [
         {
@@ -76,6 +76,7 @@
       ],
       "idWaiter": 2,
       "date": "2023-02-15T21:38:29.072Z",
+      "tiempo": " 0 : 0 : 39",
       "id": 4
     }
   ]

@@ -56,7 +56,7 @@ export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, 
   const orderCheck = finish ? 'card-order-finish' : 'card-order'
   const timer = text === 'Enviar Pedido' ? ` Tiempo :${hour} : ${minute} : ${second}` : tiempo
   const mesero = () => {
-     setFinish(true)
+    setFinish(true)
     alert('Pedido entregado')
   }
   return (
