@@ -1,4 +1,4 @@
-
+import swal from 'sweetalert'
 import { useEffect, useState } from 'react'
 
 export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, tiempo }) {
@@ -51,13 +51,15 @@ export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, 
     fetch(`http://localhost:3001/orders/${id}`, options)
     setFinish(true)
     setIsPaused(true)
+    swal('Pedido enviado', '', 'success')
   }
 
   const orderCheck = finish ? 'card-order-finish' : 'card-order'
+  const button = finish ? 'button-card-finish' : 'button-card'
   const timer = text === 'Enviar Pedido' ? ` Tiempo :${hour} : ${minute} : ${second}` : tiempo
   const mesero = () => {
-     setFinish(true)
-    alert('Pedido entregado')
+    setFinish(true)
+    swal('Pedido entregado', '', 'success')
   }
   return (
     <article className={orderCheck}>
@@ -74,8 +76,8 @@ export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, 
         }
       </ul>
       {text === 'Enviar Pedido'
-        ? <button onClick={sendOrder} className='button-card'> {text} </button>
-        : <button onClick={mesero} className='button-card'> {text} </button>}
+        ? <button onClick={sendOrder} className={button}> {text} </button>
+        : <button onClick={mesero} className={button}> {text} </button>}
     </article>
   )
 }
