@@ -101,7 +101,7 @@ function Menu () {
           <input className='client-name' value={inputName} placeholder='Nombre' name='name' onChange={name} />
           {items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}>  ${item.cost}.00  - {item.productName}
             <span className='icon-trash-o' onClick={() => handleDelete(item)} />
-                               </li>)}
+          </li>)}
 
           <h2 className='total'> Total :$ {total}.00</h2>
           <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>

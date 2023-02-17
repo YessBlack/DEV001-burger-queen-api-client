@@ -1,17 +1,16 @@
 import { useEffect } from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useAuth } from './useAuth'
 
-export const PrivateRoute = ({ children }) => {
-  const userJson = window.sessionStorage.getItem('user')
-  const isUser = JSON.parse(userJson)
+export const PrivateRoute = ({ children, isAlowed }) => {
+  const user = JSON.parse(window.sessionStorage.getItem('user'))
   const { login } = useAuth()
   useEffect(() => {
     login()
   }, [])
 
-  if (!isUser) {
+  if (!user) {
     return <Navigate to='/' />
   }
-  return children || <Outlet />
+  return isAlowed ? children : 'No tiene el permiso correspondiente'
 }

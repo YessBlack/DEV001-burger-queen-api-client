@@ -9,9 +9,14 @@ import { Routes, Route } from 'react-router-dom'
 import { Chef } from './components/Chef'
 import { PrivateRoute } from './components/PrivateRoute'
 import { Pedidos } from './components/Pedidos'
-
+import { useEffect, useState } from 'react'
 
 function App () {
+  const [user, setUser] = useState(null)
+  useEffect(() => {
+    setUser(JSON.parse(window.sessionStorage.getItem('user')))
+  }, [])
+
   return (
     <section className='App'>
       <Header />
@@ -21,11 +26,11 @@ function App () {
             img='burger-login'
                              />)}
         />
-        <Route element={<PrivateRoute />}>
-          <Route path='/mesero' element={<Menu />} />
-          <Route path='/mesero/orders' element={<Pedidos />} />
-        </Route>
-        <Route path='/chef' element={<PrivateRoute><Chef /></PrivateRoute>} />
+
+        <Route path='/mesero' element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Menu /> </PrivateRoute>} />
+        <Route path='/mesero/orders' element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Pedidos /> </PrivateRoute>} />
+
+        <Route path='/chef' element={<PrivateRoute isAlowed={user && user.user.roles.chef}><Chef /></PrivateRoute>} />
       </Routes>
     </section>
   )

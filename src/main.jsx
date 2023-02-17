@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
@@ -7,12 +7,13 @@ import { ProductContextProvider } from './components/DataContext'
 import { AuthProvider } from './components/useAuth'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <AuthProvider>
-      <ProductContextProvider>
-        <App />
-      </ProductContextProvider>
-    </AuthProvider>
-  </BrowserRouter>
-
+  <StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <ProductContextProvider>
+          <App />
+        </ProductContextProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  </StrictMode>
 )
