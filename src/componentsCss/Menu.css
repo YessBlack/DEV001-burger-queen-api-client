@@ -26,6 +26,10 @@ font-size: larger;
     transition: 0.2s;
     transform: scale(1.1);
 }
+.container-menu{
+    overflow-y: scroll;
+    height: 600px
+}
 .container-menu-check{
     display:grid;
     grid-template-columns: 2fr 1fr;
@@ -41,8 +45,15 @@ font-size: larger;
     margin-right: 10px;
    }
 .check{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top:10px;
     list-style: none;
+}
+.icon-trash-o{
+    font-size: larger;
+    padding: 6px;
 }
 .total{
     margin-top:20px;

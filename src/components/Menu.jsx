@@ -1,8 +1,10 @@
+import swal from 'sweetalert'
 import Products from './Products'
 import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
 import { Orders } from './Orders'
 import { useNavigate } from 'react-router'
+
 function Menu () {
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
@@ -10,7 +12,7 @@ function Menu () {
   const { items } = useContext(ProductContext)
   const { setItems } = useContext(ProductContext)
   const navigate = useNavigate()
-  const user = JSON.parse(window.localStorage.getItem('user'))
+  const user = JSON.parse(window.sessionStorage.getItem('user'))
 
   useEffect(() => {
     fetch('http://localhost:3000/products') // hacemos la petición get
@@ -55,7 +57,7 @@ function Menu () {
     fetch('http://localhost:3001/orders', options)
     setItems([])
     setInputName('')
-    alert('Pedido Enviado')
+    swal('Pedido enviado a cocina', '', 'success')
   }
 
   const handleDelete = (item) => {
@@ -99,7 +101,7 @@ function Menu () {
           <input className='client-name' value={inputName} placeholder='Nombre' name='name' onChange={name} />
           {items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}>  ${item.cost}.00  - {item.productName}
             <span className='icon-trash-o' onClick={() => handleDelete(item)} />
-                               </li>)}
+          </li>)}
 
           <h2 className='total'> Total :$ {total}.00</h2>
           <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>

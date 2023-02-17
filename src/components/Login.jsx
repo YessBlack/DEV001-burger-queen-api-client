@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { useAuth } from './useAuth'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 
-export default function Login ({ img, useNavigate }) {
+export default function Login ({ img }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
@@ -23,7 +24,7 @@ export default function Login ({ img, useNavigate }) {
       .then(res => res.json())
       .then((res) => {
         if (!res.err) {
-          const user = window.localStorage.setItem('user', JSON.stringify(res))
+          const user = window.sessionStorage.setItem('user', JSON.stringify(res))
           login(user)
           const roles = res.user.roles
           if (roles.admin) {
@@ -38,6 +39,7 @@ export default function Login ({ img, useNavigate }) {
       .catch((res) => setError(true)
       )
   }
+
   const errorMessage = error ? 'Usuario o contraseña incorrecta' : ''
   return (
     <section className='principal-login-container'>

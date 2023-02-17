@@ -27,7 +27,7 @@ export const Chef = () => {
         dbPending.map(el => {
           return (
             <CardOrder
-              key={el.id} id={el.id} tiempo ={el.tiempo} clientName={el.clientName} list={el.order}
+              key={el.id} id={el.id} tiempo={el.tiempo} clientName={el.clientName} list={el.order}
               idWaiter={el.idWaiter} order={el.order} date={el.date}
               text='Enviar Pedido'
             />

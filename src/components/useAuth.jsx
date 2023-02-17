@@ -1,7 +1,6 @@
 
 import React, { createContext, useContext, useState } from 'react'
 
-
 const AuthContext = createContext()
 
 export function useAuth () {
@@ -10,15 +9,15 @@ export function useAuth () {
 }
 
 export function AuthProvider ({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(null)
+  const [user, setUser] = useState(null)
 
   const login = () => {
-    setIsAuthenticated(true)
+    setUser(true)
   }
   const logOut = () => {
-    setIsAuthenticated(false)
+    setUser(null)
   }
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logOut }}> {children} </AuthContext.Provider>
+    <AuthContext.Provider value={{ user, login, logOut }}> {children} </AuthContext.Provider>
   )
 }
