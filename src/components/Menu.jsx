@@ -54,6 +54,7 @@ function Menu () {
   const setProducts = new Set(products.map(JSON.stringify))
   const uniqueProducts = Array.from(setProducts).map(JSON.parse)
   const date = new Date()
+  
   const handleSendProduct = () => {
     const data = {
       state: 'Pendiente',
