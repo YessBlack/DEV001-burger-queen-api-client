@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react'
 
 export const Orders = () => {
   const [ordersDb, setOrdersDb] = useState([])
+
   useEffect(() => {
     fetch('http://localhost:3001/orders')
       .then(res => res.json())
       .then(res => setOrdersDb(res))
   }, [ordersDb])
-  const finishOrders = ordersDb.filter(el => el.state === 'Terminado').length
+
+  const day = JSON.stringify(new Date()).slice(1, 11)
+  const dbDate = ordersDb.filter(el => el.date.slice(0, 10) === day)
+  const finishOrders = dbDate.filter(el => el.state === 'Terminado').length
 
   return (
     <>

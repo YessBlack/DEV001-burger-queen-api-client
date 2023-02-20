@@ -14,6 +14,9 @@ export const Chef = () => {
       }) // cuando hayamos terminado (then) actualizamos el estado nombre
   }, [isSnapshot])
 
+  const day = JSON.stringify(new Date()).slice(1, 11)
+  const dbDate = db.filter(el => el.date.slice(0, 10) === day)
+
   useEffect(() => {
     window.addEventListener('beforeunload', alertUser)
     return () => {
@@ -28,13 +31,18 @@ export const Chef = () => {
 
   setTimeout(() => {
     setIsSnapshot(!isSnapshot)
-  }, 10000)
+  }, 300000)
 
-  const dbPending = db.filter(el => el.state === 'Pendiente')
+  const handleIsSnapshot = () => {
+    setIsSnapshot(!isSnapshot)
+  }
+
+  const dbPending = dbDate.filter(el => el.state === 'Pendiente')
   return (
-    <section className='card-container'>
-
-      {
+    <>
+      <span className='icon-refresh' onClick={handleIsSnapshot} />
+      <section className='card-container'>
+        {
 
         dbPending.map(el => {
           return (
@@ -46,6 +54,8 @@ export const Chef = () => {
           )
         })
       }
-    </section>
+      </section>
+    </>
+
   )
 }
