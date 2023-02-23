@@ -8,9 +8,10 @@ export default function Login ({ path, useNavigate }) {
   const navigate = useNavigate()
 
   const [error, setError] = useState(false)
+
   window.localStorage.clear()
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data, e) => {
     e.target.reset()
 
     const options = {
@@ -19,24 +20,26 @@ export default function Login ({ path, useNavigate }) {
       headers: { 'content-type': 'application/json' }
     }
 
-    fetch('http://localhost:3004/login', options)
-      .then(res => res.json())
-      .then((res) => {
-        if (!res.err) {
-          const user = window.sessionStorage.setItem('user', JSON.stringify(res))
-          login(user)
-          const roles = res.user.roles
-          if (roles.admin) {
-            navigate('/admin')
-          } else if (roles.waiter) {
-            navigate('/mesero')
-          } else if (roles.chef) {
-            navigate('/chef')
-          }
-        }
-      })
-      .catch((res) => setError(true)
-      )
+    try {
+      const fetchUser = await fetch('http://localhost:3004/login', options)
+      const resLogin = await fetchUser.json()
+
+      if (typeof resLogin !== 'object') throw new Error({ message: resLogin })
+
+      const user = window.sessionStorage.setItem('user', JSON.stringify(resLogin))
+      login(user)
+
+      const roles = resLogin.user.roles
+      if (roles.admin) {
+        navigate('/admin')
+      } else if (roles.waiter) {
+        navigate('/mesero')
+      } else if (roles.chef) {
+        navigate('/chef')
+      }
+    } catch {
+      setError(true)
+    }
   }
 
   const errorMessage = error ? 'Usuario o contraseña incorrecta' : ''

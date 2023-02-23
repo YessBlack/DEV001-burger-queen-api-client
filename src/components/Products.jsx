@@ -3,7 +3,6 @@ import ProductContext from './DataContext'
 
 function Products ({ img, productName, cost, quantity, state, userName }) {
   const { items, setItems } = useContext(ProductContext)
-  const { uniqueProducts } = useContext(ProductContext)
 
   window.sessionStorage.setItem('items', JSON.stringify(items))
 

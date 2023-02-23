@@ -739,7 +739,7 @@
       "id": 36
     },
     {
-      "state": "Terminado",
+      "state": "Entregado",
       "clientName": "Nati",
       "order": [
         {
@@ -775,7 +775,7 @@
       ],
       "idWaiter": 1,
       "date": "2023-02-23T16:23:26.939Z",
-      "tiempo": " 0 : 0 : 23",
+      "tiempo": " 0 : 0 : 3",
       "id": 37
     },
     {
