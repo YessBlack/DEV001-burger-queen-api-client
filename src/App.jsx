@@ -1,44 +1,38 @@
-import { useState } from 'react'
-import './App.css';
-import Products from './components/Products'
-import './componentsCss/Products.css';
+import './App.css'
+import Menu from './components/Menu'
+import './componentsCss/Menu.css'
+import './componentsCss/Login.css'
+import './componentsCss/Products.css'
+import Login from './components/Login'
+import { Header } from './components/Header'
+import { Routes, Route } from 'react-router-dom'
+import { Chef } from './components/Chef'
+import { PrivateRoute } from './components/PrivateRoute'
+import { Pedidos } from './components/Pedidos'
+import { useAuth } from './components/useAuth'
+import { useNavigate } from 'react-router'
 
-function App() {
+function App () {
+  useAuth()
+  const user = JSON.parse(window.sessionStorage.getItem('user'))
+
   return (
-    <div className="App">
-      <div className='header-container'>
-      <img className='img-logo' src = '../public/images/logoBQ.png'/>
-       <h1>BURGER QUEEN</h1> 
-       </div>
-      <div className = 'principal-container'>
-      <Products
-       img = 'cofee'
-       productName ='Café americano'
-       cost = '-$5.00'
-       add = 'Agregar'
-      />
-       <Products
-       img = 'cofeeMilk'
-       productName ='Café con leche'
-       cost = '-$7.00'
-       add = 'Agregar'
-      />
-       <Products
-       img = 'sandwich'
-       productName ='Sandiwich jamón y queso'
-       cost = '-$10.00'
-       add = 'Agregar'
-      />
-       <Products
-       img = 'juice'
-       productName ='Jugo natural'
-       cost = '-$7.00'
-       add = 'Agregar'
-      />
-      </div>
-  
+    <section className='App'>
+      <Header />
+      <Routes>
+        <Route
+          path='/' element={(<Login
+            path='../public/images/burger-login.jfif'
+            useNavigate={useNavigate}
+                             />)}
+        />
 
-    </div>
+        <Route path='/mesero' element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Menu /> </PrivateRoute>} />
+        <Route path='/mesero/orders' element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Pedidos /> </PrivateRoute>} />
+
+        <Route path='/chef' element={<PrivateRoute isAlowed={user && user.user.roles.chef}><Chef /></PrivateRoute>} />
+      </Routes>
+    </section>
   )
 }
 

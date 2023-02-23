@@ -1,28 +1,96 @@
-*  {
-    margin:0;
-    padding:0;     
-}
-html,
-body{
-    background-color: #e5e7e9;
-}
 .header-container {
+    background-color: #FFBD59;
+    width: 100%;    
     display: flex;
     flex: 1 1;
     justify-content: space-between;
     align-items: center;
-    background-color: #FFBD59;
-    height: 60px;
-    width: auto;    
-}
-h1{
-    text-align: center;
-    font-weight: bold;
-    font-family: League Gothic;
-    font-size: xx-large;
-    margin-right: 140px;
+    padding: 0 1rem;
 }
 .img-logo{
-    height:60px;
-    width: 80px;   
+    width: 70px;   
+    object-fit: cover;
+}
+.showIcon {
+    display: block;
+    font-size: 1.6rem;
+}
+.hideIcon {
+    visibility: hidden;
+}
+
+/* ----- ORDERS -------*/
+
+.card-order , .card-order-finish{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 250px;
+    width: 100%;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #dbd2d2;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.card-order-finish{
+    background-color: #bfe5ca;
+}
+.order-list {
+    list-style: none;
+    margin: 1rem;
+    line-height: 2rem;
+}
+
+.btn-start, .btn-two {
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    background: #73C089;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-two {
+    background-color: #FFBD59;
+}
+
+.stop-watch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.button-card{
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    border:2px solid  #FFBD59;
+    font-weight: bold;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display:block;    
+}
+.button-card-finish{
+    display:none;
+}
+
+/*------- PEDIDOS -------*/
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+.icon-refresh {
+    display: flex;
+    justify-content: end;
+    padding: 1rem;
+    font-size: 1.5rem;
 }
