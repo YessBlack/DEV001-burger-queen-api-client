@@ -10,6 +10,7 @@ import { Chef } from './components/Chef'
 import { PrivateRoute } from './components/PrivateRoute'
 import { Pedidos } from './components/Pedidos'
 import { useAuth } from './components/useAuth'
+import { useNavigate } from 'react-router'
 
 function App () {
   useAuth()
@@ -21,7 +22,8 @@ function App () {
       <Routes>
         <Route
           path='/' element={(<Login
-            img='burger-login'
+            path='../public/images/burger-login.jfif'
+            useNavigate={useNavigate}
                              />)}
         />
 

@@ -4,11 +4,13 @@ import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
 import { Orders } from './Orders'
 import { useNavigate } from 'react-router'
+import { Check } from './Check'
 
 function Menu () {
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
+  const { uniqueProducts, setUniqueProducts } = useContext(ProductContext)
   const { items } = useContext(ProductContext)
   const { setItems } = useContext(ProductContext)
   const navigate = useNavigate()
@@ -16,9 +18,12 @@ function Menu () {
   const user = JSON.parse(window.sessionStorage.getItem('user'))
 
   useEffect(() => {
-    fetch('http://localhost:3000/products') // hacemos la petición get
-      .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
-      .then(res => setDb(res)) // cuando hayamos terminado (then) actualizamos el estado nombre
+    const getData = async () => {
+      const res = await fetch('http://localhost:3000/products')
+      const data = await res.json()
+      setDb(data)
+    }
+    getData()
   }, [])
 
   useEffect(() => {
@@ -28,6 +33,12 @@ function Menu () {
     }
   }, [])
 
+  useEffect(() => {
+    const products = items.map(item => { return { ...item, quantity: items.filter(e => e.productName === item.productName).length } })
+    const setProducts = new Set(products.map(JSON.stringify))
+    setUniqueProducts(Array.from(setProducts).map(JSON.parse))
+  }, [items])
+
   const alertUser = (e) => {
     e.preventDefault()
     e.returnValue = ''
@@ -36,6 +47,9 @@ function Menu () {
   const breakFast = db.filter(product => product.type === 'breakFast')
   const lunch = db.filter(product => product.type === 'lunch')
 
+  const price = items.map(price => price.cost)
+  const total = price.reduce((acc, el) => acc + el, 0)
+
   const handleClickBreakFast = () => {
     setIsBreackFast(true)
   }
@@ -43,18 +57,12 @@ function Menu () {
     setIsBreackFast(false)
   }
 
-  const price = items.map(price => price.cost)
-  const total = price.reduce((acc, el) => acc + el, 0)
-
   const name = (e) => {
     setInputName(e.target.value)
   }
 
-  const products = items.map(item => { return { ...item, quantity: items.filter(e => e.productName === item.productName).length } })
-  const setProducts = new Set(products.map(JSON.stringify))
-  const uniqueProducts = Array.from(setProducts).map(JSON.parse)
   const date = new Date()
-  
+
   const handleSendProduct = () => {
     const data = {
       state: 'Pendiente',
@@ -75,8 +83,17 @@ function Menu () {
   }
 
   const handleDelete = (item) => {
-    setItems(items.filter((_, i) => items.indexOf(item) !== i))
+    const positionArr = items.indexOf(items.find(el => el.productName === item.productName))
+    if (item.quantity > 1) {
+      item.quantity = item.quantity - 1
+      setUniqueProducts([...uniqueProducts])
+      setItems(items.filter((_, i) => items.indexOf(items[positionArr]) !== i))
+    } else {
+      setUniqueProducts(uniqueProducts.filter((_, i) => uniqueProducts.indexOf(item) !== i))
+      setItems(items.filter((_, i) => items.indexOf(items[positionArr]) !== i))
+    }
   }
+
   const orders = () => {
     navigate('/mesero/orders')
   }
@@ -113,10 +130,22 @@ function Menu () {
         <section className='check-container'>
           <h1>Cuenta</h1>
           <input className='client-name' value={inputName} placeholder='Nombre' name='name' onChange={name} />
-          {items.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}>  ${item.cost}.00  - {item.productName}
-            <span className='icon-trash-o' onClick={() => handleDelete(item)} />
-          </li>)}
-
+          <div className='list-container'>
+            {
+              uniqueProducts.map(item => {
+                return (
+                  <div key={Math.random().toString(36).replace(/[^a-z]+/g, '')} className='container-check-list'>
+                    <Check
+                      quantity={item.quantity}
+                      cost={item.cost * item.quantity}
+                      name={item.productName}
+                    />
+                    <span className='icon-trash-o' onClick={() => handleDelete(item)} />
+                  </div>
+                )
+              })
+            }
+          </div>
           <h2 className='total'> Total :$ {total}.00</h2>
           <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>
         </section>

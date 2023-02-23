@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from './useAuth'
-import { Button } from './Button'
 import swal from 'sweetalert'
 
 export const PrivateRoute = ({ children, isAlowed }) => {

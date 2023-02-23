@@ -673,6 +673,117 @@
       "date": "2023-02-20T16:08:35.668Z",
       "tiempo": " 0 : 0 : 30",
       "id": 33
+    },
+    {
+      "state": "Entregado",
+      "clientName": "Nati",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 2
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-22T13:58:28.829Z",
+      "tiempo": " 0 : 0 : 1",
+      "id": 34
+    },
+    {
+      "state": "Entregado",
+      "clientName": "Adri",
+      "order": [
+        {
+          "cost": 15,
+          "productName": "Hamburgesa Doble",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Papas Fritas",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Hamburguesa Simple",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Aros de cebolla",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-22T14:17:58.580Z",
+      "tiempo": " 0 : 0 : 5",
+      "id": 35
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "Deisy",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 2
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-22T14:22:06.820Z",
+      "id": 36
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "Nati",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        },
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 1
+        },
+        {
+          "cost": 15,
+          "productName": "Hamburgesa Doble",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Aros de cebolla",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Hamburguesa Simple",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-23T16:23:26.939Z",
+      "id": 37
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "",
+      "order": [],
+      "idWaiter": 1,
+      "date": "2023-02-23T21:31:42.833Z",
+      "id": 38
     }
   ]
 }

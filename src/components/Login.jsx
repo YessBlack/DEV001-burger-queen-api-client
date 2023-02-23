@@ -1,9 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { useAuth } from './useAuth'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
 
-export default function Login ({ img }) {
+export default function Login ({ path, useNavigate }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
@@ -45,7 +44,7 @@ export default function Login ({ img }) {
     <section className='principal-login-container'>
       <div className='login-container-form'>
         <h1 className='title-login'>INICIAR SESION</h1>
-        <img src={`../public/images/${img}.jfif`} alt='' className='img-login' />
+        <img src={path} alt='' className='img-login' />
         <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
           <input
             type='text' placeholder='Usuario' className='form-login-input'
