@@ -1,7 +1,7 @@
 import swal from 'sweetalert'
 import { useEffect, useState } from 'react'
 
-export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, tiempo }) {
+export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, tiempo, state }) {
   const [hour, setHour] = useState(0)
   const [minute, setMinute] = useState(0)
   const [second, setSecond] = useState(0)
@@ -34,7 +34,7 @@ export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, 
     }
   }, [minute])
 
-  const sendOrder = () => {
+  const sendOrder = async () => {
     const data = {
       state: 'Terminado',
       clientName,
@@ -48,19 +48,36 @@ export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, 
       body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
-    fetch(`http://localhost:3001/orders/${id}`, options)
+    await fetch(`http://localhost:3001/orders/${id}`, options)
     setFinish(true)
     setIsPaused(true)
     swal('Pedido enviado', '', 'success')
   }
 
-  const orderCheck = finish ? 'card-order-finish' : 'card-order'
-  const button = finish ? 'button-card-finish' : 'button-card'
+  const orderCheck = finish || state === 'Entregado' ? 'card-order-finish' : 'card-order'
+  const button = finish || state === 'Entregado' ? 'button-card-finish' : 'button-card'
   const timer = text === 'Enviar Pedido' ? ` Tiempo :${hour} : ${minute} : ${second}` : tiempo
+
   const mesero = () => {
+    const data = {
+      state: 'Entregado',
+      clientName,
+      order,
+      idWaiter,
+      date,
+      tiempo: ` ${hour} : ${minute} : ${second}`
+    }
+    const options = {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: { 'content-type': 'application/json' }
+    }
+    fetch(`http://localhost:3001/orders/${id}`, options)
+
     setFinish(true)
     swal('Pedido entregado', '', 'success')
   }
+
   return (
     <article className={orderCheck}>
       <p>{timer}</p>

@@ -1,17 +1,17 @@
 import { useForm } from 'react-hook-form'
 import { useAuth } from './useAuth'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
 
-export default function Login ({ img }) {
+export default function Login ({ path, useNavigate }) {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
 
   const [error, setError] = useState(false)
+
   window.localStorage.clear()
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data, e) => {
     e.target.reset()
 
     const options = {
@@ -20,32 +20,35 @@ export default function Login ({ img }) {
       headers: { 'content-type': 'application/json' }
     }
 
-    fetch('http://localhost:3004/login', options)
-      .then(res => res.json())
-      .then((res) => {
-        if (!res.err) {
-          const user = window.sessionStorage.setItem('user', JSON.stringify(res))
-          login(user)
-          const roles = res.user.roles
-          if (roles.admin) {
-            navigate('/admin')
-          } else if (roles.waiter) {
-            navigate('/mesero')
-          } else if (roles.chef) {
-            navigate('/chef')
-          }
-        }
-      })
-      .catch((res) => setError(true)
-      )
+    try {
+      const fetchUser = await fetch('http://localhost:3004/login', options)
+      const resLogin = await fetchUser.json()
+
+      if (typeof resLogin !== 'object') throw new Error({ message: resLogin })
+
+      const user = window.sessionStorage.setItem('user', JSON.stringify(resLogin))
+      login(user)
+
+      const roles = resLogin.user.roles
+      if (roles.admin) {
+        navigate('/admin')
+      } else if (roles.waiter) {
+        navigate('/mesero')
+      } else if (roles.chef) {
+        navigate('/chef')
+      }
+    } catch {
+      setError(true)
+    }
   }
 
   const errorMessage = error ? 'Usuario o contraseña incorrecta' : ''
+
   return (
     <section className='principal-login-container'>
       <div className='login-container-form'>
         <h1 className='title-login'>INICIAR SESION</h1>
-        <img src={`../public/images/${img}.jfif`} alt='' className='img-login' />
+        <img src={path} alt='' className='img-login' />
         <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
           <input
             type='text' placeholder='Usuario' className='form-login-input'

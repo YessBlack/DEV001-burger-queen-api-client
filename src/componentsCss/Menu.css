@@ -33,6 +33,7 @@ font-size: larger;
 .container-menu-check{
     display:grid;
     grid-template-columns: 2fr 1fr;
+    gap: 1rem;
 }
 .check-container{
     margin-top: 10px;
@@ -70,4 +71,26 @@ font-size: larger;
    font-weight: bold;
    margin-top: 1.8rem;
    cursor:pointer;
+}
+.list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+/*list*/
+.container-check-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: .5rem .3rem ;
+    border-radius: 10px;
+}
+.list-container {
+    gap: 1rem;
+}
+.container-group {
+    width: 50%;
 }
