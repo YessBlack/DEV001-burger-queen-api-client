@@ -43,6 +43,7 @@ export default function Login ({ path, useNavigate }) {
   }
 
   const errorMessage = error ? 'Usuario o contraseña incorrecta' : ''
+
   return (
     <section className='principal-login-container'>
       <div className='login-container-form'>
