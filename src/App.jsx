@@ -9,13 +9,12 @@ import { Routes, Route } from 'react-router-dom'
 import { Chef } from './components/Chef'
 import { PrivateRoute } from './components/PrivateRoute'
 import { Pedidos } from './components/Pedidos'
-import { useEffect, useState } from 'react'
+import { useAuth } from './components/useAuth'
+import { useNavigate } from 'react-router'
 
 function App () {
-  const [user, setUser] = useState(null)
-  useEffect(() => {
-    setUser(JSON.parse(window.sessionStorage.getItem('user')))
-  }, [])
+  useAuth()
+  const user = JSON.parse(window.sessionStorage.getItem('user'))
 
   return (
     <section className='App'>
@@ -23,8 +22,8 @@ function App () {
       <Routes>
         <Route
           path='/' element={(<Login
-            img='burger-login'
-                             />)}
+            img='../public/images/burger-login.jfif'
+            useNavigate={useNavigate}                 />)}
         />
 
         <Route path='/mesero' element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Menu /> </PrivateRoute>} />

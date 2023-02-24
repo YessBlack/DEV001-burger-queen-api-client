@@ -423,6 +423,371 @@
       "idWaiter": 1,
       "date": "2023-02-17T14:54:56.528Z",
       "id": 21
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 2
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-17T17:53:49.997Z",
+      "id": 22
+    },
+    {
+      "state": "Entregado",
+      "clientName": "hoy",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T14:35:41.547Z",
+      "id": 23
+    },
+    {
+      "state": "Entregado",
+      "clientName": "Sebastian Cisternas",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        },
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Jugo natural",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T15:00:21.061Z",
+      "id": 24
+    },
+    {
+      "state": "Entregado",
+      "clientName": "Seba",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        },
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T15:34:52.502Z",
+      "id": 25
+    },
+    {
+      "state": "Entregado",
+      "clientName": "Seba",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T15:36:38.676Z",
+      "id": 26
+    },
+    {
+      "state": "Entregado",
+      "clientName": "Leo",
+      "order": [
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 4
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T15:36:43.193Z",
+      "id": 27
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 6
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T15:59:17.380Z",
+      "id": 28
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 7,
+          "productName": "Jugo natural",
+          "quantity": 4
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T15:59:21.014Z",
+      "id": 29
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 3
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T16:03:11.621Z",
+      "id": 30
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 5
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T16:03:14.181Z",
+      "id": 31
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 4
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T16:03:17.511Z",
+      "id": 32
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 4
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T16:03:21.797Z",
+      "id": 33
+    },
+    {
+      "state": "Terminado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 4
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T16:05:47.819Z",
+      "tiempo": " 0 : 0 : 0",
+      "id": 34
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 3
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T16:05:51.401Z",
+      "tiempo": " 0 : 0 : 31",
+      "id": 35
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 7,
+          "productName": "Jugo natural",
+          "quantity": 3
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-20T16:05:53.940Z",
+      "tiempo": " 0 : 49 : 12",
+      "id": 36
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "Seba",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-22T13:52:00.051Z",
+      "id": 37
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "Nati",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        },
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 2
+        },
+        {
+          "cost": 7,
+          "productName": "Jugo natural",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-22T13:52:17.244Z",
+      "id": 38
+    },
+    {
+      "state": "Entregado",
+      "clientName": "Seba",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 2
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-23T19:05:18.033Z",
+      "tiempo": " 0 : 0 : 5",
+      "id": 39
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "Leo",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Hamburguesa Simple",
+          "quantity": 2
+        },
+        {
+          "cost": 15,
+          "productName": "Hamburgesa Doble",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Papas Fritas",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-23T19:05:37.530Z",
+      "id": 40
+    },
+    {
+      "state": "Terminado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 6
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-23T20:51:05.576Z",
+      "tiempo": " 0 : 45 : 29",
+      "id": 41
     }
   ]
 }

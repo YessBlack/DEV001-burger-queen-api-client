@@ -33,6 +33,7 @@ font-size: larger;
 .container-menu-check{
     display:grid;
     grid-template-columns: 2fr 1fr;
+    gap:1rem;
 }
 .check-container{
     margin-top: 10px;
@@ -50,6 +51,12 @@ font-size: larger;
     justify-content: space-between;
     margin-top:10px;
     list-style: none;
+}
+.list-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
 }
 .icon-trash-o{
     font-size: larger;
