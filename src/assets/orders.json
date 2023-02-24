@@ -739,7 +739,7 @@
       "id": 36
     },
     {
-      "state": "Pendiente",
+      "state": "Entregado",
       "clientName": "Nati",
       "order": [
         {
@@ -775,15 +775,97 @@
       ],
       "idWaiter": 1,
       "date": "2023-02-23T16:23:26.939Z",
+      "tiempo": " 0 : 0 : 3",
       "id": 37
     },
     {
-      "state": "Pendiente",
+      "state": "Entregado",
       "clientName": "",
       "order": [],
       "idWaiter": 1,
       "date": "2023-02-23T21:31:42.833Z",
+      "tiempo": " 0 : 0 : 6",
       "id": 38
+    },
+    {
+      "state": "Terminado",
+      "clientName": "Nati",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Papas Fritas",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-23T23:29:31.338Z",
+      "tiempo": " 0 : 2 : 16",
+      "id": 39
+    },
+    {
+      "state": "Entregado",
+      "clientName": "Nati",
+      "order": [
+        {
+          "cost": 15,
+          "productName": "Hamburgesa Doble",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Papas Fritas",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Agua 750 ml",
+          "quantity": 1
+        },
+        {
+          "cost": 7,
+          "productName": "Jugo natural",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-24T00:00:38.369Z",
+      "tiempo": " 0 : 0 : 2",
+      "id": 40
+    },
+    {
+      "state": "Entregado",
+      "clientName": "yessblack",
+      "order": [
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        },
+        {
+          "cost": 10,
+          "productName": "Sandiwich jamón y queso",
+          "quantity": 1
+        },
+        {
+          "cost": 15,
+          "productName": "Hamburgesa Doble",
+          "quantity": 1
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-02-24T00:00:57.942Z",
+      "tiempo": " 0 : 0 : 11",
+      "id": 41
     }
   ]
 }

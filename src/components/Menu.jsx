@@ -11,8 +11,7 @@ function Menu () {
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
   const { uniqueProducts, setUniqueProducts } = useContext(ProductContext)
-  const { items } = useContext(ProductContext)
-  const { setItems } = useContext(ProductContext)
+  const { items, setItems } = useContext(ProductContext)
   const navigate = useNavigate()
 
   const user = JSON.parse(window.sessionStorage.getItem('user'))
