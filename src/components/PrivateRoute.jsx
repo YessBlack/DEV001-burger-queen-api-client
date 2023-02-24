@@ -6,6 +6,7 @@ import swal from 'sweetalert'
 export const PrivateRoute = ({ children, isAlowed }) => {
   const user = JSON.parse(window.sessionStorage.getItem('user'))
   const { login } = useAuth()
+
   useEffect(() => {
     login(user)
   }, [])

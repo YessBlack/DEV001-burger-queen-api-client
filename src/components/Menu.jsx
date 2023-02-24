@@ -17,6 +17,7 @@ function Menu () {
   const user = JSON.parse(window.sessionStorage.getItem('user'))
 
   useEffect(() => {
+    // Consultar y guardar la data
     const getData = async () => {
       const res = await fetch('http://localhost:3000/products')
       const data = await res.json()
@@ -26,6 +27,7 @@ function Menu () {
   }, [])
 
   useEffect(() => {
+    // Advertencia para recargar la pagina
     window.addEventListener('beforeunload', alertUser)
     return () => {
       window.removeEventListener('beforeunload', alertUser)
@@ -33,6 +35,7 @@ function Menu () {
   }, [])
 
   useEffect(() => {
+    // Crear un array unico con propiedad cantidad a partir de items
     const products = items.map(item => { return { ...item, quantity: items.filter(e => e.productName === item.productName).length } })
     const setProducts = new Set(products.map(JSON.stringify))
     setUniqueProducts(Array.from(setProducts).map(JSON.parse))
@@ -46,9 +49,11 @@ function Menu () {
   const breakFast = db.filter(product => product.type === 'breakFast')
   const lunch = db.filter(product => product.type === 'lunch')
 
+  // Calcular el total de la compra
   const price = items.map(price => price.cost)
   const total = price.reduce((acc, el) => acc + el, 0)
 
+  // Cambiar de vistas
   const handleClickBreakFast = () => {
     setIsBreackFast(true)
   }
@@ -62,6 +67,7 @@ function Menu () {
 
   const date = new Date()
 
+  // Envia el pedido a la base de datos
   const handleSendProduct = () => {
     const data = {
       state: 'Pendiente',
@@ -81,6 +87,7 @@ function Menu () {
     swal('Pedido enviado a cocina', '', 'success')
   }
 
+  // Elimina productos seleccionados
   const handleDelete = (item) => {
     const positionArr = items.indexOf(items.find(el => el.productName === item.productName))
     if (item.quantity > 1) {
@@ -96,6 +103,7 @@ function Menu () {
   const orders = () => {
     navigate('/mesero/orders')
   }
+
   return (
     <>
       <span className='icon-bell' onClick={orders}> <Orders /> </span>
