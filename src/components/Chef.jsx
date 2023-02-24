@@ -24,6 +24,21 @@ export const Chef = () => {
     data()
   }, [isSnapshot])
 
+  const day = JSON.stringify(new Date()).slice(1, 11)
+  const dbDate = db.filter(el => el.date.slice(0, 10) === day)
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', alertUser)
+    return () => {
+      window.removeEventListener('beforeunload', alertUser)
+    }
+  }, [])
+
+  const alertUser = (e) => {
+    e.preventDefault()
+    e.returnValue = ''
+  }
+
   setTimeout(() => {
     setIsSnapshot(!isSnapshot)
   }, 300000)
@@ -31,23 +46,26 @@ export const Chef = () => {
   const handleIsSnapshot = () => {
     setIsSnapshot(!isSnapshot)
   }
-  const day = JSON.stringify(new Date()).slice(1, 11)
-  const dbDate = db.filter(el => el.date.slice(0, 10) === day)
 
   const dbPending = dbDate.filter(el => el.state === 'Pendiente')
   return (
-    <><span className='icon-refresh' onClick={handleIsSnapshot} /><section className='card-container'>
+    <>
+      <span className='icon-refresh' onClick={handleIsSnapshot} />
+      <section className='card-container'>
+        {
 
-      {dbPending.map(el => {
-        return (
-          <CardOrder
-            key={el.id} id={el.id} tiempo={el.tiempo} clientName={el.clientName} list={el.order}
-            idWaiter={el.idWaiter} order={el.order} date={el.date}
-            text='Enviar Pedido'
-          />
-        )
-      })}
-                                                                  </section>
+        dbPending.map(el => {
+          return (
+            <CardOrder
+              key={el.id} id={el.id} tiempo={el.tiempo} clientName={el.clientName} list={el.order}
+              idWaiter={el.idWaiter} order={el.order} date={el.date}
+              text='Enviar Pedido'
+            />
+          )
+        })
+      }
+      </section>
     </>
+
   )
 }

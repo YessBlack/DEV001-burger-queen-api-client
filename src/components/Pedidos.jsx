@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react'
-import { CardOrder } from './CardOrder'
 import { useNavigate } from 'react-router'
+import { CardOrder } from './CardOrder'
 
 export const Pedidos = () => {
   const navigate = useNavigate()
   const [ordersDb, setOrdersDb] = useState([])
   const [isSnapshot, setIsSnapshot] = useState(false)
+
   useEffect(() => {
     fetch('http://localhost:3001/orders')
       .then(res => res.json())
       .then(res => setOrdersDb(res))
   }, [isSnapshot])
 
-  const day = JSON.stringify(new Date()).slice(1, 11)
-  const dbDate = ordersDb.filter(el => el.date.slice(0, 10) === day)
-  const finishOrders = dbDate.filter(el => el.state === 'Terminado' || el.state === 'Entregado').reverse()
   useEffect(() => {
     window.addEventListener('beforeunload', alertUser)
     return () => {
@@ -22,13 +20,6 @@ export const Pedidos = () => {
     }
   }, [])
 
-  const alertUser = (e) => {
-    e.preventDefault()
-    e.returnValue = ''
-  }
-  const handleBack = () => {
-    navigate('/mesero')
-  }
   setTimeout(() => {
     setIsSnapshot(!isSnapshot)
   }, 300000)
@@ -36,6 +27,19 @@ export const Pedidos = () => {
   const handleIsSnapshot = () => {
     setIsSnapshot(!isSnapshot)
   }
+
+  const day = JSON.stringify(new Date()).slice(1, 11)
+  const dbDate = ordersDb.filter(el => el.date.slice(0, 10) === day)
+
+  const alertUser = (e) => {
+    e.preventDefault()
+    e.returnValue = ''
+  }
+
+  const finishOrders = dbDate.filter(el => el.state === 'Terminado' || el.state === 'Entregado').reverse()
+
+  const handleBack = () => navigate('/mesero')
+
   return (
     <>
       <div className='buttons'>
@@ -43,8 +47,9 @@ export const Pedidos = () => {
         <span className='icon-refresh' onClick={handleIsSnapshot} />
       </div>
       <section className='card-container'>
+        {
 
-        {finishOrders.map(el => {
+        finishOrders.map(el => {
           return (
             <CardOrder
               key={el.id} id={el.id} tiempo={el.tiempo} clientName={el.clientName} list={el.order}
@@ -53,7 +58,8 @@ export const Pedidos = () => {
               state={el.state}
             />
           )
-        })}
+        })
+      }
       </section>
     </>
   )

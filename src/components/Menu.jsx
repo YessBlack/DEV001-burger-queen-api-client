@@ -4,34 +4,32 @@ import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
 import { Orders } from './Orders'
 import { useNavigate } from 'react-router'
+import { Check } from './Check'
 
 function Menu () {
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
-  const { items, setItems } = useContext(ProductContext)
   const { uniqueProducts, setUniqueProducts } = useContext(ProductContext)
+  const { items, setItems } = useContext(ProductContext)
   const navigate = useNavigate()
+
   const user = JSON.parse(window.sessionStorage.getItem('user'))
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch('http://localhost:3000/products')
+      const data = await res.json()
+      setDb(data)
+    }
+    getData()
+  }, [])
+
   useEffect(() => {
     window.addEventListener('beforeunload', alertUser)
     return () => {
       window.removeEventListener('beforeunload', alertUser)
     }
-  }, [])
-
-  const alertUser = (e) => {
-    e.preventDefault()
-    e.returnValue = ''
-  }
-
-  useEffect(() => {
-    const data = async () => {
-      const res = await fetch('http://localhost:3000/products')
-      const data = await res.json()
-      setDb(data)
-    }
-    data()
   }, [])
 
   useEffect(() => {
@@ -40,8 +38,16 @@ function Menu () {
     setUniqueProducts(Array.from(setProducts).map(JSON.parse))
   }, [items])
 
+  const alertUser = (e) => {
+    e.preventDefault()
+    e.returnValue = ''
+  }
+
   const breakFast = db.filter(product => product.type === 'breakFast')
   const lunch = db.filter(product => product.type === 'lunch')
+
+  const price = items.map(price => price.cost)
+  const total = price.reduce((acc, el) => acc + el, 0)
 
   const handleClickBreakFast = () => {
     setIsBreackFast(true)
@@ -50,14 +56,12 @@ function Menu () {
     setIsBreackFast(false)
   }
 
-  const price = items.map(price => price.cost)
-  const total = price.reduce((acc, el) => acc + el, 0)
-
   const name = (e) => {
     setInputName(e.target.value)
   }
 
   const date = new Date()
+
   const handleSendProduct = () => {
     const data = {
       state: 'Pendiente',
@@ -126,10 +130,20 @@ function Menu () {
           <h1>Cuenta</h1>
           <input className='client-name' value={inputName} placeholder='Nombre' name='name' onChange={name} />
           <div className='list-container'>
-            {uniqueProducts.map((item) => <li className='check' key={Math.random().toString(36).replace(/[^a-z]+/g, '')}> 
-              <span>{item.quantity} ${item.cost * item.quantity}.00 </span>   - {item.productName}
-              <span className='icon-trash-o' onClick={() => handleDelete(item)} />
-                                          </li>)}
+            {
+              uniqueProducts.map(item => {
+                return (
+                  <div key={Math.random().toString(36).replace(/[^a-z]+/g, '')} className='container-check-list'>
+                    <Check
+                      quantity={item.quantity}
+                      cost={item.cost * item.quantity}
+                      name={item.productName}
+                    />
+                    <span className='icon-trash-o' onClick={() => handleDelete(item)} />
+                  </div>
+                )
+              })
+            }
           </div>
           <h2 className='total'> Total :$ {total}.00</h2>
           <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>

@@ -1,13 +1,13 @@
 import swal from 'sweetalert'
 import { useEffect } from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useAuth } from './useAuth'
 
 export const PrivateRoute = ({ children, isAlowed }) => {
   const user = JSON.parse(window.sessionStorage.getItem('user'))
   const { login } = useAuth()
   useEffect(() => {
-    login()
+    login(user)
   }, [])
 
   if (!user) {

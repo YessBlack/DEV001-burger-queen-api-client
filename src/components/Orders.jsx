@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 export const Orders = () => {
   const [ordersDb, setOrdersDb] = useState([])
+
   useEffect(() => {
     fetch('http://localhost:3001/orders')
       .then(res => res.json())

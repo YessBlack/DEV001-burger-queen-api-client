@@ -22,8 +22,9 @@ function App () {
       <Routes>
         <Route
           path='/' element={(<Login
-            img='../public/images/burger-login.jfif'
-            useNavigate={useNavigate}                 />)}
+            path='../public/images/burger-login.jfif'
+            useNavigate={useNavigate}
+                             />)}
         />
 
         <Route path='/mesero' element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Menu /> </PrivateRoute>} />

@@ -34,7 +34,7 @@ export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, 
     }
   }, [minute])
 
-  const sendOrder = () => {
+  const sendOrder = async () => {
     const data = {
       state: 'Terminado',
       clientName,
@@ -48,7 +48,7 @@ export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, 
       body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
-    fetch(`http://localhost:3001/orders/${id}`, options)
+    await fetch(`http://localhost:3001/orders/${id}`, options)
     setFinish(true)
     setIsPaused(true)
     swal('Pedido enviado', '', 'success')
@@ -57,6 +57,7 @@ export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, 
   const orderCheck = finish || state === 'Entregado' ? 'card-order-finish' : 'card-order'
   const button = finish || state === 'Entregado' ? 'button-card-finish' : 'button-card'
   const timer = text === 'Enviar Pedido' ? ` Tiempo :${hour} : ${minute} : ${second}` : tiempo
+
   const mesero = () => {
     const data = {
       state: 'Entregado',
@@ -76,6 +77,7 @@ export function CardOrder ({ id, list, clientName, idWaiter, order, date, text, 
     setFinish(true)
     swal('Pedido entregado', '', 'success')
   }
+
   return (
     <article className={orderCheck}>
       <p>{timer}</p>
