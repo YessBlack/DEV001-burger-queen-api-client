@@ -13,6 +13,7 @@ export default function Login ({ path, useNavigate }) {
 
   const onSubmit = async (data, e) => {
     e.target.reset()
+    console.log('Entro a onSubmit')
 
     const options = {
       method: 'POST',
@@ -49,12 +50,12 @@ export default function Login ({ path, useNavigate }) {
       <div className='login-container-form'>
         <h1 className='title-login'>INICIAR SESION</h1>
         <img src={path} alt='' className='img-login' />
-        <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
+        <form className='form-login' data-testid='form-login' onSubmit={handleSubmit(onSubmit)}>
           <input
             type='text' placeholder='Usuario' className='form-login-input'
             name='email'
             {...register('email', {
-              required: { value: true, message: 'Este campo es obligatorio' }
+              required: { value: true, message: 'El email es obligatorio' }
             })}
           />
           <span className='text-danger'>{errors?.email?.message} <br />{errorMessage} </span>
@@ -62,7 +63,7 @@ export default function Login ({ path, useNavigate }) {
             type='password' placeholder='Contraseña' className='form-login-input'
             name='password'
             {...register('password', {
-              required: { value: true, message: 'Este campo es obligatorio' },
+              required: { value: true, message: 'La contraseña es obligatoria' },
               minLength: { value: 6, message: 'La contraseña debe tener minimo 6 caracteres' }
             })}
           />

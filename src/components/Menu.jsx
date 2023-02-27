@@ -3,15 +3,15 @@ import Products from './Products'
 import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
 import { Orders } from './Orders'
-import { useNavigate } from 'react-router'
 import { Check } from './Check'
 
-function Menu () {
+function Menu ({ useNavigate }) {
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
-  const { uniqueProducts, setUniqueProducts } = useContext(ProductContext)
+  const [uniqueProducts, setUniqueProducts] = useState([])
   const { items, setItems } = useContext(ProductContext)
+
   const navigate = useNavigate()
 
   const user = JSON.parse(window.sessionStorage.getItem('user'))
