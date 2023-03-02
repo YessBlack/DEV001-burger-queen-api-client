@@ -34,11 +34,6 @@ export const Chef = () => {
     }
   }, [])
 
-  const alertUser = (e) => {
-    e.preventDefault()
-    e.returnValue = ''
-  }
-
   setTimeout(() => {
     setIsSnapshot(!isSnapshot)
   }, 300000)
