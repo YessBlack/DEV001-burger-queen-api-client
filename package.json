@@ -11,7 +11,7 @@
     "fake-api": "json-server --watch src/assets/products.json",
     "orders-api": "json-server --watch src/assets/orders.json --port 3001",
     "auth-api": "json-server-auth src/assets/auth.json --port 3004",
-    "all": "npm run fake-api && npm run orders-api && npm auth-api && npm run dev"
+    "testNico": "jest --watch --env=jsdom"
   },
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.18.6",

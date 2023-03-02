@@ -29,7 +29,7 @@ function App () {
 
         <Route
           path='/mesero'
-          element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Menu useNavigate={useNavigate} /> </PrivateRoute>}
+          element={(<PrivateRoute isAlowed={user && user.user.roles.waiter}><Menu useNavigate={useNavigate} /> </PrivateRoute>)}
         />
 
         <Route

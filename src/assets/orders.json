@@ -866,6 +866,31 @@
       "date": "2023-02-24T00:00:57.942Z",
       "tiempo": " 0 : 0 : 11",
       "id": 41
+    },
+    {
+      "state": "Entregado",
+      "clientName": "nico",
+      "order": [
+        {
+          "cost": 7,
+          "productName": "Café con leche ",
+          "quantity": 1
+        },
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 2
+        },
+        {
+          "cost": 5,
+          "productName": "Agua 500 ml",
+          "quantity": 2
+        }
+      ],
+      "idWaiter": 1,
+      "date": "2023-03-01T14:18:52.477Z",
+      "tiempo": " 0 : 0 : 6",
+      "id": 42
     }
   ]
 }

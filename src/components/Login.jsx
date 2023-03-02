@@ -7,14 +7,15 @@ export default function Login ({ path, useNavigate }) {
   const { login } = useAuth()
   const navigate = useNavigate()
 
+  console.log('Holiiii')
+
   const [error, setError] = useState(false)
 
   window.localStorage.clear()
 
   const onSubmit = async (data, e) => {
-    e.target.reset()
     console.log('Entro a onSubmit')
-
+    e.target.reset()
     const options = {
       method: 'POST',
       body: JSON.stringify(data),
@@ -50,7 +51,7 @@ export default function Login ({ path, useNavigate }) {
       <div className='login-container-form'>
         <h1 className='title-login'>INICIAR SESION</h1>
         <img src={path} alt='' className='img-login' />
-        <form className='form-login' data-testid='form-login' onSubmit={handleSubmit(onSubmit)}>
+        <form className='form-login' data-testid='form' onSubmit={handleSubmit(onSubmit)}>
           <input
             type='text' placeholder='Usuario' className='form-login-input'
             name='email'

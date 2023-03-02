@@ -8,7 +8,7 @@ export const PrivateRoute = ({ children, isAlowed }) => {
   const { login } = useAuth()
 
   useEffect(() => {
-    login(user)
+    login()
   }, [])
 
   if (!user) {
