@@ -7,12 +7,12 @@ import './componentsCss/AdminHome.css'
 import Login from './components/Login'
 import { Header } from './components/Header'
 import { Routes, Route } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { Chef } from './components/Chef'
 import { PrivateRoute } from './components/PrivateRoute'
 import { Pedidos } from './components/Pedidos'
 import { AdminHome } from './components/AdminHome'
 import { useAuth } from './components/useAuth'
-import { useNavigate } from 'react-router'
 
 function App () {
   useAuth()
@@ -29,12 +29,24 @@ function App () {
                              />)}
         />
 
-        <Route path='/mesero' element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Menu /> </PrivateRoute>} />
-        <Route path='/mesero/orders' element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Pedidos /> </PrivateRoute>} />
+        <Route
+          path='/mesero'
+          element={(<PrivateRoute isAlowed={user && user.user.roles.waiter}><Menu useNavigate={useNavigate} /> </PrivateRoute>)}
+        />
 
         <Route path='/chef' element={<PrivateRoute isAlowed={user && user.user.roles.chef}><Chef /></PrivateRoute>} />
         <Route
           path='/admin' element={<PrivateRoute isAlowed={user && user.user.roles.admin}><AdminHome /></PrivateRoute>}
+
+        <Route
+          path='/mesero/orders'
+          element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Pedidos /> </PrivateRoute>}
+        />
+
+        <Route
+          path='/chef'
+          element={<PrivateRoute isAlowed={user && user.user.roles.chef}><Chef /></PrivateRoute>}
+
         />
       </Routes>
     </section>

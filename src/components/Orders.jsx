@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 export const Orders = () => {
+  // Notificacion, numero de pedidos terminados
   const [ordersDb, setOrdersDb] = useState([])
   
   useEffect(() => {

@@ -2,6 +2,7 @@
 import React from 'react'
 import Login from '../src/components/Login'
 import { AuthProvider } from '../src/components/useAuth'
+
 import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
@@ -19,6 +20,28 @@ jest.mock('react-router-dom', () => ({
 }))
 beforeEach(() => {
   server.listen()
+
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
+import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event'
+import { server } from '../src/mocks/server'
+import { useNavigate } from 'react-router'
+import * as router from 'react-router'
+
+jest.mock('react-hook-form', () => ({
+  ...jest.requireActual('react-hook-form'),
+  useFormContext: () => ({
+    handleSubmit: () => jest.fn(),
+    getValues: () => jest.fn()
+  })
+}))
+
+const navigate = jest.fn()
+
+beforeEach(() => {
+  jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate)
+
 })
 
 describe('Login', () => {
@@ -26,6 +49,7 @@ describe('Login', () => {
   beforeEach(() => {
     prueba = render(<Login img='public/images/burger-login.jfif' useNavigate={useNavigate} />, { wrapper: AuthProvider })
   })
+
   it('renders content', () => {
     expect(prueba.getByText('INICIAR SESION')).toBeInTheDocument()
   })
@@ -35,6 +59,7 @@ describe('Login', () => {
     expect(input).toBeInTheDocument()
     expect(button).toBeInTheDocument()
   })
+
   it('Login with user', async () => {
     const input = screen.getByPlaceholderText('Usuario')
     const button = screen.getByText('Ingresar')
@@ -55,5 +80,13 @@ describe('Login', () => {
     const button = screen.getByText('Ingresar')
     fireEvent.submit(button)
     expect(mockedFn).toHaveBeenCalledTimes(1)
+
+
+  it('onSubmit', async () => {
+    const input = screen.getByPlaceholderText('Usuario')
+    input.value = 'mesero@mesero.com'
+    const button = screen.getByText('Ingresar')
+    userEvent.click(button)
+
   })
 })

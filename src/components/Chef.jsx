@@ -43,6 +43,7 @@ export const Chef = () => {
   }
 
   const dbPending = dbDate.filter(el => el.state === 'Pendiente')
+
   return (
     <>
       <span className='icon-refresh' onClick={handleIsSnapshot} />
