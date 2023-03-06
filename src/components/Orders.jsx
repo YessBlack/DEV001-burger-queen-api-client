@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react'
 
 export const Orders = () => {
   const [ordersDb, setOrdersDb] = useState([])
-
+  
   useEffect(() => {
-    fetch('http://localhost:3001/orders')
-      .then(res => res.json())
-      .then(res => setOrdersDb(res))
+    const data = async() => {
+      const res = await fetch('https://run.mocky.io/v3/a6dfa6ca-9e5f-4f8c-94d5-ab41bfbec2dd')
+      const resJson = await res.json()
+      setOrdersDb(resJson.orders)
+    }
+    data()
   }, [ordersDb])
   const day = JSON.stringify(new Date()).slice(1, 11)
   const dbDate = ordersDb.filter(el => el.date.slice(0, 10) === day)

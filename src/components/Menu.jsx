@@ -18,9 +18,9 @@ function Menu () {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch('http://localhost:3000/products')
+      const res = await fetch('https://run.mocky.io/v3/4fd0f276-4743-4789-afe3-f1bf2e4781de')
       const data = await res.json()
-      setDb(data)
+      setDb(data.products)
     }
     getData()
   }, [])
@@ -75,7 +75,7 @@ function Menu () {
       body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
-    fetch('http://localhost:3001/orders', options)
+    fetch('https://run.mocky.io/v3/a6dfa6ca-9e5f-4f8c-94d5-ab41bfbec2dd', options)
     setItems([])
     setInputName('')
     swal('Pedido enviado a cocina', '', 'success')

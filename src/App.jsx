@@ -3,12 +3,14 @@ import Menu from './components/Menu'
 import './componentsCss/Menu.css'
 import './componentsCss/Login.css'
 import './componentsCss/Products.css'
+import './componentsCss/AdminHome.css'
 import Login from './components/Login'
 import { Header } from './components/Header'
 import { Routes, Route } from 'react-router-dom'
 import { Chef } from './components/Chef'
 import { PrivateRoute } from './components/PrivateRoute'
 import { Pedidos } from './components/Pedidos'
+import { AdminHome } from './components/AdminHome'
 import { useAuth } from './components/useAuth'
 import { useNavigate } from 'react-router'
 
@@ -31,6 +33,9 @@ function App () {
         <Route path='/mesero/orders' element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Pedidos /> </PrivateRoute>} />
 
         <Route path='/chef' element={<PrivateRoute isAlowed={user && user.user.roles.chef}><Chef /></PrivateRoute>} />
+        <Route
+          path='/admin' element={<PrivateRoute isAlowed={user && user.user.roles.admin}><AdminHome /></PrivateRoute>}
+        />
       </Routes>
     </section>
   )
