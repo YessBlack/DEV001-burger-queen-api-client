@@ -14,8 +14,13 @@ export default function Login ({ path, useNavigate }) {
   window.localStorage.clear()
 
   const onSubmit = async (data, e) => {
+
+    console.log('olo')
+    // e.target.reset()
+
     console.log('Entro a onSubmit')
     e.target.reset()
+
     const options = {
       method: 'POST',
       body: JSON.stringify(data),

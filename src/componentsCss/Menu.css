@@ -5,7 +5,7 @@ margin-top: -45px;
 margin-left :550px;
 font-size: larger;
 }
-.btn-click , .btn-click-user{
+.btn-click , .btn-click-user, .button-employee ,.button-products{
     width:50%;
     background-color: #73C089;
     padding:20px;
@@ -15,14 +15,14 @@ font-size: larger;
     border:none; 
   
 }
-.btn-click:hover {
+.btn-click:hover, .button-employee:hover {
     transition: 0.2s;
     transform: scale(1.1);
 }
-.btn-click-user{
+.btn-click-user,.button-products {
     background-color: #FF8540;
 }
-.btn-click-user:hover {
+.btn-click-user:hover ,.button-products:hover{
     transition: 0.2s;
     transform: scale(1.1);
 }
@@ -51,6 +51,12 @@ font-size: larger;
     justify-content: space-between;
     margin-top:10px;
     list-style: none;
+}
+.list-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
 }
 .icon-trash-o{
     font-size: larger;

@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router'
 import { CardOrder } from './CardOrder'
 
 export const Pedidos = () => {
+
+  const navigate = useNavigate()
+
   // Vista de pedidos terminados del mesero
+
   const [ordersDb, setOrdersDb] = useState([])
   const [isSnapshot, setIsSnapshot] = useState(false)
 
@@ -37,8 +41,6 @@ export const Pedidos = () => {
   }
 
   const finishOrders = dbDate.filter(el => el.state === 'Terminado' || el.state === 'Entregado').reverse()
-
-  const navigate = useNavigate()
 
   const handleBack = () => navigate('/mesero')
 

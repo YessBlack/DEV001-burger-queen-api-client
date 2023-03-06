@@ -1,7 +1,7 @@
+import swal from 'sweetalert'
 import { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from './useAuth'
-import swal from 'sweetalert'
 
 export const PrivateRoute = ({ children, isAlowed }) => {
   const user = JSON.parse(window.sessionStorage.getItem('user'))
@@ -15,5 +15,5 @@ export const PrivateRoute = ({ children, isAlowed }) => {
     return <Navigate to='/' />
   }
 
-  return isAlowed ? children : swal('Permiso denegado', '', 'error') && user.user.roles.waiter ? <Navigate to='/mesero' /> : <Navigate to='/chef' />
+  return isAlowed ? children : swal('Autorización invalida', '', 'error') && user.user.roles.waiter ? <Navigate to='/mesero' /> : <Navigate to='/chef' />
 }

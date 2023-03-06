@@ -1,0 +1,18 @@
+.admin-button{
+    display:flex;
+    align-items: flex-start;
+   flex-direction: row;
+   width: 100%;  
+}
+.btn-success{
+    margin: 30px 0px 15px 480px;
+
+}
+.container-employee{
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid rgb(175, 170, 170);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding:10px;
+    margin-bottom: 40px;
+}

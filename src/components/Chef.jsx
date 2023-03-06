@@ -4,19 +4,6 @@ import { CardOrder } from './CardOrder'
 export const Chef = () => {
   const [db, setDb] = useState([])
   const [isSnapshot, setIsSnapshot] = useState(false)
-
-  useEffect(() => {
-    fetch('http://localhost:3001/orders') // hacemos la petición get
-      .then(res => res.json()) // cuando hayamos terminado (then) parseamos a json la respuesta de la petición
-
-      .then(res => {
-        setDb(res)
-      }) // cuando hayamos terminado (then) actualizamos el estado nombre
-  }, [isSnapshot])
-
-  const day = JSON.stringify(new Date()).slice(1, 11)
-  const dbDate = db.filter(el => el.date.slice(0, 10) === day)
-
   useEffect(() => {
     window.addEventListener('beforeunload', alertUser)
     return () => {
@@ -28,6 +15,24 @@ export const Chef = () => {
     e.preventDefault()
     e.returnValue = ''
   }
+  useEffect(() => {
+    const data = async () => {
+      const res = await fetch('https://run.mocky.io/v3/a6dfa6ca-9e5f-4f8c-94d5-ab41bfbec2dd')
+      const data = await res.json()
+      setDb(data.orders)
+    }
+    data()
+  }, [isSnapshot])
+
+  const day = JSON.stringify(new Date()).slice(1, 11)
+  const dbDate = db.filter(el => el.date.slice(0, 10) === day)
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', alertUser)
+    return () => {
+      window.removeEventListener('beforeunload', alertUser)
+    }
+  }, [])
 
   setTimeout(() => {
     setIsSnapshot(!isSnapshot)
