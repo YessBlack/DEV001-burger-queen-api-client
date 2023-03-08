@@ -10,7 +10,7 @@ function Menu () {
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
-  const { uniqueProducts, setUniqueProducts } = useContext(ProductContext)
+  const [ uniqueProducts, setUniqueProducts ] = useState([])
   const { items, setItems } = useContext(ProductContext)
   const navigate = useNavigate()
 
@@ -18,9 +18,9 @@ function Menu () {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch('https://run.mocky.io/v3/4fd0f276-4743-4789-afe3-f1bf2e4781de')
+      const res = await fetch('http://localhost:3000/products')
       const data = await res.json()
-      setDb(data.products)
+      setDb(data)
     }
     getData()
   }, [])
@@ -75,7 +75,7 @@ function Menu () {
       body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
-    fetch('https://run.mocky.io/v3/a6dfa6ca-9e5f-4f8c-94d5-ab41bfbec2dd', options)
+    fetch('http://localhost:3001/orders', options)
     setItems([])
     setInputName('')
     swal('Pedido enviado a cocina', '', 'success')
@@ -145,7 +145,7 @@ function Menu () {
               })
             }
           </div>
-          <h2 className='total'> Total :$ {total}.00</h2>
+          <h2 className='total'> Total :${total}.00</h2>
           <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>
         </section>
       </div>
