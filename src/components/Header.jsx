@@ -6,7 +6,7 @@ export const Header = () => {
   const user = window.sessionStorage.getItem('user')
   const sessionOut = () => {
     window.sessionStorage.removeItem('user')
-    logOut(user)
+    logOut()
   }
 
   const classIcon = user ? 'showIcon' : 'hideIcon'

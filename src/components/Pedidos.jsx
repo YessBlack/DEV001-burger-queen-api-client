@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router'
 import { CardOrder } from './CardOrder'
 
 export const Pedidos = () => {
+
   const navigate = useNavigate()
+
+  // Vista de pedidos terminados del mesero
+
   const [ordersDb, setOrdersDb] = useState([])
   const [isSnapshot, setIsSnapshot] = useState(false)
 

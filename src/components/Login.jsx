@@ -7,13 +7,19 @@ export default function Login ({ path, useNavigate }) {
   const { login } = useAuth()
   const navigate = useNavigate()
 
+  console.log('Holiiii')
+
   const [error, setError] = useState(false)
 
   window.localStorage.clear()
 
   const onSubmit = async (data, e) => {
+
     console.log('olo')
     // e.target.reset()
+
+    console.log('Entro a onSubmit')
+    e.target.reset()
 
     const options = {
       method: 'POST',
@@ -63,7 +69,7 @@ export default function Login ({ path, useNavigate }) {
             type='password' placeholder='Contraseña' className='form-login-input'
             name='password'
             {...register('password', {
-              required: { value: true, message: 'Este campo es obligatorio' },
+              required: { value: true, message: 'La contraseña es obligatoria' },
               minLength: { value: 6, message: 'La contraseña debe tener minimo 6 caracteres' }
             })}
           />
