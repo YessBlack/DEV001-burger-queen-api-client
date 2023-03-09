@@ -53,7 +53,7 @@ export const EmployeeList = () => {
     setEdit(!edit)
     setIsEdit(true)
   }
-  console.log(employee.current)
+
   return (
     <><button type='button' className='btn btn-success' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onClick={handleAdd}>Agregar Empleado</button>
       <article className='container-employee'>
@@ -78,9 +78,9 @@ export const EmployeeList = () => {
                           <td className='celdas'>{worker.name}</td>
                           <td className='celdas'>{worker.email}</td>
                           <td className='celdas'>{
-                          worker.roles === 'admin'
+                          worker.roles.admin
                             ? 'Admin'
-                            : worker.roles === 'chef'
+                            : worker.roles.chef
                               ? 'Chef'
                               : 'Mesero'
 }

@@ -23,11 +23,19 @@ export function ModalEmployee ({ employee, isEdit }) {
     e.preventDefault()
     const id = employee.id
     const fields = Object.fromEntries(new window.FormData(e.target))
+    console.log(fields)
     const data = {
       ...fields,
       id: employee.id,
       password: employee.password
     }
+
+    const obj = {
+      admin: data.roles === 'admin',
+      waiter: data.roles === 'waiter',
+      chef: data.roles === 'chef'
+    }
+    data.roles = obj
     data.email = inputEmail
     data.name = inputName
     const options = {
@@ -44,6 +52,13 @@ export function ModalEmployee ({ employee, isEdit }) {
     const data = {
       ...fields
     }
+    const obj = {
+      admin: data.roles === 'admin',
+      waiter: data.roles === 'waiter',
+      chef: data.roles === 'chef'
+    }
+    data.roles = obj
+
     const options = {
       method: 'POST',
       body: JSON.stringify(data),
@@ -85,7 +100,7 @@ export function ModalEmployee ({ employee, isEdit }) {
                   </div>
                   <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>Guardar</button>
                 </form>
-                </>
+              </>
               : <form onSubmit={addEmployee}>
                 <div className='mb-3'>
                   <label htmlFor='formGroupExampleInput' className='form-label'>Nombre</label>
@@ -109,7 +124,7 @@ export function ModalEmployee ({ employee, isEdit }) {
                   </select>
                 </div>
                 <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>Guardar</button>
-                </form>}
+              </form>}
           </div>
         </div>
       </div>
