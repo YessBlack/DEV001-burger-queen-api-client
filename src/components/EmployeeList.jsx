@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import swal from 'sweetalert'
 
 export const EmployeeList = () => {
   const [db, setDb] = useState([])
+  const [borrar, setBorrar] = useState(false)
 
   useEffect(() => {
     const petition = async () => {
@@ -10,8 +12,33 @@ export const EmployeeList = () => {
       setDb(res)
     }
     petition()
-  }, [])
-  console.log(db)
+  }, [borrar])
+
+  const handleDelete = (id) => {
+    swal({
+      title: 'Estás seguro de eliminar este usuario?',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          const option = {
+            method: 'DELETE',
+            body: JSON.stringify(db),
+            headers: { 'content-type': 'application/json' }
+          }
+          fetch(`http://localhost:3004/users/${id}`, option)
+          setBorrar(!borrar)
+          swal('Usuario eliminado', {
+            icon: 'success'
+          })
+        } else {
+          swal('Usuario no eliminado')
+        }
+      })
+  }
+
   return (
     <article className='container-employee'>
       <div className='container-employee-list'>
@@ -43,7 +70,7 @@ export const EmployeeList = () => {
 }
                           </td>
                           <td className='celdas'>
-                            <button type='button' className='btn btn-outline-danger'>Eliminar</button>
+                            <button type='button' className='btn btn-outline-danger' onClick={() => handleDelete(worker.id)}>Eliminar</button>
                           </td>
                           <td className='celdas'>
                             <button type='button' className='btn btn-outline-info'>Editar</button>

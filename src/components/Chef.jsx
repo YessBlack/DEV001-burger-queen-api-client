@@ -17,7 +17,7 @@ export const Chef = () => {
   }
   useEffect(() => {
     const data = async () => {
-      const res = await fetch('https://run.mocky.io/v3/a6dfa6ca-9e5f-4f8c-94d5-ab41bfbec2dd')
+      const res = await fetch('http://localhost:3001/orders')
       const data = await res.json()
       setDb(data.orders)
     }

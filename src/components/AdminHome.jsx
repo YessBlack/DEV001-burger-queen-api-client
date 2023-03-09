@@ -19,8 +19,10 @@ export const AdminHome = () => {
         <button className='button-employee' onClick={handleEmploye}> Empleados</button>
         <button className='button-products' onClick={handleProducts}> Productos</button>
       </div>
-      <button type='button' className='btn btn-success'>{textButton}</button>
-      {showEmployee ? <EmployeeList /> : <ProductList /> }
+      <div className='button-add'>
+        <button type='button' className='btn btn-success'>{textButton}</button>
+        {showEmployee ? <EmployeeList /> : <ProductList />}
+      </div>
     </section>
   )
 }
