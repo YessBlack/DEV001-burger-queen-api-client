@@ -869,28 +869,107 @@
     },
     {
       "state": "Entregado",
-      "clientName": "nico",
+      "clientName": "Seba",
       "order": [
         {
-          "cost": 7,
-          "productName": "Café con leche ",
-          "quantity": 1
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 4
         },
+        {
+          "cost": 7,
+          "productName": "Café con leche",
+          "quantity": 4
+        }
+      ],
+      "idWaiter": 5,
+      "date": "2023-03-08T21:24:12.293Z",
+      "tiempo": " 0 : 0 : 4",
+      "id": 42
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 2
+        }
+      ],
+      "idWaiter": 5,
+      "date": "2023-03-08T21:30:27.422Z",
+      "tiempo": " 0 : 0 : 18",
+      "id": 43
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 3
+        }
+      ],
+      "idWaiter": 5,
+      "date": "2023-03-08T21:32:03.932Z",
+      "tiempo": " 0 : 0 : 2",
+      "id": 44
+    },
+    {
+      "state": "Entregado",
+      "clientName": "angelica",
+      "order": [
         {
           "cost": 5,
           "productName": "Café americano",
           "quantity": 2
         },
         {
-          "cost": 5,
-          "productName": "Agua 500 ml",
+          "cost": 7,
+          "productName": "Café con leche",
           "quantity": 2
+        },
+        {
+          "cost": 5,
+          "productName": "\tHamburguesa Simple",
+          "quantity": 1
         }
       ],
-      "idWaiter": 1,
-      "date": "2023-03-01T14:18:52.477Z",
-      "tiempo": " 0 : 0 : 6",
-      "id": 42
+      "idWaiter": 5,
+      "date": "2023-03-08T21:32:59.275Z",
+      "tiempo": " 0 : 0 : 4",
+      "id": 45
+    },
+    {
+      "state": "Entregado",
+      "clientName": "",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "\tHamburguesa Simple",
+          "quantity": 3
+        }
+      ],
+      "idWaiter": 5,
+      "date": "2023-03-08T21:33:38.508Z",
+      "tiempo": " 0 : 1 : 28",
+      "id": 46
+    },
+    {
+      "state": "Pendiente",
+      "clientName": "ppp",
+      "order": [
+        {
+          "cost": 5,
+          "productName": "Café americano",
+          "quantity": 3
+        }
+      ],
+      "idWaiter": 5,
+      "date": "2023-03-08T21:38:51.352Z",
+      "id": 47
     }
   ]
 }

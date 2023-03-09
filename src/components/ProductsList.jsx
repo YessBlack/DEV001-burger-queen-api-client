@@ -1,13 +1,14 @@
-import { useContext, useEffect, useRef, useState } from 'react'
 import swal from 'sweetalert'
+import { useEffect, useState, useRef, useContext } from 'react'
 import { ModalProducts } from './ModalProducts'
 import ProductContext from './DataContext'
 
 export const ProductList = () => {
   const [db, setDb] = useState([])
   const [borrar, setBorrar] = useState(false)
+  const [isEdit, setIsEdit] = useState(null)
   const { edit, setEdit } = useContext(ProductContext)
-  const productSelect = useRef({})
+  const products = useRef({})
 
   useEffect(() => {
     const petition = async () => {
@@ -16,17 +17,11 @@ export const ProductList = () => {
       setDb(res)
     }
     petition()
-  }, [borrar])
+  }, [borrar, edit])
 
-  const handleEdit = (product) => {
-    productSelect.current = product
-    setEdit(!edit)
-  }
-
-  console.log(productSelect)
   const handleDelete = (id) => {
     swal({
-      title: 'Estás seguro de eliminar este usuario?',
+      title: '¿Estás seguro que quiere elimar este producto?',
       icon: 'warning',
       buttons: true,
       dangerMode: true
@@ -38,21 +33,28 @@ export const ProductList = () => {
             body: JSON.stringify(db),
             headers: { 'content-type': 'application/json' }
           }
-
           fetch(`http://localhost:3000/products/${id}`, option)
-
           setBorrar(!borrar)
-          swal('Usuario eliminado', {
+          swal('El producto ha sido eliminado!', {
             icon: 'success'
           })
         } else {
-          swal('Usuario no eliminado')
+          swal('Producto no eliminado!')
         }
       })
+    setEdit(!edit)
+  }
+  const handleEdit = (product) => {
+    products.current = product
+    setEdit(!edit)
+    setIsEdit(true)
   }
 
+  const handleAdd = () => {
+    setIsEdit(false)
+  }
   return (
-    <>
+    <><button type='button' className='btn btn-success' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onClick={handleAdd}>Agregar Producto</button>
       <article className='container-employee'>
         <div className='container-employee-list'>
           <table className='table'>
@@ -69,24 +71,24 @@ export const ProductList = () => {
             </thead>
             <tbody>
               {
-                    db.map((product) => {
+                    db.map((product, index) => {
                       return (
                         <tr key={product.id}>
-                          <th scope='row'>{product.id}</th>
+                          <th scope='row'>{index}</th>
                           <td className='celdas'>{product.name}</td>
                           <td className='celdas'>{product.price}</td>
                           <td className='celdas'>{
-                         product.type === 'breakfast'
+                         product.type === 'breakFast'
                            ? 'Desayuno'
                            : 'Almuerzo/Cena'
 }
                           </td>
-                          <td className='celdas'>{product.dataEntry}</td>
+                          <td className='celdas'>{product.dataEntry.slice(0, 10).replaceAll('-', '/')}</td>
                           <td className='celdas'>
                             <button type='button' className='btn btn-outline-danger' onClick={() => handleDelete(product.id)}>Eliminar</button>
                           </td>
                           <td className='celdas'>
-                            <button type='button' className='btn btn-outline-info' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onClick={() => handleEdit(product)}>
+                            <button type='button' className='btn btn-outline-info' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onClick={() => { handleEdit(product) }}>
                               Editar
                             </button>
                           </td>
@@ -98,8 +100,9 @@ export const ProductList = () => {
             </tbody>
           </table>
         </div>
+        <ModalProducts isEdit={isEdit} name={products.current.name} price={products.current.price} product={products.current} />
       </article>
-      <ModalProducts name={productSelect.current.name} price={productSelect.current.price} /> : <ModalProducts />
+
     </>
 
   )

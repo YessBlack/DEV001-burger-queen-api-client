@@ -19,10 +19,10 @@ export const Chef = () => {
     const data = async () => {
       const res = await fetch('http://localhost:3001/orders')
       const data = await res.json()
-      setDb(data.orders)
+      setDb(data)
     }
     data()
-  }, [isSnapshot])
+  }, [db])
 
   const day = JSON.stringify(new Date()).slice(1, 11)
   const dbDate = db.filter(el => el.date.slice(0, 10) === day)

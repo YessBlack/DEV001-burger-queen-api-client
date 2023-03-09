@@ -6,9 +6,9 @@ export const Orders = () => {
   
   useEffect(() => {
     const data = async() => {
-      const res = await fetch('https://run.mocky.io/v3/a6dfa6ca-9e5f-4f8c-94d5-ab41bfbec2dd')
+      const res = await fetch('http://localhost:3001/orders')
       const resJson = await res.json()
-      setOrdersDb(resJson.orders)
+      setOrdersDb(resJson)
     }
     data()
   }, [ordersDb])
