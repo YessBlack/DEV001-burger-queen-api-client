@@ -9,6 +9,7 @@ export const EmployeeList = () => {
   const [isEdit, setIsEdit] = useState(null)
   const { edit, setEdit } = useContext(ProductContext)
   const employee = useRef('')
+  // const formDom = useRef(null)
 
   useEffect(() => {
     const petition = async () => {
@@ -47,6 +48,7 @@ export const EmployeeList = () => {
 
   const handleAdd = () => {
     setIsEdit(false)
+    // console.log(formDom.current)
   }
   const handleEdit = (worker) => {
     employee.current = worker
