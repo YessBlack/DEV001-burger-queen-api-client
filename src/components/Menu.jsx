@@ -1,4 +1,4 @@
-import swal from 'sweetalert'
+
 import Products from './Products'
 import { useState, useEffect, useContext } from 'react'
 import ProductContext from './DataContext'
@@ -9,7 +9,7 @@ function Menu ({ useNavigate }) {
   const [db, setDb] = useState([])
   const [inputName, setInputName] = useState('')
   const [isBreackFast, setIsBreackFast] = useState(true)
-  const [ uniqueProducts, setUniqueProducts ] = useState([])
+  const [uniqueProducts, setUniqueProducts] = useState([])
   const { items, setItems } = useContext(ProductContext)
 
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ function Menu ({ useNavigate }) {
   useEffect(() => {
     // Consultar y guardar la data
     const getData = async () => {
-      const res = await fetch('http://localhost:3000/products')
+      const res = await fetch('https://api-rest-bq.vercel.app/products')
       const data = await res.json()
       setDb(data)
     }

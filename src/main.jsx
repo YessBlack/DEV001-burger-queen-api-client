@@ -4,16 +4,17 @@ import App from './App'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { ProductContextProvider } from './components/DataContext'
-import { AuthProvider } from './components/useAuth'
+import { AuthProvider } from './context/auth'
+import 'react-toastify/dist/ReactToastify.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
+    <AuthProvider>
+      <BrowserRouter>
         <ProductContextProvider>
           <App />
         </ProductContextProvider>
-      </AuthProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   </StrictMode>
 )

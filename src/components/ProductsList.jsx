@@ -1,4 +1,4 @@
-import swal from 'sweetalert'
+
 import { useEffect, useState, useRef, useContext } from 'react'
 import { ModalProducts } from './ModalProducts'
 import ProductContext from './DataContext'
@@ -12,7 +12,7 @@ export const ProductList = () => {
 
   useEffect(() => {
     const petition = async () => {
-      const data = await fetch('http://localhost:3000/products')
+      const data = await fetch('https://api-rest-bq.vercel.app/products')
       const res = await data.json()
       setDb(res)
     }
@@ -33,7 +33,7 @@ export const ProductList = () => {
             body: JSON.stringify(db),
             headers: { 'content-type': 'application/json' }
           }
-          fetch(`http://localhost:3000/products/${id}`, option)
+          fetch(`https://api-rest-bq.vercel.app/products/${id}`, option)
           setBorrar(!borrar)
           swal('El producto ha sido eliminado!', {
             icon: 'success'

@@ -1,4 +1,4 @@
-import swal from 'sweetalert'
+
 import { useContext, useState, useEffect } from 'react'
 import ProductContext from './DataContext'
 
@@ -58,7 +58,7 @@ export function ModalEmployee ({ employee, isEdit }) {
     }
 
     try {
-      const res = await fetch(`http://localhost:3004/users/${id}`, options)
+      const res = await fetch(`https://api-rest-bq.vercel.app/users/${id}`, options)
       if (!res.ok || res.status >= 400) {
         throw new Error(res.status)
       } else {
@@ -90,7 +90,7 @@ export function ModalEmployee ({ employee, isEdit }) {
       body: JSON.stringify(data),
       headers: { 'content-type': 'application/json' }
     }
-    fetch('http://localhost:3004/users', options)
+    fetch('https://api-rest-bq.vercel.app/users', options)
     swal('Usuario agregado', '', 'success')
     setEdit(!edit)
     // formDom.current = e.target

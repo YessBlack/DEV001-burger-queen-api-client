@@ -1,7 +1,6 @@
 import './App.css'
 import Menu from './components/Menu'
 import './componentsCss/Menu.css'
-import './componentsCss/Login.css'
 import './componentsCss/Products.css'
 import './componentsCss/AdminHome.css'
 import Login from './components/Login'
@@ -9,17 +8,13 @@ import { Header } from './components/Header'
 import { Routes, Route } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import { Chef } from './components/Chef'
-import { PrivateRoute } from './components/PrivateRoute'
 import { Pedidos } from './components/Pedidos'
 import { AdminHome } from './components/AdminHome'
-import { useAuth } from './components/useAuth'
+import { useAuth } from './hooks/useAuth'
 
 function App () {
-  useAuth()
-  const user = JSON.parse(window.sessionStorage.getItem('user'))
-
   return (
-    <section className='App'>
+    <section className='maven-pro'>
       <Header />
       <Routes>
         <Route
@@ -31,21 +26,21 @@ function App () {
 
         <Route
           path='/mesero'
-          element={(<PrivateRoute isAlowed={user && user.user.roles.waiter}><Menu useNavigate={useNavigate} /> </PrivateRoute>)}
+          element={(<Menu useNavigate={useNavigate} />)}
         />
 
-        <Route path='/chef' element={<PrivateRoute isAlowed={user && user.user.roles.chef}><Chef /></PrivateRoute>} />
+        <Route path='/chef' element={<Chef />} />
         <Route
-          path='/admin' element={<PrivateRoute isAlowed={user && user.user.roles.admin}><AdminHome /></PrivateRoute>}
-         />
+          path='/admin' element={<AdminHome />}
+        />
         <Route
           path='/mesero/orders'
-          element={<PrivateRoute isAlowed={user && user.user.roles.waiter}><Pedidos /> </PrivateRoute>}
+          element={<Pedidos />}
         />
 
         <Route
           path='/chef'
-          element={<PrivateRoute isAlowed={user && user.user.roles.chef}><Chef /></PrivateRoute>}
+          element={<Chef />}
 
         />
       </Routes>
