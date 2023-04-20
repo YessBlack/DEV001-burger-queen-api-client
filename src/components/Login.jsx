@@ -1,11 +1,20 @@
-import { useEffect, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { ToastContainer, toast } from 'react-toastify'
+import { useEffect, useRef } from 'react'
 
 export default function Login ({ path, useNavigate }) {
   const { state, loginUser } = useAuth()
-  const [res, setRes] = useState(null)
+  const userLocalStorage = useRef()
+
   const navigate = useNavigate()
+
+  useEffect(() => {
+    userLocalStorage.current = JSON.parse(window.localStorage.getItem('auth'))
+
+    if (userLocalStorage.current) {
+      navigate('/mesero')
+    }
+  }, [state])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -13,13 +22,19 @@ export default function Login ({ path, useNavigate }) {
     const { email, password } = e.target.elements
 
     if (!email.value || !password.value) {
-      return toast.error('Por favor ingrese todos los campos')
+      return toast.error('Debes llenar los campos!', {
+        position: toast.POSITION.TOP_CENTER
+      })
     }
 
     await loginUser(email.value, password.value)
-  }
 
-  console.log(state)
+    if (userLocalStorage.current === null) {
+      return toast.error('Usuario o contraseña incorrecta!', {
+        position: toast.POSITION.TOP_CENTER
+      })
+    }
+  }
 
   return (
     <section className='principal-login-container'>

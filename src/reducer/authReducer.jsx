@@ -13,30 +13,20 @@ export const updateLocalStorage = (state) => {
 }
 
 export function authReducer (state = authInitialState, action) {
-  const newState = action.payload
   switch (action.type) {
     case AUTH_ACTIONS_TYPES.LOGIN_USER:
-      if (typeof newState === 'object') {
-        if (newState._tokenResponse) {
-          updateLocalStorage(action.payload.user)
-          return {
-            ...state,
-            res: newState.user
-          }
-        } else {
-          return {
-            ...state,
-            res: null
-          }
-        }
+
+      if (action.payload.user?.accessToken) {
+        updateLocalStorage(action.payload.user)
       }
       return {
         ...state,
-        res: null
+        res: action.payload
       }
     case AUTH_ACTIONS_TYPES.LOGOUT_USER:
       return {
-        ...state
+        ...state,
+        res: null
       }
   }
 }
