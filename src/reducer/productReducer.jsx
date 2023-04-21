@@ -1,7 +1,12 @@
 export const productsInitialState = {
   lunch: [],
   breakfast: [],
-  selectedProducts: []
+  selectedProducts: JSON.parse(window.localStorage.getItem('selectedProducts')) || []
+}
+
+// update local storage
+export const updateLocalStorage = (state) => {
+  window.localStorage.setItem('selectedProducts', JSON.stringify([...state]))
 }
 
 export const PRODUCTS_ACTIONS_TYPES = {
@@ -9,7 +14,8 @@ export const PRODUCTS_ACTIONS_TYPES = {
   ADD_PRODUCT: 'ADD_PRODUCT',
   REMOVE_PRODUCT: 'REMOVE_PRODUCT',
   CLEAR_PRODUCTS: 'CLEAR_PRODUCTS',
-  GET_PRODUCTS_SELECTED: 'GET_PRODUCTS_SELECTED'
+  GET_PRODUCTS_SELECTED: 'GET_PRODUCTS_SELECTED',
+  UPDATE_SELECT_PRODUCT: 'UPDATE_SELECT_PRODUCT'
 }
 
 const UPDATE_STATE_BY_ACTION = {
@@ -24,8 +30,6 @@ const UPDATE_STATE_BY_ACTION = {
   [PRODUCTS_ACTIONS_TYPES.ADD_PRODUCT]: (state, action) => {
     const { id } = action.payload
 
-    console.log(state.selectedProducts)
-
     const product = state.selectedProducts.findIndex(item => item.id === id)
 
     if (product >= 0) {
@@ -34,15 +38,47 @@ const UPDATE_STATE_BY_ACTION = {
         { ...state.selectedProducts[product], quantity: state.selectedProducts[product].quantity + 1 },
         ...state.selectedProducts.slice(product + 1)
       ]
+
+      updateLocalStorage(newState)
       return {
         ...state,
         selectedProducts: newState
       }
     }
 
+    const newState = [...state.selectedProducts, { ...action.payload, quantity: 1 }]
+
+    updateLocalStorage(newState)
+
     return {
       ...state,
-      selectedProducts: [...state.selectedProducts, { ...action.payload, quantity: 1 }]
+      selectedProducts: newState
+    }
+  },
+  [PRODUCTS_ACTIONS_TYPES.UPDATE_SELECT_PRODUCT]: (state, action) => {
+    const { id, quantity } = action.payload
+
+    if (quantity === 0) {
+      const newState = state.selectedProducts.filter(item => item.id !== id)
+
+      updateLocalStorage(newState)
+
+      return {
+        ...state,
+        selectedProducts: newState
+      }
+    }
+
+    const newState = [
+      ...state.selectedProducts.filter(item => item.id !== id),
+      { ...state.selectedProducts.find(item => item.id === id), quantity }
+    ]
+
+    console.log(newState)
+
+    return {
+      ...state,
+      selectedProducts: newState
     }
   }
 }

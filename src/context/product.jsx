@@ -25,8 +25,21 @@ export function ProductProvider ({ children }) {
     })
   }
 
+  const updateSelectProduct = product => {
+    dispatch({
+      type: PRODUCTS_ACTIONS_TYPES.UPDATE_SELECT_PRODUCT,
+      payload: product
+    })
+  }
+
   return (
-    <ProductContext.Provider value={{ state, getProducts, addToCheckout }}>
+    <ProductContext.Provider value={{
+      state,
+      getProducts,
+      addToCheckout,
+      updateSelectProduct
+    }}
+    >
       {children}
     </ProductContext.Provider>
   )
