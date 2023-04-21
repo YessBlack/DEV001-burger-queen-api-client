@@ -1,57 +1,11 @@
-
-import Products from './Products'
-import { useState, useEffect, useContext } from 'react'
-import ProductContext from './DataContext'
-import { Orders } from './Orders'
+import { useState, useEffect } from 'react'
+import { useProduct } from '../hooks/useProduct'
+import { ListProducts } from './ListProducts'
 import { Check } from './Check'
 
 function Menu ({ useNavigate }) {
-  const [db, setDb] = useState([])
-  const [inputName, setInputName] = useState('')
+  const { state, getProducts } = useProduct()
   const [isBreackFast, setIsBreackFast] = useState(true)
-  const [uniqueProducts, setUniqueProducts] = useState([])
-  const { items, setItems } = useContext(ProductContext)
-
-  const navigate = useNavigate()
-
-  const user = JSON.parse(window.sessionStorage.getItem('user'))
-
-  useEffect(() => {
-    // Consultar y guardar la data
-    const getData = async () => {
-      const res = await fetch('https://api-rest-bq.vercel.app/products')
-      const data = await res.json()
-      setDb(data)
-    }
-    getData()
-  }, [])
-
-  useEffect(() => {
-    // Advertencia para recargar la pagina
-    window.addEventListener('beforeunload', alertUser)
-    return () => {
-      window.removeEventListener('beforeunload', alertUser)
-    }
-  }, [])
-
-  useEffect(() => {
-    // Crear un array unico con propiedad cantidad a partir de items
-    const products = items.map(item => { return { ...item, quantity: items.filter(e => e.productName === item.productName).length } })
-    const setProducts = new Set(products.map(JSON.stringify))
-    setUniqueProducts(Array.from(setProducts).map(JSON.parse))
-  }, [items])
-
-  const alertUser = (e) => {
-    e.preventDefault()
-    e.returnValue = ''
-  }
-
-  const breakFast = db.filter(product => product.type === 'breakFast')
-  const lunch = db.filter(product => product.type === 'lunch')
-
-  // Calcular el total de la compra
-  const price = items.map(price => price.cost)
-  const total = price.reduce((acc, el) => acc + el, 0)
 
   // Cambiar de vistas
   const handleClickBreakFast = () => {
@@ -61,100 +15,50 @@ function Menu ({ useNavigate }) {
     setIsBreackFast(false)
   }
 
-  const name = (e) => {
-    setInputName(e.target.value)
-  }
-
-  const date = new Date()
-
-  // Envia el pedido a la base de datos
-  const handleSendProduct = () => {
-    const data = {
-      state: 'Pendiente',
-      clientName: inputName,
-      order: uniqueProducts,
-      idWaiter: user.user.id,
-      date
-    }
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'content-type': 'application/json' }
-    }
-    fetch('http://localhost:3001/orders', options)
-    setItems([])
-    setInputName('')
-    swal('Pedido enviado a cocina', '', 'success')
-  }
-
-  // Elimina productos seleccionados
-  const handleDelete = (item) => {
-    const positionArr = items.indexOf(items.find(el => el.productName === item.productName))
-    if (item.quantity > 1) {
-      item.quantity = item.quantity - 1
-      setUniqueProducts([...uniqueProducts])
-      setItems(items.filter((_, i) => items.indexOf(items[positionArr]) !== i))
-    } else {
-      setUniqueProducts(uniqueProducts.filter((_, i) => uniqueProducts.indexOf(item) !== i))
-      setItems(items.filter((_, i) => items.indexOf(items[positionArr]) !== i))
-    }
-  }
-
-  const orders = () => {
-    navigate('/mesero/orders')
-  }
+  useEffect(() => {
+    getProducts()
+  }, [])
 
   return (
     <>
-      <span className='icon-bell' onClick={orders}> <Orders /> </span>
-      <button className='btn-click' onClick={handleClickBreakFast}> Desayuno</button>
-      <button className='btn-click-user' onClick={handleClickLunchDinner}> Almuerzo/Cena</button>
-      <div className='container-menu-check'>
-        <section className='container-menu'>
-          {isBreackFast
-            ? breakFast.map(e => {
-              return (
-                <Products
-                  key={e.id}
-                  img={e.img}
-                  productName={e.name}
-                  cost={e.price}
-                />
-              )
-            })
+      <section className='bg-[#FFD66C]'>
+        <div className='grid grid-cols-2-menu gap-1 max-w-[1024px] m-auto bg-button-secondary-color'>
+          <button
+            className='w-[80%] bg-button-primary-color p-[20px] text-2xl font-bold cursor-pointer border-0 hover:scale-110 transition duration-200' onClick={handleClickBreakFast}
+          > Desayuno
+          </button>
+          <button
+            className='w-[70%] bg-button-secondary-color p-[20px] text-2xl font-bold cursor-pointer border-0 hover:scale-110 transition duration-200'
+            onClick={handleClickLunchDinner}
+          >
+            Almuerzo/Cena
+          </button>
+        </div>
+      </section>
 
-            : lunch.map(e => {
-              return (
-                <Products
-                  key={e.id}
-                  img={e.img}
-                  productName={e.name}
-                  cost={e.price}
-                />
-              )
-            })}
-        </section>
-        <section className='check-container'>
-          <h1>Cuenta</h1>
-          <input className='client-name' value={inputName} placeholder='Nombre' name='name' onChange={name} />
-          <div className='list-container'>
+      <div className='grid grid-cols-2-menu gap-1 max-w-[1024px] m-auto'>
+        <ListProducts isBreackFast={isBreackFast} />
+        <section className='my-[10px] border-2 border-gray-color shadow-box-shadow flex items-center flex-col rounded-xl mx-[10px] gap-2'>
+          <h1 className='text-2xl my-[10px]'>Cuenta</h1>
+          <input className='p-[.5rem] border rounded-lg' placeholder='Natalia' name='name' />
+          <div className='w-[100%] flex flex-col p-1 gap-2'>
             {
-              uniqueProducts.map(item => {
+              state.selectedProducts.map(item => {
                 return (
-                  <div key={Math.random().toString(36).replace(/[^a-z]+/g, '')} className='container-check-list'>
+                  <div key={Math.random().toString(36).replace(/[^a-z]+/g, '')} className='flex  justify-between items-center border py-[.5rem] px-[.3rem] rounded-lg gap-1'>
                     <Check
                       quantity={item.quantity}
                       cost={item.cost * item.quantity}
                       name={item.productName}
                     />
-                    <span className='icon-trash-o' onClick={() => handleDelete(item)} />
+                    <span className='icon-trash-o' />
                   </div>
                 )
               })
             }
           </div>
-          <h2 className='total'> Total :${total}.00</h2>
-          <button className='send-products' onClick={handleSendProduct}>Añadir Pedido</button>
+          <h2 className='my-[20px] text-[#f46919] font-bold text-xl'> Total :${}.00</h2>
+          <button className='bg-[#FFD66C] rounded-lg w-[150px] text-center border-none p-[.7rem] font-bold my-[1.8rem] '>Añadir Pedido</button>
         </section>
       </div>
     </>

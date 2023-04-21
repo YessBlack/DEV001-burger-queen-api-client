@@ -14,7 +14,7 @@ export const Header = () => {
   }
 
   return (
-    <header className='bg-primary-color flex w-screen justify-between items-center flex-1 py-0 px-[1rem]'>
+    <header className='bg-primary-color flex justify-between items-center'>
       <img className='w-[70px] object-cover' src='../public/images/logo.png' />
       <h1 className='font-league-gothic text-4xl'>BURGER QUEEN</h1>
       <span onClick={sessionOut} className={userLocalStorage ? 'icon-sign-out block text-xl' : 'none'} />

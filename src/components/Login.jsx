@@ -39,7 +39,7 @@ export default function Login ({ path, useNavigate }) {
   return (
     <section className='principal-login-container'>
       <ToastContainer />
-      <div className='border border-gray-color bg-white w-[100%] max-w-[480px] my-[5%] flex flex-col justify-center items-center rounded-2xl gap-4 py-6 border-gray-500'>
+      <div className='border border-gray-color bg-white w-[100%] max-w-[450px] my-[5%] flex flex-col justify-center items-center rounded-2xl gap-4 py-8 shadow-lg shadow-box-shadow'>
         <h1 className='text-center text-3xl'>INICIAR SESION</h1>
         <img src={path} alt='' className='w-[100px] rounded-full' />
 
@@ -48,14 +48,14 @@ export default function Login ({ path, useNavigate }) {
           <input
             type='text'
             placeholder='Usuario'
-            className='border border-slate-800 p-[.7rem] rounded-md w-[300px] focus:outline-none'
+            className='border border-gray-color p-[.7rem] rounded-md w-[300px] focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'
             name='email'
           />
 
           <input
             type='password'
             placeholder='Contraseña'
-            className='border border-gray-900 rounded-md w-[300px] p-[.7rem] focus:outline-none'
+            className='border border-gray-color p-[.7rem] rounded-md w-[300px] focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'
             name='password'
 
           />

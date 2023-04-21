@@ -1,6 +1,5 @@
 import './App.css'
 import Menu from './components/Menu'
-import './componentsCss/Menu.css'
 import './componentsCss/Products.css'
 import './componentsCss/AdminHome.css'
 import Login from './components/Login'
@@ -10,11 +9,10 @@ import { useNavigate } from 'react-router'
 import { Chef } from './components/Chef'
 import { Pedidos } from './components/Pedidos'
 import { AdminHome } from './components/AdminHome'
-import { useAuth } from './hooks/useAuth'
 
 function App () {
   return (
-    <section className='maven-pro'>
+    <section className='maven-pro h-screen'>
       <Header />
       <Routes>
         <Route
