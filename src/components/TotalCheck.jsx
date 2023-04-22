@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useProduct } from '../hooks/useProduct'
-import { Check } from './Check'
+import { SelectedProduct } from './SelectedProduct'
 
 export function TotalCheck () {
   const [total, setTotal] = useState(0)
@@ -25,7 +25,7 @@ export function TotalCheck () {
               productsSelectedLocalStorage.current.map(item => {
                 return (
                   <div key={item.id} className='flex  justify-between items-center border py-[.5rem] px-[.3rem] rounded-lg gap-1'>
-                    <Check
+                    <SelectedProduct
                       id={item.id}
                       quantity={item.quantity}
                       cost={item.cost * item.quantity}

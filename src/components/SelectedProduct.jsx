@@ -1,6 +1,6 @@
 import { useProduct } from '../hooks/useProduct'
 
-export function Check ({ id, quantity, cost, name }) {
+export function SelectedProduct ({ id, quantity, cost, name }) {
   const { updateSelectProduct } = useProduct()
 
   const handleSelectProduct = () => {

@@ -1,10 +1,9 @@
 import './App.css'
-import Menu from './components/Menu'
 import './componentsCss/AdminHome.css'
-import Login from './components/Login'
-import { Header } from './components/Header'
 import { Routes, Route } from 'react-router-dom'
-import { useNavigate } from 'react-router'
+import { Login } from './components/Login'
+import { Header } from './components/Header'
+import { ViewWaiter } from './components/ViewWaiter'
 import { Chef } from './components/Chef'
 import { Pedidos } from './components/Pedidos'
 import { AdminHome } from './components/AdminHome'
@@ -15,15 +14,14 @@ function App () {
       <Header />
       <Routes>
         <Route
-          path='/' element={(<Login
+          path='/' element={<Login
             path='../public/images/burger-login.jfif'
-            useNavigate={useNavigate}
-                             />)}
+                            />}
         />
 
         <Route
           path='/mesero'
-          element={(<Menu useNavigate={useNavigate} />)}
+          element={(<ViewWaiter />)}
         />
 
         <Route path='/chef' element={<Chef />} />

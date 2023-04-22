@@ -22,3 +22,6 @@ dist-ssr
 *.sln
 *.sw?
 src/firebase/firebaseConfig.js
+/test-results/
+/playwright-report/
+/playwright/.cache/

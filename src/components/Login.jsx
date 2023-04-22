@@ -1,8 +1,9 @@
 import { useAuth } from '../hooks/useAuth'
 import { ToastContainer, toast } from 'react-toastify'
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export default function Login ({ path, useNavigate }) {
+export function Login ({ path }) {
   const { state, loginUser } = useAuth()
   const userLocalStorage = useRef()
 

@@ -3,7 +3,7 @@ import { useProduct } from '../hooks/useProduct'
 import { ListProducts } from './ListProducts'
 import { TotalCheck } from './TotalCheck'
 
-function Menu ({ useNavigate }) {
+export function ViewWaiter () {
   const { getProducts } = useProduct()
 
   const [isBreackFast, setIsBreackFast] = useState(true)
@@ -45,4 +45,3 @@ function Menu ({ useNavigate }) {
     </>
   )
 }
-export default Menu
