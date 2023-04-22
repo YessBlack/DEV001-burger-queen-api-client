@@ -27,6 +27,7 @@ const UPDATE_STATE_BY_ACTION = {
       breakfast
     }
   },
+
   [PRODUCTS_ACTIONS_TYPES.ADD_PRODUCT]: (state, action) => {
     const { id } = action.payload
 
@@ -40,6 +41,7 @@ const UPDATE_STATE_BY_ACTION = {
       ]
 
       updateLocalStorage(newState)
+
       return {
         ...state,
         selectedProducts: newState
@@ -55,10 +57,11 @@ const UPDATE_STATE_BY_ACTION = {
       selectedProducts: newState
     }
   },
+
   [PRODUCTS_ACTIONS_TYPES.UPDATE_SELECT_PRODUCT]: (state, action) => {
     const { id, quantity } = action.payload
 
-    if (quantity === 0) {
+    if (quantity === 1) {
       const newState = state.selectedProducts.filter(item => item.id !== id)
 
       updateLocalStorage(newState)
@@ -69,12 +72,15 @@ const UPDATE_STATE_BY_ACTION = {
       }
     }
 
+    const product = state.selectedProducts.findIndex(item => item.id === id)
+
     const newState = [
-      ...state.selectedProducts.filter(item => item.id !== id),
-      { ...state.selectedProducts.find(item => item.id === id), quantity }
+      ...state.selectedProducts.slice(0, product),
+      { ...state.selectedProducts[product], quantity: quantity - 1 },
+      ...state.selectedProducts.slice(product + 1)
     ]
 
-    console.log(newState)
+    updateLocalStorage(newState)
 
     return {
       ...state,

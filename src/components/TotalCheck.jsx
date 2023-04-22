@@ -22,7 +22,7 @@ export function TotalCheck () {
       <input className='p-[.5rem] border rounded-lg' placeholder='Natalia' name='name' />
       <div className='w-[100%] flex flex-col p-1 gap-2'>
         {
-              state.selectedProducts.map(item => {
+              productsSelectedLocalStorage.current.map(item => {
                 return (
                   <div key={item.id} className='flex  justify-between items-center border py-[.5rem] px-[.3rem] rounded-lg gap-1'>
                     <Check

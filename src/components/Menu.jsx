@@ -12,6 +12,7 @@ function Menu ({ useNavigate }) {
   const handleClickBreakFast = () => {
     setIsBreackFast(true)
   }
+
   const handleClickLunchDinner = () => {
     setIsBreackFast(false)
   }

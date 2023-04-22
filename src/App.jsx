@@ -1,6 +1,5 @@
 import './App.css'
 import Menu from './components/Menu'
-import './componentsCss/Products.css'
 import './componentsCss/AdminHome.css'
 import Login from './components/Login'
 import { Header } from './components/Header'
