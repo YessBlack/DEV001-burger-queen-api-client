@@ -12,7 +12,7 @@ export function Login ({ path }) {
   useEffect(() => {
     userLocalStorage.current = JSON.parse(window.localStorage.getItem('auth'))
 
-    if (userLocalStorage.current) {
+    if (userLocalStorage.current !== null) {
       navigate('/mesero')
     }
   }, [state])
@@ -34,6 +34,8 @@ export function Login ({ path }) {
       return toast.error('Usuario o contraseña incorrecta!', {
         position: toast.POSITION.TOP_CENTER
       })
+    } else {
+      navigate('/mesero')
     }
   }
 

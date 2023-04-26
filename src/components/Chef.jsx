@@ -4,6 +4,7 @@ import { CardOrder } from './CardOrder'
 export const Chef = () => {
   const [db, setDb] = useState([])
   const [isSnapshot, setIsSnapshot] = useState(false)
+
   useEffect(() => {
     window.addEventListener('beforeunload', alertUser)
     return () => {
@@ -15,6 +16,7 @@ export const Chef = () => {
     e.preventDefault()
     e.returnValue = ''
   }
+
   useEffect(() => {
     const data = async () => {
       const res = await fetch('https://api-rest-bq.vercel.app/orders')
@@ -26,17 +28,6 @@ export const Chef = () => {
 
   const day = JSON.stringify(new Date()).slice(1, 11)
   const dbDate = db.filter(el => el.date.slice(0, 10) === day)
-
-  useEffect(() => {
-    window.addEventListener('beforeunload', alertUser)
-    return () => {
-      window.removeEventListener('beforeunload', alertUser)
-    }
-  }, [])
-
-  setTimeout(() => {
-    setIsSnapshot(!isSnapshot)
-  }, 300000)
 
   const handleIsSnapshot = () => {
     setIsSnapshot(!isSnapshot)
