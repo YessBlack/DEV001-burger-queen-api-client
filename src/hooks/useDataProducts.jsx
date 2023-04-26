@@ -33,7 +33,7 @@ export function useData () {
       idWaiter
     }
 
-    return await sendOrder(data)
+    return sendOrder(data)
   }
 
   return { products, total, productsSelectedLocalStorage, sendOrderData }

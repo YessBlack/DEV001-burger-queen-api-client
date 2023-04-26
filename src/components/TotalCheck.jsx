@@ -5,7 +5,7 @@ import { useProduct } from '../hooks/useProduct'
 
 export function TotalCheck () {
   const { total, productsSelectedLocalStorage, sendOrderData } = useData()
-  const { setSelectedProducts } = useProduct()
+  const { updateSelectProduct } = useProduct()
 
   const handleSendOrder = () => {
     const clientName = document.querySelector('input[name="name"]').value
@@ -22,8 +22,12 @@ export function TotalCheck () {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000
         })
-        setSelectedProducts([])
+
         window.localStorage.removeItem('selectedProducts')
+
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000)
       })
   }
 
