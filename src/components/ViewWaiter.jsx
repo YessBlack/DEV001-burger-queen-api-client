@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react'
 import { useProduct } from '../hooks/useProduct'
 import { ListProducts } from './ListProducts'
 import { TotalCheck } from './TotalCheck'
+import { useData } from '../hooks/useDataProducts'
 
 export function ViewWaiter () {
-  const { getProducts } = useProduct()
+  const { products } = useData()
 
   const [isBreackFast, setIsBreackFast] = useState(true)
 
@@ -16,10 +17,6 @@ export function ViewWaiter () {
   const handleClickLunchDinner = () => {
     setIsBreackFast(false)
   }
-
-  useEffect(() => {
-    getProducts()
-  }, [])
 
   return (
     <>
