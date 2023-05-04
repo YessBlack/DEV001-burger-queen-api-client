@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { useProduct } from '../hooks/useProduct'
+import { useState } from 'react'
 import { ListProducts } from './ListProducts'
 import { TotalCheck } from './TotalCheck'
 import { useData } from '../hooks/useDataProducts'

@@ -1,11 +1,10 @@
 import { SelectedProduct } from './SelectedProduct'
 import { useData } from '../hooks/useDataProducts'
 import { ToastContainer, toast } from 'react-toastify'
-import { useProduct } from '../hooks/useProduct'
+import { useEffect } from 'react'
 
 export function TotalCheck () {
   const { total, productsSelectedLocalStorage, sendOrderData } = useData()
-  const { updateSelectProduct } = useProduct()
 
   const handleSendOrder = () => {
     const clientName = document.querySelector('input[name="name"]').value
@@ -24,12 +23,12 @@ export function TotalCheck () {
         })
 
         window.localStorage.removeItem('selectedProducts')
-
-        setTimeout(() => {
-          window.location.reload()
-        }, 2000)
       })
   }
+
+  useEffect(() => {
+    console.log('hola')
+  }, [handleSendOrder])
 
   return (
     <section className='my-[10px] border-2 border-gray-color shadow-box-shadow flex items-center flex-col rounded-xl mx-[10px] gap-2 overflow-y-scroll h-[600px]'>
