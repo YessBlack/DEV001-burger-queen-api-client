@@ -1,23 +1,51 @@
 import { createContext, useReducer } from 'react'
-import { AUTH_ACTIONS_TYPES, authInitialState, authReducer } from '../reducer/authReducer'
-import { login } from '../services/auth'
+import { getUserRole, loginUser, logoutUser } from '../services/auth'
+import { authInitialState, authReducer } from '../reducer/authReducer'
 
 export const AuthContext = createContext()
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider ({ children }) {
   const [state, dispatch] = useReducer(authReducer, authInitialState)
 
-  const loginUser = async (email, password) => {
-    const res = await login(email, password)
-    dispatch({ type: AUTH_ACTIONS_TYPES.LOGIN_USER, payload: res })
+  const login = async (email, password) => {
+    const response = await loginUser(email, password)
+
+    if (response?.user) {
+      const { roles } = await getUserRole(email)
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          user: response.user,
+          role: roles
+        }
+      })
+    } else {
+      dispatch({
+        type: 'ERROR',
+        payload: {
+          error: response
+        }
+      })
+    }
   }
 
-  const logoutUser = () => {
-    dispatch({ type: AUTH_ACTIONS_TYPES.LOGOUT_USER })
+  const logout = () => {
+    const response = logoutUser()
+    dispatch({
+      type: 'LOGOUT',
+      payload: {
+        user: response
+      }
+    })
   }
 
   return (
-    <AuthContext.Provider value={{ state, loginUser, logoutUser }}>
+    <AuthContext.Provider value={{
+      login,
+      logout,
+      state
+    }}
+    >
       {children}
     </AuthContext.Provider>
   )

@@ -1,0 +1,6 @@
+export const AUTH_ACTIONS_TYPES = {
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
+  ERROR: 'ERROR',
+  ROLE: 'ROLE'
+}

@@ -1,20 +1,38 @@
-import { auth } from '../firebase/firebaseConfig'
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { supabase } from './supabaseClient'
 
-export const login = async (email, password) => {
-  try {
-    const user = await signInWithEmailAndPassword(auth, email, password)
-    return user
-  } catch (error) {
+export const loginUser = async (email, password) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  })
+
+  if (error) {
     return error.message
   }
+
+  return data
 }
 
-export const logout = async () => {
-  try {
-    await signOut(auth)
-    return true
-  } catch (error) {
-    return error
+export const logoutUser = async () => {
+  const { error } = await supabase.auth.signOut()
+
+  if (error) {
+    return error.message
   }
+
+  return true
+}
+
+export const getUserRole = async (email) => {
+  const { data, error } = await supabase
+    .from('my_users')
+    .select('*')
+    .eq('email', email)
+    .single()
+
+  if (error) {
+    return error.message
+  }
+
+  return data
 }

@@ -1,14 +1,11 @@
 import React from 'react'
-import { useAuth } from '../hooks/useAuth'
 import { useNavigate } from 'react-router'
 
 export const Header = () => {
-  const { logoutUser } = useAuth()
   const navigate = useNavigate()
   const userLocalStorage = JSON.parse(window.localStorage.getItem('auth'))
 
   const sessionOut = () => {
-    logoutUser()
     window.localStorage.removeItem('auth')
     navigate('/')
   }

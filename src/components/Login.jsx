@@ -1,21 +1,10 @@
-import { useAuth } from '../hooks/useAuth'
 import { ToastContainer, toast } from 'react-toastify'
-import { useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
+import { useRedirectByRole } from '../hooks/useRefirectByRole'
 
 export function Login ({ path }) {
-  const { state, loginUser } = useAuth()
-  const userLocalStorage = useRef()
-
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    userLocalStorage.current = JSON.parse(window.localStorage.getItem('auth'))
-
-    if (userLocalStorage.current !== null) {
-      navigate('/mesero')
-    }
-  }, [state])
+  const { login, state } = useAuth()
+  useRedirectByRole(state)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -28,21 +17,13 @@ export function Login ({ path }) {
       })
     }
 
-    await loginUser(email.value, password.value)
-
-    if (userLocalStorage.current === null) {
-      return toast.error('Usuario o contraseña incorrecta!', {
-        position: toast.POSITION.TOP_CENTER
-      })
-    } else {
-      navigate('/mesero')
-    }
+    await login(email.value, password.value)
   }
 
   return (
-    <section className='principal-login-container'>
+    <section className='principal-login-container h-screen'>
       <ToastContainer />
-      <div className='border border-gray-color bg-white w-[100%] max-w-[450px] my-[5%] flex flex-col justify-center items-center rounded-2xl gap-4 py-8 shadow-lg shadow-box-shadow'>
+      <div className='border border-gray-color bg-white w-[100%] max-w-[450px] my-[5%] flex flex-col justify-center items-center rounded-2xl gap-4 py-8 shadow-lg shadow-box-shadow h-[460px]'>
         <h1 className='text-center text-3xl'>INICIAR SESION</h1>
         <img src={path} alt='' className='w-[100px] rounded-full' />
 
