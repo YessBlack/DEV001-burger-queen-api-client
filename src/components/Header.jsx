@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router'
 
 export const Header = () => {
   const navigate = useNavigate()
-  const userLocalStorage = JSON.parse(window.localStorage.getItem('auth'))
+  const userLocalStorage = JSON.parse(window.localStorage.getItem('user'))
 
   const sessionOut = () => {
-    window.localStorage.removeItem('auth')
+    window.localStorage.clear()
     navigate('/')
   }
 
