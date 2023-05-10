@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
-import { PrivateRoutes } from '../models/routes'
+import { PrivateRoutes } from '../types/routes'
 
 export function useRedirectByRole (state) {
   const navigate = useNavigate()

@@ -1,10 +1,11 @@
 import { SelectedProduct } from './SelectedProduct'
-import { useData } from '../hooks/useDataProducts'
+import { useData } from '../../hooks/useDataProducts'
 import { ToastContainer, toast } from 'react-toastify'
-import { useEffect } from 'react'
+import { useOrder } from '../../hooks/useOrder'
 
 export function TotalCheck () {
-  const { total, productsSelectedLocalStorage, sendOrderData } = useData()
+  const { total, productsSelectedLocalStorage } = useData()
+  const { insertOrder } = useOrder()
 
   const handleSendOrder = () => {
     const clientName = document.querySelector('input[name="name"]').value
@@ -15,20 +16,25 @@ export function TotalCheck () {
       })
     }
 
-    sendOrderData(clientName)
+    if (productsSelectedLocalStorage.current?.length === 0 || productsSelectedLocalStorage.current === null) {
+      return toast.error('Debes seleccionar productos!', {
+        position: toast.POSITION.TOP_CENTER
+      })
+    }
+
+    insertOrder(clientName, total, productsSelectedLocalStorage.current)
       .then(() => {
         toast.success('Pedido enviado!', {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000
         })
 
-        window.localStorage.removeItem('selectedProducts')
+        setTimeout(() => {
+          window.localStorage.removeItem('selectedProducts')
+          window.location.reload()
+        }, 3000)
       })
   }
-
-  useEffect(() => {
-    console.log('hola')
-  }, [handleSendOrder])
 
   return (
     <section className='my-[10px] border-2 border-gray-color shadow-box-shadow flex items-center flex-col rounded-xl mx-[10px] gap-2 overflow-y-scroll h-[600px]'>

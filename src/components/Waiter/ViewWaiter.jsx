@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { ListProducts } from './ListProducts'
 import { TotalCheck } from './TotalCheck'
-import { useData } from '../hooks/useDataProducts'
+import { useData } from '../../hooks/useDataProducts'
 
 export function ViewWaiter () {
-  const { products } = useData()
-
   const [isBreackFast, setIsBreackFast] = useState(true)
+  useData()
 
   // change view
   const handleClickBreakFast = () => {

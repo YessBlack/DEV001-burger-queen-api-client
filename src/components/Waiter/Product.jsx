@@ -1,4 +1,4 @@
-import { useProduct } from '../hooks/useProduct'
+import { useProduct } from '../../hooks/useProduct'
 
 export function Product ({ img, productName, cost, quantity, userName, id }) {
   const { addToCheckout } = useProduct()

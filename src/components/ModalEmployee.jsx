@@ -1,6 +1,5 @@
 
 import { useContext, useState, useEffect } from 'react'
-import ProductContext from './DataContext'
 
 export function ModalEmployee ({ employee, isEdit }) {
   const { edit, setEdit } = useContext(ProductContext)
@@ -132,7 +131,7 @@ export function ModalEmployee ({ employee, isEdit }) {
                   </div>
                   <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>Guardar</button>
                 </form>
-                </>
+              </>
               : <form className='formDom' onSubmit={addEmployee}>
                 <div className='mb-3'>
                   <label htmlFor='formGroupExampleInput' className='form-label'>Nombre</label>
@@ -156,7 +155,7 @@ export function ModalEmployee ({ employee, isEdit }) {
                   </select>
                 </div>
                 <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>Guardar</button>
-                </form>}
+              </form>}
           </div>
         </div>
       </div>

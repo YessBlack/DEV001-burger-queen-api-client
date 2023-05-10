@@ -1,7 +1,6 @@
 
 import { useEffect, useState, useRef, useContext } from 'react'
 import { ModalEmployee } from './ModalEmployee'
-import ProductContext from './DataContext'
 
 export const EmployeeList = () => {
   const [db, setDb] = useState([])

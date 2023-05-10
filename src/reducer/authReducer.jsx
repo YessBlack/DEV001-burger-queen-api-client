@@ -1,4 +1,4 @@
-import { AUTH_ACTIONS_TYPES } from '../models/AUTH_ACTIONS_TYPES'
+import { AUTH_ACTIONS_TYPES } from '../types/auth_actions'
 
 export const authInitialState = {
   user: null,

@@ -1,6 +1,4 @@
-
 import { useContext, useEffect } from 'react'
-import ProductContext from './DataContext'
 
 export function ModalProducts ({ name, price, product, isEdit }) {
   const { inputName, setInputName } = useContext(ProductContext)

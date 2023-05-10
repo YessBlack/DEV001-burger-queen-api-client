@@ -1,6 +1,6 @@
 import { ToastContainer, toast } from 'react-toastify'
-import { useAuth } from '../hooks/useAuth'
-import { useRedirectByRole } from '../hooks/useRefirectByRole'
+import { useAuth } from '../../hooks/useAuth'
+import { useRedirectByRole } from '../../hooks/useRefirectByRole'
 
 export function Login () {
   const { login, state } = useAuth()

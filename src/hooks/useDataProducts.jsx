@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import { useProduct } from './useProduct'
-import { sendOrder } from '../services/products'
 
 export function useData () {
   const [products, setProducts] = useState([])
@@ -21,20 +20,5 @@ export function useData () {
     setTotal(total)
   }, [state])
 
-  const sendOrderData = async (clientName) => {
-    const idWaiter = JSON.parse(window.localStorage.getItem('auth')).uid
-
-    const data = {
-      clientName,
-      order: state.selectedProducts,
-      total,
-      date: new Date().toLocaleDateString(),
-      state: 'Pendiente',
-      idWaiter
-    }
-
-    return sendOrder(data)
-  }
-
-  return { products, total, productsSelectedLocalStorage, sendOrderData }
+  return { products, total, productsSelectedLocalStorage }
 }

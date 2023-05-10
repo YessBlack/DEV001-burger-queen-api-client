@@ -1,4 +1,4 @@
-import { useProduct } from '../hooks/useProduct'
+import { useProduct } from '../../hooks/useProduct'
 import { Product } from './Product'
 
 export function ListProducts ({ isBreackFast }) {

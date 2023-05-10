@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router'
-import { PublicRoutes } from '../models/routes'
+import { PublicRoutes } from '../types/routes'
 
 export function AuthGuard () {
   const user = JSON.parse(window.localStorage.getItem('user'))
