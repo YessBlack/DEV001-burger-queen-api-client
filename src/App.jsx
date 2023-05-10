@@ -1,12 +1,14 @@
 import './App.css'
 import './componentsCss/AdminHome.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { Login } from './components/Login'
 import { Header } from './components/Header'
 import { ViewWaiter } from './components/ViewWaiter'
 import { Chef } from './components/Chef'
 import { Pedidos } from './components/Pedidos'
 import { AdminHome } from './components/AdminHome'
+import { AuthGuard } from './guards/auth.guard'
+import { PrivateRoutes, PublicRoutes } from './models/routes'
 
 function App () {
   return (
@@ -14,30 +16,28 @@ function App () {
       <Header />
       <Routes>
         <Route
-          path='/' element={<Login
-            path='../public/images/burger-login.jfif'
-                            />}
-        />
-
-        <Route
-          path='/mesero'
-          element={(<ViewWaiter />)}
-        />
-
-        <Route path='/chef' element={<Chef />} />
-        <Route
-          path='/admin' element={<AdminHome />}
+          path={PublicRoutes.ROOT}
+          element={<Navigate to={PrivateRoutes.PRIVATE} />}
         />
         <Route
-          path='/mesero/orders'
-          element={<Pedidos />}
+          path={PublicRoutes.LOGIN}
+          element={<Login />}
         />
-
-        <Route
-          path='/chef'
-          element={<Chef />}
-
-        />
+        <Route element={<AuthGuard />}>
+          <Route
+            path={`${PrivateRoutes.PRIVATE}/*`}
+            element={<ViewWaiter />}
+          />
+          <Route
+            path={PrivateRoutes.ADMIN}
+            element={<AdminHome />}
+          />
+          <Route
+            path={PrivateRoutes.CHEF}
+            element={<Chef />}
+          />
+          <Route path={PrivateRoutes.PEDIDOS} element={<Pedidos />} />
+        </Route>
       </Routes>
     </section>
   )

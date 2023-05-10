@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
+import { PrivateRoutes } from '../models/routes'
 
 export function useRedirectByRole (state) {
   const navigate = useNavigate()
@@ -12,19 +13,20 @@ export function useRedirectByRole (state) {
       })
     }
 
+    if (state?.user) {
+      window.localStorage.setItem('user', JSON.stringify(state?.user))
+    }
+
     if (state?.user?.role?.admin) {
-      navigate('/admin')
-      window.localStorage.setItem('role', 'admin')
+      navigate(PrivateRoutes.ADMIN)
     }
 
     if (state?.user?.role?.waiter) {
-      navigate('/mesero')
-      window.localStorage.setItem('role', 'waiter')
+      navigate(PrivateRoutes.MESERO)
     }
 
     if (state?.user?.role?.chef) {
-      navigate('/chef')
-      window.localStorage.setItem('role', 'chef')
+      navigate(PrivateRoutes.CHEF)
     }
   }, [state])
 }

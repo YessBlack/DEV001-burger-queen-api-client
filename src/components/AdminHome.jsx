@@ -12,7 +12,6 @@ export const AdminHome = () => {
     setShowEmployee(false)
   }
 
-
   return (
     <section className='container-admin'>
       <div className='admin-button'>

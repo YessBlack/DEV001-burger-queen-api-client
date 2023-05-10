@@ -2,7 +2,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import { useAuth } from '../hooks/useAuth'
 import { useRedirectByRole } from '../hooks/useRefirectByRole'
 
-export function Login ({ path }) {
+export function Login () {
   const { login, state } = useAuth()
   useRedirectByRole(state)
 
@@ -21,11 +21,15 @@ export function Login ({ path }) {
   }
 
   return (
-    <section className='principal-login-container h-screen'>
+    <section className='principal-login-container h-[90vh]'>
       <ToastContainer />
       <div className='border border-gray-color bg-white w-[100%] max-w-[450px] my-[5%] flex flex-col justify-center items-center rounded-2xl gap-4 py-8 shadow-lg shadow-box-shadow h-[460px]'>
         <h1 className='text-center text-3xl'>INICIAR SESION</h1>
-        <img src={path} alt='' className='w-[100px] rounded-full' />
+        <img
+          src='/public/images/burger-login.jfif'
+          alt='logo'
+          className='w-[100px] rounded-full'
+        />
 
         <form className='flex flex-col justify-center items-center w-[350px] gap-3' data-testid='form' onSubmit={handleSubmit}>
 
