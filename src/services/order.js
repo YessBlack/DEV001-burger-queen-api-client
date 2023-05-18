@@ -1,9 +1,10 @@
 import { supabase } from './supabaseClient'
 
 export const sendOrder = async (data) => {
+  console.log(data)
   const { error } = await supabase
     .from('orders')
-    .insert(data)
+    .insert([data])
 
   if (error) {
     return error.message

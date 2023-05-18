@@ -11,22 +11,26 @@ export function OrderProvider ({ children }) {
   const insertOrder = async (clientName, total, selectedProducts) => {
     const data = {
       id: uuid(),
-      created_at: new Date().toLocaleDateString(),
-      idWaiter: JSON.parse(window.localStorage.getItem('user')).user.id,
       state: 'Pendiente',
       clientName,
+      idWaiter: JSON.parse(window.localStorage.getItem('user')).user.id,
       total,
-      order: JSON.stringify(selectedProducts)
+      order: selectedProducts
     }
 
-    await sendOrder(data)
+    const response = await sendOrder(data)
 
-    dispatch({
-      type: 'INSERT_ORDER',
-      payload: {
-        send: !stateOrder.send
-      }
-    })
+    if (response === 'success') {
+      dispatch({
+        type: 'INSERT_ORDER',
+        payload: {
+          ...data
+        }
+      })
+      return true
+    } else {
+      return false
+    }
   }
 
   const getOrders = async () => {
@@ -34,9 +38,7 @@ export function OrderProvider ({ children }) {
 
     dispatch({
       type: 'GET_ORDERS',
-      payload: {
-        orders: response
-      }
+      payload: response
     })
   }
 

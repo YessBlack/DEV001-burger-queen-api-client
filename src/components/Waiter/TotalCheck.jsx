@@ -5,7 +5,7 @@ import { useOrder } from '../../hooks/useOrder'
 
 export function TotalCheck () {
   const { total, productsSelectedLocalStorage } = useData()
-  const { insertOrder } = useOrder()
+  const { stateOrder, insertOrder } = useOrder()
 
   const handleSendOrder = () => {
     const clientName = document.querySelector('input[name="name"]').value
@@ -23,16 +23,21 @@ export function TotalCheck () {
     }
 
     insertOrder(clientName, total, productsSelectedLocalStorage.current)
-      .then(() => {
-        toast.success('Pedido enviado!', {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000
-        })
+      .then((res) => {
+        if (res) {
+          toast.success('Pedido enviado correctamente!', {
+            position: toast.POSITION.TOP_CENTER
+          })
 
-        setTimeout(() => {
-          window.localStorage.removeItem('selectedProducts')
-          window.location.reload()
-        }, 3000)
+          setTimeout(() => {
+            window.localStorage.removeItem('selectedProducts')
+            window.location.reload()
+          }, 3000)
+        } else {
+          toast.error('Ha ocurrido un error con el servidor', {
+            position: toast.POSITION.TOP_CENTER
+          })
+        }
       })
   }
 

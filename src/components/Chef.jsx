@@ -1,51 +1,35 @@
-import { useState, useEffect } from 'react'
 import { CardOrder } from './CardOrder'
+import { useOrder } from '../hooks/useOrder'
+import { useEffect } from 'react'
 
 export const Chef = () => {
-  const [db, setDb] = useState([])
-  const [isSnapshot, setIsSnapshot] = useState(false)
+  const { stateOrder, getOrders } = useOrder()
 
   useEffect(() => {
-    window.addEventListener('beforeunload', alertUser)
-    return () => {
-      window.removeEventListener('beforeunload', alertUser)
-    }
+    getOrders()
   }, [])
 
-  const alertUser = (e) => {
-    e.preventDefault()
-    e.returnValue = ''
-  }
+  console.log(stateOrder.orders[0].order)
 
-  useEffect(() => {
-    const data = async () => {
-      const res = await fetch('https://api-rest-bq.vercel.app/orders')
-      const data = await res.json()
-      setDb(data)
-    }
-    data()
-  }, [])
+  // const day = JSON.stringify(new Date()).slice(1, 11)
+  // const dbDate = db.filter(el => el.date.slice(0, 10) === day)
 
-  const day = JSON.stringify(new Date()).slice(1, 11)
-  const dbDate = db.filter(el => el.date.slice(0, 10) === day)
-
-  const handleIsSnapshot = () => {
-    setIsSnapshot(!isSnapshot)
-  }
-
-  const dbPending = dbDate.filter(el => el.state === 'Pendiente')
+  // const dbPending = dbDate.filter(el => el.state === 'Pendiente')
 
   return (
     <>
-      <span className='icon-refresh' onClick={handleIsSnapshot} />
       <section className='card-container'>
         {
-
-        dbPending.map(el => {
+        stateOrder?.orders.map(el => {
           return (
             <CardOrder
-              key={el.id} id={el.id} tiempo={el.tiempo} clientName={el.clientName} list={el.order}
-              idWaiter={el.idWaiter} order={el.order} date={el.date}
+              key={el.id}
+              id={el.id}
+              clientName={el.clientName}
+              idWaiter={el.idWaiter}
+              order={JSON.parse(el.order)}
+              created_at={el.created_at}
+              state={el.state}
               text='Enviar Pedido'
             />
           )

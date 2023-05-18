@@ -1,8 +1,7 @@
 import { ORDERS_ACTIONS_TYPES } from '../types/orders_actions'
 
 export const initialStateOrder = {
-  orders: [],
-  send: false
+  orders: []
 }
 
 export const orderReducer = (state, action) => {
@@ -10,12 +9,13 @@ export const orderReducer = (state, action) => {
     case ORDERS_ACTIONS_TYPES.GET_ORDERS:
       return {
         ...state,
-        order: action.payload
+        orders: action.payload
       }
     case ORDERS_ACTIONS_TYPES.INSERT_ORDER:
+      console.log('arrays', action.payload)
       return {
         ...state,
-        order: [...state.order, action.payload]
+        orders: [...state.orders, action.payload]
       }
   }
 }
