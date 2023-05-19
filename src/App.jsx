@@ -6,7 +6,7 @@ import { Header } from './components/Header/Header'
 import { ViewWaiter } from './components/Waiter/ViewWaiter'
 import { Chef } from './components/Chef'
 import { Pedidos } from './components/Pedidos'
-import { AdminHome } from './components/AdminHome'
+import { AdminHome } from './components/Admin/AdminHome'
 import { AuthGuard } from './guards/auth.guard'
 import { PrivateRoutes, PublicRoutes } from './types/routes'
 

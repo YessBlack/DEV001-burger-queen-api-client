@@ -33,7 +33,7 @@ export function OrderProvider ({ children }) {
     }
   }
 
-  const getOrders = async () => {
+  const getAllOrders = async () => {
     const response = await getDataOrders()
 
     dispatch({
@@ -42,11 +42,23 @@ export function OrderProvider ({ children }) {
     })
   }
 
+  const getOrdersByDate = async () => {
+    const response = await getDataOrders()
+    const day = JSON.stringify(new Date()).slice(1, 11)
+    const ordersByDate = response.filter(el => el.created_at.slice(0, 10) === day)
+
+    dispatch({
+      type: 'GET_ORDERS_BY_DATE',
+      payload: ordersByDate
+    })
+  }
+
   return (
     <OrderContext.Provider value={{
       stateOrder,
       insertOrder,
-      getOrders
+      getAllOrders,
+      getOrdersByDate
     }}
     >
       {children}

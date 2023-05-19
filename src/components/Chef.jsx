@@ -1,33 +1,24 @@
 import { CardOrder } from './CardOrder'
 import { useOrder } from '../hooks/useOrder'
-import { useEffect } from 'react'
+import { subscribeOrders } from '../services/order'
 
 export const Chef = () => {
-  const { stateOrder, getOrders } = useOrder()
+  const { stateOrder, getDataOrders } = useOrder()
 
-  useEffect(() => {
-    getOrders()
-  }, [])
-
-  console.log(stateOrder.orders[0].order)
-
-  // const day = JSON.stringify(new Date()).slice(1, 11)
-  // const dbDate = db.filter(el => el.date.slice(0, 10) === day)
-
-  // const dbPending = dbDate.filter(el => el.state === 'Pendiente')
+  subscribeOrders(getDataOrders)
 
   return (
     <>
-      <section className='card-container'>
+      <section className='flex gap-4 flex-wrap justify-center mt-1'>
         {
-        stateOrder?.orders.map(el => {
+        stateOrder?.ordersByDate.map((el, i) => {
           return (
             <CardOrder
               key={el.id}
-              id={el.id}
+              id={i + 1}
               clientName={el.clientName}
               idWaiter={el.idWaiter}
-              order={JSON.parse(el.order)}
+              order={el.order}
               created_at={el.created_at}
               state={el.state}
               text='Enviar Pedido'
