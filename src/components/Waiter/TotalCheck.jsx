@@ -2,6 +2,7 @@ import { SelectedProduct } from './SelectedProduct'
 import { useData } from '../../hooks/useDataProducts'
 import { ToastContainer, toast } from 'react-toastify'
 import { useOrder } from '../../hooks/useOrder'
+import { useEffect } from 'react'
 
 export function TotalCheck () {
   const { total, productsSelectedLocalStorage } = useData()
@@ -23,23 +24,28 @@ export function TotalCheck () {
     }
 
     insertOrder(clientName, total, productsSelectedLocalStorage.current)
-      .then((res) => {
-        if (res) {
-          toast.success('Pedido enviado correctamente!', {
-            position: toast.POSITION.TOP_CENTER
-          })
-
-          setTimeout(() => {
-            window.localStorage.removeItem('selectedProducts')
-            window.location.reload()
-          }, 3000)
-        } else {
-          toast.error('Ha ocurrido un error con el servidor', {
-            position: toast.POSITION.TOP_CENTER
-          })
-        }
-      })
   }
+
+  useEffect(() => {
+    if (stateOrder.send) {
+      toast.success('Pedido enviado!', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000
+      })
+
+      setTimeout(() => {
+        window.localStorage.removeItem('selectedProducts')
+        window.location.reload()
+      }, 3000)
+    }
+
+    if (!stateOrder.send && stateOrder.send !== null) {
+      toast.error('Error al enviar el pedido!', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000
+      })
+    }
+  }, [stateOrder.send])
 
   return (
     <section className='my-[10px] border-2 border-gray-color shadow-box-shadow flex items-center flex-col rounded-xl mx-[10px] gap-2 overflow-y-scroll h-[600px]'>

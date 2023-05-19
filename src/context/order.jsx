@@ -23,13 +23,13 @@ export function OrderProvider ({ children }) {
     if (response === 'success') {
       dispatch({
         type: 'INSERT_ORDER',
-        payload: {
-          ...data
-        }
+        payload: true
       })
-      return true
     } else {
-      return false
+      dispatch({
+        type: 'INSERT_ORDER',
+        payload: false
+      })
     }
   }
 
