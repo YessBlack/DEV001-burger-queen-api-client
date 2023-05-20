@@ -1,11 +1,19 @@
 import { CardOrder } from './CardOrder'
 import { useOrder } from '../hooks/useOrder'
-import { subscribeOrders } from '../services/order'
+import { useEffect } from 'react'
 
 export const Chef = () => {
-  const { stateOrder, getDataOrders } = useOrder()
+  const { stateOrder, getOrdersByDate } = useOrder()
 
-  subscribeOrders(getDataOrders)
+  useEffect(() => {
+    getOrdersByDate()
+  }, [])
+
+  useEffect(() => {
+    console.log(stateOrder?.newOrder)
+  }, [stateOrder?.newOrder])
+
+  console.log(stateOrder)
 
   return (
     <>

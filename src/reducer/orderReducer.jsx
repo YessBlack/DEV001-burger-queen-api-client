@@ -3,7 +3,8 @@ import { ORDERS_ACTIONS_TYPES } from '../types/orders_actions'
 export const initialStateOrder = {
   orders: [],
   ordersByDate: [],
-  send: null
+  send: null,
+  newOrder: null
 }
 
 export const orderReducer = (state, action) => {
@@ -24,6 +25,12 @@ export const orderReducer = (state, action) => {
       return {
         ...state,
         send: action.payload
+      }
+
+    case ORDERS_ACTIONS_TYPES.NEW_ORDER:
+      return {
+        ...state,
+        newOrder: action.payload
       }
   }
 }

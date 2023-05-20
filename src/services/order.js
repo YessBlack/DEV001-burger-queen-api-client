@@ -25,16 +25,12 @@ export const getDataOrders = async () => {
   return orders
 }
 
-export const subscribeOrders = (callback) => {
-  const orders = supabase.channel('custom-insert-channel')
+export const onSnapshotOrders = (callback) => {
+  supabase.channel('custom-all-channel')
     .on(
       'postgres_changes',
-      { event: 'INSERT', schema: 'public', table: 'orders' },
-      (payload) => {
-        console.log('Change received!', payload)
-      }
+      { event: '*', schema: 'public', table: 'orders' },
+      payload => callback(payload)
     )
     .subscribe()
-
-  return orders
 }
