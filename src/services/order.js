@@ -1,7 +1,6 @@
 import { supabase } from './supabaseClient'
 
 export const sendOrder = async (data) => {
-  console.log(data)
   const { error } = await supabase
     .from('orders')
     .insert([data])
@@ -26,11 +25,10 @@ export const getDataOrders = async () => {
 }
 
 export const onSnapshotOrders = (callback) => {
-  supabase.channel('custom-all-channel')
-    .on(
-      'postgres_changes',
-      { event: '*', schema: 'public', table: 'orders' },
-      payload => callback(payload)
-    )
+  supabase
+    .channel('any')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, payload => {
+      return callback(payload)
+    })
     .subscribe()
 }

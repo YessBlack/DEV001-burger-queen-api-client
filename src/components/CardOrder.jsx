@@ -1,20 +1,20 @@
 export function CardOrder ({ id, clientName, idWaiter, order, created_at, state, text }) {
-  const sendOrder = async () => {
-    const data = {
-      state: 'Terminado',
-      clientName,
-      order,
-      idWaiter,
-      date,
-      tiempo: ` ${hour} : ${minute} : ${second}`
-    }
-    const options = {
-      method: 'PUT',
-      body: JSON.stringify(data),
-      headers: { 'content-type': 'application/json' }
-    }
-    await fetch(`https://api-rest-bq.vercel.app/orders/${id}`, options)
-  }
+  // const sendOrder = async () => {
+  //   const data = {
+  //     state: 'Terminado',
+  //     clientName,
+  //     order,
+  //     idWaiter,
+  //     date,
+  //     tiempo: ` ${hour} : ${minute} : ${second}`
+  //   }
+  //   const options = {
+  //     method: 'PUT',
+  //     body: JSON.stringify(data),
+  //     headers: { 'content-type': 'application/json' }
+  //   }
+  //   await fetch(`https://api-rest-bq.vercel.app/orders/${id}`, options)
+  // }
 
   // const orderCheck = finish || state === 'Entregado' ? 'card-order-finish' : 'card-order'
   // const button = finish || state === 'Entregado' ? 'button-card-finish' : 'button-card'

@@ -1,6 +1,7 @@
 import { CardOrder } from './CardOrder'
 import { useOrder } from '../hooks/useOrder'
 import { useEffect } from 'react'
+import { onSnapshotOrders } from '../services/order'
 
 export const Chef = () => {
   const { stateOrder, getOrdersByDate } = useOrder()
@@ -9,11 +10,9 @@ export const Chef = () => {
     getOrdersByDate()
   }, [])
 
-  useEffect(() => {
-    console.log(stateOrder?.newOrder)
-  }, [stateOrder?.newOrder])
-
-  console.log(stateOrder)
+  onSnapshotOrders(() => {
+    getOrdersByDate()
+  })
 
   return (
     <>

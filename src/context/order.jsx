@@ -47,8 +47,6 @@ export function OrderProvider ({ children }) {
     const day = JSON.stringify(new Date()).slice(1, 11)
     const ordersByDate = response.filter(el => el.created_at.slice(0, 10) === day)
 
-    console.log(ordersByDate)
-
     dispatch({
       type: 'GET_ORDERS_BY_DATE',
       payload: ordersByDate
