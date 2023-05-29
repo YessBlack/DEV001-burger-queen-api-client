@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react'
-import { sendOrder, getDataOrders } from '../services/order'
+import { sendOrder, getDataOrders, updateStateOrder } from '../services/order'
 import { v4 as uuid } from 'uuid'
 import { initialStateOrder, orderReducer } from '../reducer/orderReducer'
 
@@ -46,18 +46,16 @@ export function OrderProvider ({ children }) {
     const response = await getDataOrders()
     const day = JSON.stringify(new Date()).slice(1, 11)
     const ordersByDate = response.filter(el => el.created_at.slice(0, 10) === day)
+    const ordersStatePending = ordersByDate.filter(el => el.state === 'Pendiente')
 
     dispatch({
       type: 'GET_ORDERS_BY_DATE',
-      payload: ordersByDate
+      payload: ordersStatePending
     })
   }
 
-  const newOrderSnapshot = (newOrder) => {
-    dispatch({
-      type: 'NEW_ORDER',
-      payload: newOrder
-    })
+  const updateOrder = async (id, state) => {
+    updateStateOrder(id, state)
   }
 
   return (
@@ -66,7 +64,7 @@ export function OrderProvider ({ children }) {
       insertOrder,
       getAllOrders,
       getOrdersByDate,
-      newOrderSnapshot
+      updateOrder
     }}
     >
       {children}

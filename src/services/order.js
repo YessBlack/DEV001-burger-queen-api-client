@@ -32,3 +32,18 @@ export const onSnapshotOrders = (callback) => {
     })
     .subscribe()
 }
+
+export const updateStateOrder = async (id, state) => {
+  id = id.toString()
+  console.log(typeof id)
+  const { error } = await supabase
+    .from('orders')
+    .update({ state })
+    .eq('id', id)
+
+  if (error) {
+    return error.message
+  }
+
+  return 'success'
+}

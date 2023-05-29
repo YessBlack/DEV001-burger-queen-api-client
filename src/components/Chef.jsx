@@ -22,13 +22,14 @@ export const Chef = () => {
           return (
             <CardOrder
               key={el.id}
-              id={i + 1}
+              id={el.id}
+              listItem={i + 1}
               clientName={el.clientName}
               idWaiter={el.idWaiter}
               order={el.order}
               created_at={el.created_at}
               state={el.state}
-              text='Enviar Pedido'
+              text='Marcar como listo'
             />
           )
         })

@@ -12,7 +12,8 @@ export default {
       'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
       'border-input': '#f4e98f',
       'button-primary-color': '#73C089',
-      'button-secondary-color': '#FF8540'
+      'button-secondary-color': '#FF8540',
+      'button-tertiary-color': '#FC4F2D'
     },
     extend: {
       backgroundImage: {
