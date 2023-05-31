@@ -4,8 +4,10 @@ import { useOrder } from '../../hooks/useOrder'
 export function CardOrder ({ id, listItem, clientName, order, state, text }) {
   const { updateStateFinished } = useOrder()
 
-  const handleUpdateOrder = async (id) => {
-    updateStateFinished(id, 'Terminado')
+  const handleUpdateOrder = async (id, state) => {
+    const newState = state === 'Pendiente' ? 'Terminado' : 'Entregado'
+    console.log(newState)
+    updateStateFinished(id, newState)
     toast.success('Pedido terminado!', {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000
@@ -34,11 +36,7 @@ export function CardOrder ({ id, listItem, clientName, order, state, text }) {
             })
         }
       </ul>
-      {
-        text === 'Marcar como listo'
-          ? <button className='p-[10px] bg-[#73C089] border-none rounded-md shadow-md block cursor-pointer' onClick={() => handleUpdateOrder(id)}>{text}</button>
-          : <button className='p-[10px] border-[#FFBD59] border-[1px] border-solid rounded-md font-bold '> {text}</button>
-      }
+      <button className='p-[10px] bg-[#73C089] border-none rounded-md shadow-md block cursor-pointer' onClick={() => handleUpdateOrder(id)}>{text}</button>
     </article>
   )
 }

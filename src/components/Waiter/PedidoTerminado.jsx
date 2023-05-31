@@ -1,12 +1,22 @@
 import { useNavigate } from 'react-router'
 import { useOrder } from '../../hooks/useOrder'
 import { CardOrder } from '../Chef/CardOrder'
+import { useEffect } from 'react'
+import { onSnapshotOrders } from '../../services/order'
 
 export const PedidoTerminado = () => {
   const navigate = useNavigate()
-  const { stateOrder } = useOrder()
+  const { stateOrder, getAllOrders } = useOrder()
 
-  const handleBack = () => navigate('/mesero')
+  useEffect(() => {
+    getAllOrders()
+  }, [])
+
+  onSnapshotOrders(() => {
+    getAllOrders()
+  })
+
+  const handleBack = () => navigate('private/mesero')
 
   return (
     <>
@@ -16,7 +26,7 @@ export const PedidoTerminado = () => {
       <section className='card-container'>
         {
 
-        stateOrder?.ordersByDate.map?.map(el => {
+        stateOrder?.ordersFinished.map((el, i) => {
           return (
             <CardOrder
               key={el.id}

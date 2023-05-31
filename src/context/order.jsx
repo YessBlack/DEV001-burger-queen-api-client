@@ -24,6 +24,7 @@ export function OrderProvider ({ children }) {
 
     const ordersByDate = getOrdersByDate(response)
     const ordersStatePending = ordersByDate.filter(el => el.state === 'Pendiente')
+    const ordersStateFinished = ordersByDate.filter(el => el.state === 'Terminado')
 
     dispatch({
       type: 'GET_ORDERS_BY_DATE',
@@ -33,6 +34,11 @@ export function OrderProvider ({ children }) {
     dispatch({
       type: 'GET_ORDERS_PENDING',
       payload: ordersStatePending
+    })
+
+    dispatch({
+      type: 'GET_ORDERS_FINISHED',
+      payload: ordersStateFinished
     })
   }
 
