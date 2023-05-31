@@ -1,5 +1,5 @@
 import { EmployeeList } from './EmployeeList'
-import { ProductList } from '../ProductsList'
+import { ProductList } from './ProductsList'
 import { useState } from 'react'
 
 export const AdminHome = () => {

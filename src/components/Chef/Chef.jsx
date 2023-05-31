@@ -1,24 +1,24 @@
 import { CardOrder } from './CardOrder'
-import { useOrder } from '../hooks/useOrder'
+import { useOrder } from '../../hooks/useOrder'
 import { useEffect } from 'react'
-import { onSnapshotOrders } from '../services/order'
+import { onSnapshotOrders } from '../../services/order'
 
 export const Chef = () => {
-  const { stateOrder, getOrdersByDate } = useOrder()
+  const { stateOrder, getAllOrders } = useOrder()
 
   useEffect(() => {
-    getOrdersByDate()
+    getAllOrders()
   }, [])
 
   onSnapshotOrders(() => {
-    getOrdersByDate()
+    getAllOrders()
   })
 
   return (
     <>
       <section className='flex gap-4 flex-wrap justify-center mt-1'>
         {
-        stateOrder?.ordersByDate.map((el, i) => {
+        stateOrder?.ordersPending.map((el, i) => {
           return (
             <CardOrder
               key={el.id}

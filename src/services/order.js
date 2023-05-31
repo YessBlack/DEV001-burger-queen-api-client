@@ -24,18 +24,7 @@ export const getDataOrders = async () => {
   return orders
 }
 
-export const onSnapshotOrders = (callback) => {
-  supabase
-    .channel('any')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, payload => {
-      return callback(payload)
-    })
-    .subscribe()
-}
-
 export const updateStateOrder = async (id, state) => {
-  id = id.toString()
-  console.log(typeof id)
   const { error } = await supabase
     .from('orders')
     .update({ state })
@@ -46,4 +35,22 @@ export const updateStateOrder = async (id, state) => {
   }
 
   return 'success'
+}
+
+export const onSnapshotOrders = (callback) => {
+  supabase
+    .channel('any')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, payload => {
+      return callback(payload)
+    })
+    .subscribe()
+}
+
+export const onSnapshotOrderFinished = async (callback) => {
+  supabase
+    .channel('any')
+    .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'orders' }, payload => {
+      return callback(payload)
+    })
+    .subscribe()
 }

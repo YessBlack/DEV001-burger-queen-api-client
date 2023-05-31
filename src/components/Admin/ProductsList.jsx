@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef, useContext } from 'react'
-import { ModalProducts } from './Admin/ModalProducts'
+import { ModalProducts } from './ModalProducts'
 
 export const ProductList = () => {
   const [db, setDb] = useState([])

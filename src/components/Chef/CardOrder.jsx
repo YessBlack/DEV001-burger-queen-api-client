@@ -1,11 +1,11 @@
 import { ToastContainer, toast } from 'react-toastify'
-import { useOrder } from '../hooks/useOrder'
+import { useOrder } from '../../hooks/useOrder'
 
 export function CardOrder ({ id, listItem, clientName, order, state, text }) {
-  const { updateOrder } = useOrder()
+  const { updateStateFinished } = useOrder()
 
   const handleUpdateOrder = async (id) => {
-    updateOrder(id, 'Terminado')
+    updateStateFinished(id, 'Terminado')
     toast.success('Pedido terminado!', {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000

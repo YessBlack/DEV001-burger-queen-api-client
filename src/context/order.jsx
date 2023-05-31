@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react'
-import { sendOrder, getDataOrders, updateStateOrder } from '../services/order'
+import { sendOrder, getDataOrders, updateStateOrder, onSnapshotOrderFinished } from '../services/order'
 import { v4 as uuid } from 'uuid'
 import { initialStateOrder, orderReducer } from '../reducer/orderReducer'
 
@@ -7,6 +7,34 @@ export const OrderContext = createContext()
 
 export function OrderProvider ({ children }) {
   const [stateOrder, dispatch] = useReducer(orderReducer, initialStateOrder)
+
+  const getOrdersByDate = (response) => {
+    const day = JSON.stringify(new Date()).slice(1, 11)
+    const ordersByDate = response.filter(el => el.created_at.slice(0, 10) === day)
+    return ordersByDate
+  }
+
+  const getAllOrders = async () => {
+    const response = await getDataOrders()
+
+    dispatch({
+      type: 'GET_ORDERS',
+      payload: response
+    })
+
+    const ordersByDate = getOrdersByDate(response)
+    const ordersStatePending = ordersByDate.filter(el => el.state === 'Pendiente')
+
+    dispatch({
+      type: 'GET_ORDERS_BY_DATE',
+      payload: ordersByDate
+    })
+
+    dispatch({
+      type: 'GET_ORDERS_PENDING',
+      payload: ordersStatePending
+    })
+  }
 
   const insertOrder = async (clientName, total, selectedProducts) => {
     const data = {
@@ -33,28 +61,7 @@ export function OrderProvider ({ children }) {
     }
   }
 
-  const getAllOrders = async () => {
-    const response = await getDataOrders()
-
-    dispatch({
-      type: 'GET_ORDERS',
-      payload: response
-    })
-  }
-
-  const getOrdersByDate = async () => {
-    const response = await getDataOrders()
-    const day = JSON.stringify(new Date()).slice(1, 11)
-    const ordersByDate = response.filter(el => el.created_at.slice(0, 10) === day)
-    const ordersStatePending = ordersByDate.filter(el => el.state === 'Pendiente')
-
-    dispatch({
-      type: 'GET_ORDERS_BY_DATE',
-      payload: ordersStatePending
-    })
-  }
-
-  const updateOrder = async (id, state) => {
+  const updateStateFinished = async (id, state) => {
     updateStateOrder(id, state)
   }
 
@@ -63,8 +70,7 @@ export function OrderProvider ({ children }) {
       stateOrder,
       insertOrder,
       getAllOrders,
-      getOrdersByDate,
-      updateOrder
+      updateStateFinished
     }}
     >
       {children}

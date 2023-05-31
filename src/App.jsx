@@ -1,14 +1,13 @@
 import './App.css'
-import './componentsCss/AdminHome.css'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Login } from './components/Login/Login'
 import { Header } from './components/Header/Header'
 import { ViewWaiter } from './components/Waiter/ViewWaiter'
-import { Chef } from './components/Chef'
-import { Pedidos } from './components/Pedidos'
+import { Chef } from './components/Chef/Chef'
 import { AdminHome } from './components/Admin/AdminHome'
 import { AuthGuard } from './guards/auth.guard'
 import { PrivateRoutes, PublicRoutes } from './types/routes'
+import { PedidoTerminado } from './components/Waiter/PedidoTerminado'
 
 function App () {
   return (
@@ -36,7 +35,7 @@ function App () {
             path={PrivateRoutes.CHEF}
             element={<Chef />}
           />
-          <Route path={PrivateRoutes.PEDIDOS} element={<Pedidos />} />
+          <Route path={PrivateRoutes.PEDIDOS} element={<PedidoTerminado />} />
         </Route>
       </Routes>
     </section>

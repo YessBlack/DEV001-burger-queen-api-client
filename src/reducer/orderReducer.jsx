@@ -3,7 +3,9 @@ import { ORDERS_ACTIONS_TYPES } from '../types/orders_actions'
 export const initialStateOrder = {
   orders: [],
   ordersByDate: [],
-  send: null
+  send: null,
+  ordersFinished: [],
+  ordersPending: []
 }
 
 export const orderReducer = (state, action) => {
@@ -24,6 +26,18 @@ export const orderReducer = (state, action) => {
       return {
         ...state,
         send: action.payload
+      }
+
+    case ORDERS_ACTIONS_TYPES.GET_ORDERS_FINISHED:
+      return {
+        ...state,
+        ordersFinished: action.payload
+      }
+
+    case ORDERS_ACTIONS_TYPES.GET_ORDERS_PENDING:
+      return {
+        ...state,
+        ordersPending: action.payload
       }
   }
 }
