@@ -6,12 +6,13 @@ export function CardOrder ({ id, listItem, clientName, order, state, text }) {
 
   const handleUpdateOrder = async (id, state) => {
     const newState = state === 'Pendiente' ? 'Terminado' : 'Entregado'
-    console.log(newState)
-    updateStateFinished(id, newState)
     toast.success('Pedido terminado!', {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000
     })
+    setTimeout(() => {
+      updateStateFinished(id, newState)
+    }, 3000)
   }
 
   return (
@@ -36,7 +37,7 @@ export function CardOrder ({ id, listItem, clientName, order, state, text }) {
             })
         }
       </ul>
-      <button className='p-[10px] bg-[#73C089] border-none rounded-md shadow-md block cursor-pointer' onClick={() => handleUpdateOrder(id)}>{text}</button>
+      <button className='p-[10px] bg-[#73C089] border-none rounded-md shadow-md block cursor-pointer' onClick={() => handleUpdateOrder(id, state)}>{text}</button>
     </article>
   )
 }

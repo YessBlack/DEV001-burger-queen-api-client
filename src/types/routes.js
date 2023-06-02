@@ -8,5 +8,5 @@ export const PrivateRoutes = {
   MESERO: '/private/mesero',
   CHEF: '/private/chef',
   ADMIN: '/private/admin',
-  PEDIDOS: '/private/pedidos'
+  PEDIDOS: '/private/mesero/pedidos'
 }

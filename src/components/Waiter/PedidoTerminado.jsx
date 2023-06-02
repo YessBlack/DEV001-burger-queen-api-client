@@ -16,7 +16,9 @@ export const PedidoTerminado = () => {
     getAllOrders()
   })
 
-  const handleBack = () => navigate('private/mesero')
+  console.log(stateOrder)
+
+  const handleBack = () => navigate('/private/mesero')
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react'
-import { sendOrder, getDataOrders, updateStateOrder, onSnapshotOrderFinished } from '../services/order'
+import { sendOrder, getDataOrders, updateStateOrder } from '../services/order'
 import { v4 as uuid } from 'uuid'
 import { initialStateOrder, orderReducer } from '../reducer/orderReducer'
 
@@ -68,6 +68,7 @@ export function OrderProvider ({ children }) {
   }
 
   const updateStateFinished = async (id, state) => {
+    console.log(state)
     updateStateOrder(id, state)
   }
 

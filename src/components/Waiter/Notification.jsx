@@ -13,7 +13,7 @@ export const Notification = () => {
 
   const handleClickNotification = () => {
     setIsChangeOrder(false)
-    navigate('/private/pedidos')
+    navigate('/private/mesero/pedidos')
   }
 
   return (
